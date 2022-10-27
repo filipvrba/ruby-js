@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    inotify (1.0.2)
+    parser (3.1.2.1)
+      ast (~> 2.4.1)
+    regexp_parser (2.1.1)
+    ruby2js (5.0.1)
+      parser
+      regexp_parser (~> 2.1.1)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  inotify (~> 1.0)
+  ruby2js (~> 5.0)
+
+BUNDLED WITH
+   2.3.21

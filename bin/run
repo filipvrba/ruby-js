@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+$: << File.expand_path("../lib", __dir__)
+
+require_relative "../app/main"
