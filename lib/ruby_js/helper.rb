@@ -16,9 +16,7 @@ module RubyJS
 
     def self.write path_o, content
       path_od = File.dirname(path_o)
-      unless Dir.exist? path_od
-        FileUtils.mkdir_p path_od
-      end
+      create_dir(path_od)
 
       file = File.new(path_o, "w+")
       file.write content
@@ -37,6 +35,12 @@ module RubyJS
       path_ffr = path_f.sub("#{Dir.pwd}/", '').sub(path_options[:path_s], '').sub(Constants::FILE_TYPE, prefix)
       path_ffa = File.join(path_options[:path_o], path_ffr)
       path_ffa
+    end
+
+    def self.create_dir path
+      unless Dir.exist? path
+        FileUtils.mkdir_p path
+      end
     end
   end
 end

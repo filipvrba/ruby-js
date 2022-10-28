@@ -1,4 +1,5 @@
 require 'ruby2js'
+require "ruby2js/filter/esm"
 require "listen"
 require "option_parser"
 
