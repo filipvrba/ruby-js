@@ -17,9 +17,9 @@ module RubyJS
     sleep
   end
 
-  def self.compile path_s, path_o
+  def self.compile path_s, path_o, options
     content_rb = Helper.open(path_s)
-    content_js = Ruby2JS.convert(content_rb)
+    content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel])
     path_write = Helper.write(path_o, File.basename(path_s), content_js)
 
     puts Helper.event_p("compiled", path_write)

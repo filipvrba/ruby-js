@@ -4,13 +4,14 @@ require "option_parser"
   compile: false,
   watch:   false,
   output:  Dir.pwd,
-  source:  Dir.pwd
+  source:  Dir.pwd,
+  eslevel: "2022".to_i
 }
 
 OptionParser.parse do |parser|
   parser.banner(
     "Converts the syntax of ruby into javascript.\n" +
-    "Usage: rubyjs [options] path/to/script.rjs\n" +
+    "Usage: rubyjs [options]\n" +
     "\nOptions:"
   )
   parser.on( "-h", "--help", "Show help" ) do
@@ -34,5 +35,11 @@ OptionParser.parse do |parser|
   parser.on("-s DIR", "--source DIR", "Set the source path or path/filename\n" +
             "for RubyJS." ) do |dir|
     @options[:source] = dir
+  end
+  parser.on("-es LEVEL", "--eslevel LEVEL", "ECMAScript versions for compilation.\n" +
+            "The default: #{@options[:eslevel]}\n" + 
+            "(Accepted level ranges 2015...2022.)\n") do |level|
+
+    @options[:eslevel] = level.to_i
   end
 end

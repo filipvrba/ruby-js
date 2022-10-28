@@ -4,7 +4,7 @@ require_relative "signals"
 
 def compile path_f
   if @options[:compile]
-    RubyJS.compile path_f, @options[:output]
+    RubyJS.compile path_f, @options[:output], { eslevel: @options[:eslevel] }
   else
     puts "This '#{path_f}' file was edited, but it wasn't made into a js file."
   end
@@ -12,7 +12,7 @@ end
 
 if @options[:compile]
   RubyJS.get_files(@options[:source]).each do |path_f|
-    RubyJS.compile path_f, @options[:output]
+    RubyJS.compile path_f, @options[:output], { eslevel: @options[:eslevel] }
   end
 end
 

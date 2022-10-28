@@ -1,7 +1,7 @@
 class OptionParser
 
 	LEFT = 2
-	MIDDLE = 22
+	MIDDLE = 28
 
     attr_reader :args
 
