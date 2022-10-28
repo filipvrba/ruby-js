@@ -25,6 +25,8 @@ if @options[:compile]
 end
 
 if @options[:watch]
+  puts "There is now a watch for edited files."
+
   path_s = @options[:source]
   RubyJS.watch path_s do |modified, added, removed|
     unless added.empty?
