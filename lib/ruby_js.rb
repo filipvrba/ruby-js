@@ -2,6 +2,8 @@ require 'ruby2js'
 require "listen"
 require "option_parser"
 
+# TODO: Fix the inherit directory for the compile function.
+
 module RubyJS
   require "ruby_js/version"
   require "ruby_js/helper"
