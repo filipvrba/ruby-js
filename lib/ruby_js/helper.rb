@@ -1,5 +1,7 @@
 module RubyJS
   module Helper
+    require 'fileutils'
+
     def self.open path
       result = ""
 
@@ -12,30 +14,29 @@ module RubyJS
       result
     end
 
-    def self.write path, name, content, prefix = "js"
-      absolute_path = File.join(path, name.sub(Constants::FILE_TYPE, prefix))
-
-      unless Dir.exist? path
-        FileUtils.mkdir_p File.dirname(path)
+    def self.write path_o, content
+      path_od = File.dirname(path_o)
+      unless Dir.exist? path_od
+        FileUtils.mkdir_p path_od
       end
 
-      file = File.new(absolute_path, "w+")
+      file = File.new(path_o, "w+")
       file.write content
       file.close
-
-      return absolute_path
     end
 
-    def self.free path_f, name, prefix = "js"
-      absolute_path = File.join(path_f, name.sub(Constants::FILE_TYPE, prefix))
-      is_exist = File.exists? path_f
-      
-      File.delete(absolute_path) if is_exist
-      absolute_path
+    def self.free path_o
+      File.delete(path_o) if File.exists? path_o
     end
 
     def self.event_p event, path_f
       "#{Time.now.strftime("%H:%M:%S")} - #{event} #{path_f}"
+    end
+
+    def self.absolute_path path_f, path_options, prefix = "js"
+      path_ffr = path_f.sub("#{Dir.pwd}/", '').sub(path_options[:path_s], '').sub(Constants::FILE_TYPE, prefix)
+      path_ffa = File.join(path_options[:path_o], path_ffr)
+      path_ffa
     end
   end
 end

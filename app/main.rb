@@ -2,9 +2,17 @@ require "ruby_js"
 require_relative "arguments"
 require_relative "signals"
 
+def compile_fun path_f
+  RubyJS.compile path_f, {
+    eslevel: @options[:eslevel],
+    path_s:  @options[:source],
+    path_o:  @options[:output]
+  }
+end
+
 def compile path_f
   if @options[:compile]
-    RubyJS.compile path_f, @options[:output], { eslevel: @options[:eslevel] }
+    compile_fun(path_f)
   else
     puts "This '#{path_f}' file was edited, but it wasn't made into a js file."
   end
@@ -12,7 +20,7 @@ end
 
 if @options[:compile]
   RubyJS.get_files(@options[:source]).each do |path_f|
-    RubyJS.compile path_f, @options[:output], { eslevel: @options[:eslevel] }
+    compile_fun(path_f)
   end
 end
 
@@ -28,7 +36,10 @@ if @options[:watch]
     end
 
     unless removed.empty?
-      RubyJS.free removed.last, @options[:output]
+      RubyJS.free removed.last, {
+        path_s:  @options[:source],
+        path_o:  @options[:output]
+      }
     end
   end
 end

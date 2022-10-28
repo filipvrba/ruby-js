@@ -1,5 +1,5 @@
-function Greeting() {};
-
-Greeting.prototype.greet = function(name) {
-  console.log("Hello " + name)
+class Greeting {
+  greet(name) {
+    console.log(`Hello ${name}`)
+  }
 }

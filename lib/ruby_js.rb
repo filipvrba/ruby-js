@@ -17,17 +17,21 @@ module RubyJS
     sleep
   end
 
-  def self.compile path_s, path_o, options
-    content_rb = Helper.open(path_s)
+  def self.compile path_f, options
+    content_rb = Helper.open(path_f)
     content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel])
-    path_write = Helper.write(path_o, File.basename(path_s), content_js)
 
-    puts Helper.event_p("compiled", path_write)
+    path_o = Helper.absolute_path path_f, { path_s: options[:path_s], path_o: options[:path_o] }
+    path_write = Helper.write(path_o, content_js)
+
+    puts Helper.event_p("compiled", path_o)
   end
 
-  def self.free path_s, path_o
-    result = Helper.free path_o, File.basename(path_s)
-    puts Helper.event_p("deleted", result)
+  def self.free path_f, options
+    path_o = Helper.absolute_path path_f, options
+    Helper.free path_o
+
+    puts Helper.event_p("deleted", path_o)
   end
 
   def self.get_files(path_s)
