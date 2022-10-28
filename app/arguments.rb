@@ -11,7 +11,7 @@ require "option_parser"
 OptionParser.parse do |parser|
   parser.banner(
     "Converts the syntax of ruby into javascript.\n" +
-    "Usage: rubyjs [options]\n" +
+    "Usage: #{RubyJS::Constants::APP_NAME} [options]\n" +
     "\nOptions:"
   )
   parser.on( "-h", "--help", "Show help" ) do

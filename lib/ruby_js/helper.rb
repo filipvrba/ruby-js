@@ -28,7 +28,7 @@ module RubyJS
     end
 
     def self.event_p event, path_f
-      "#{Time.now.strftime("%H:%M:%S")} - #{event} #{path_f}"
+      "#{Time.now.strftime("%l:%M:%S %p").lstrip} [#{Constants::APP_NAME}] #{event} #{path_f}"
     end
 
     def self.absolute_path path_f, path_options, prefix = "js"
