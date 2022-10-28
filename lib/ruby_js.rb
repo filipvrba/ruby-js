@@ -18,7 +18,7 @@ module RubyJS
 
   def self.compile path_f, options
     content_rb = Helper.open(path_f)
-    content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel])
+    content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel]) unless content_rb.empty?
 
     path_o = Helper.absolute_path path_f, { path_s: options[:path_s], path_o: options[:path_o] }
     path_write = Helper.write(path_o, content_js)
