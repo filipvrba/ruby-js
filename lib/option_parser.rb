@@ -1,7 +1,7 @@
 class OptionParser
 
-	LEFT = 4
-	MIDDLE = 33
+	LEFT = 2
+	MIDDLE = 22
 
     attr_reader :args
 
@@ -62,6 +62,10 @@ class OptionParser
         end
     end
 
+    def self.get_empty_spaces
+        " " * (MIDDLE + LEFT)
+    end
+
     def to_s()
         io = Array.new
         if banner = @banner
@@ -72,7 +76,7 @@ class OptionParser
         @flags.each do |flag|
             l_flag = !flag[:long_flag].empty? ? ", #{flag[:long_flag]}" : ""
 			flags = "#{flag[:short_flag]}#{l_flag}".ljust(MIDDLE)
-			desc = flag[:description]
+			desc = flag[:description].gsub("\n", "\n#{OptionParser.get_empty_spaces}")
             io << "".ljust(LEFT) + flags + desc
             io << "\n"
         end

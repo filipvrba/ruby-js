@@ -1,17 +1,34 @@
-require "option_parser"
+require "ruby_js"
+require_relative "arguments"
+require_relative "signals"
 
-OptionParser.parse do |parser|
-  parser.banner( "This is test app" )
-  parser.on( "-h", "--help", "Show help" ) do
-      puts parser
+def compile path_f
+  if @options[:compile]
+    RubyJS.compile path_f, @options[:output]
+  else
+    puts "This '#{path_f}' file was edited, but it wasn't made into a js file."
   end
-  parser.on( "-v", "--version", "Show version" ) do
-      puts "Version is 1.0.0"
+end
+
+if @options[:compile]
+  RubyJS.get_files(@options[:source]).each do |path_f|
+    RubyJS.compile path_f, @options[:output]
   end
-  parser.on( "-o NAME", "--open NAME", "This argument, opened an file." ) do |name|
-      puts "Opening file..."
-      File.open( name ) do |data|
-          puts data.read
-      end
+end
+
+if @options[:watch]
+  path_s = @options[:source]
+  RubyJS.watch path_s do |modified, added, removed|
+    unless added.empty?
+      compile(added.last)
+    end
+
+    unless modified.empty?
+      compile(modified.last)
+    end
+
+    unless removed.empty?
+      RubyJS.free removed.last, @options[:output]
+    end
   end
 end
