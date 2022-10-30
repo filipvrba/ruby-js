@@ -7,6 +7,7 @@ module RubyJS
   require "ruby_js/version"
   require "ruby_js/helper"
   require "ruby_js/constants"
+  require "ruby_js/scaffold"
 
   def self.watch path
     listener = Listen.to(path, only: /\.#{Constants::FILE_TYPE}$/) do |modified, added, removed|

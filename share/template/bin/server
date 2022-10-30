@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rubyjs -c -w -s src/rjs -o src/.js &
+npm run dev

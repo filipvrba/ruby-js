@@ -38,8 +38,12 @@ OptionParser.parse do |parser|
   end
   parser.on("-es LEVEL", "--eslevel LEVEL", "ECMAScript versions for compilation.\n" +
             "The default: #{@options[:eslevel]}\n" + 
-            "(Accepted level ranges 2015...2022.)\n") do |level|
+            "(Accepted level ranges 2015...2022.)") do |level|
 
     @options[:eslevel] = level.to_i
+  end
+  parser.on("--create PROJECT", nil, "Creates a new project using scaffolding." ) do |project|
+    RubyJS::Scaffold.create project
+    exit
   end
 end

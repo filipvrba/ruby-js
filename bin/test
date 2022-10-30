@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bin/run -c -w -s test/rjs -o test/js
