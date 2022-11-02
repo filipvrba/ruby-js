@@ -1,6 +1,6 @@
 module RubyJS
   module Constants
     FILE_TYPE = 'rjs'
-    APP_NAME  = 'rubyjs'
+    APP_NAME  = 'rjsv'
   end
 end

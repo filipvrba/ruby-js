@@ -5,7 +5,7 @@ require "option_parser"
   watch:   false,
   output:  Dir.pwd,
   source:  Dir.pwd,
-  eslevel: "2022".to_i
+  eslevel: "2021".to_i
 }
 
 OptionParser.parse do |parser|

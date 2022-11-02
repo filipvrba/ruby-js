@@ -32,33 +32,38 @@ class OptionParser
     end
 
     def process( args = ARGV )
-        args.each_with_index do |arg, i|
-            @flags.each do |flag|
-                name = -> (type_flag) do
-                    flag[type_flag].gsub( /[a-z -]/, '' )
-                end
-
-                flag_strip = -> (type_flag) do
-					flag[type_flag].sub( name.(type_flag), '' ).strip()
-				end
-                has_flag = -> (type_flag) { arg == flag_strip.(type_flag) }
-
-                if has_flag.(:short_flag) or
-                   has_flag.(:long_flag)
-
-                    has_name = -> (type_flag) do
-						name.(type_flag) != ""
-					end
-                    value = nil
-
-                    if has_name.(:short_flag) or
-                       has_name.(:long_flag)
-                        value = args[i + 1]
+        unless args.length == 0
+            args.each_with_index do |arg, i|
+                @flags.each do |flag|
+                    name = -> (type_flag) do
+                        flag[type_flag].gsub( /[a-z -]/, '' )
                     end
 
-                    flag[:block].call( value )
+                    flag_strip = -> (type_flag) do
+                        flag[type_flag].sub( name.(type_flag), '' ).strip()
+                    end
+                    has_flag = -> (type_flag) { arg == flag_strip.(type_flag) }
+
+                    if has_flag.(:short_flag) or
+                    has_flag.(:long_flag)
+
+                        has_name = -> (type_flag) do
+                            name.(type_flag) != ""
+                        end
+                        value = nil
+
+                        if has_name.(:short_flag) or
+                        has_name.(:long_flag)
+                            value = args[i + 1]
+                        end
+
+                        flag[:block].call( value )
+                    end
                 end
             end
+        else
+            flag = @flags[0]
+            flag[:block].call
         end
     end
 
