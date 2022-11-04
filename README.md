@@ -4,6 +4,7 @@ Web applications may be made with the help of RubyJS Vite. The programmer can av
 Write your code using the JS api and Ruby syntax, and the server will automatically translate it. It then stores it in a file with the extension ".js". You will then be able to publish the project to [Vercel](https://vercel.com/) or directly to the [NPM package](https://www.npmjs.com/), and you will have a website that is written in the native JS language.
 
 ### Content
+- [Why use this tool?](#why-use-this-tool)
 - [1 Installation](#1-installation)
 - [2 Usage](#2-usage)
   - [2.1 Scaffold](#21-scaffold)
@@ -14,6 +15,9 @@ Write your code using the JS api and Ruby syntax, and the server will automatica
   - [4.2 NPM](#42-npm)
 - [5 Examples](#5-examples)
 - [6 Contributors](#6-contributors)
+
+## Why use this tool?
+For me, developer productivity is everything. It is vital to link these codes together if one developer is proficient in Ruby and another in JS. As a result, a module written in Ruby can be connected in JS, and vice versa. Additionally, Vite makes it simpler to launch the server and develop the project.
 
 ## 1 Installation
 The executable application and libraries are installed using the ruby gem during installation.
