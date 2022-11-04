@@ -2,10 +2,7 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
-
+gemspec
 
 gem "ruby2js", "~> 5.0"
-
-
 gem "listen", "~> 3.7"

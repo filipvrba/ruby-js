@@ -24,8 +24,16 @@ module RubyJS
     end
 
     def self.install_vite project, path_ao
-      %x(cd #{path_ao} && npm install -D vite)
-      puts "\nDone. Now run:\n\n  cd #{project}\n  bin/server\n\n"
+      is_done = system("cd #{path_ao} && npm install -D vite")
+      if is_done
+        puts "\nDone. Now run:\n\n  cd #{project}\n  bin/server\n\n"
+      else
+        puts "\nThe Vite library installation encountered an issue.\n" +
+             "NPM is probably not installed on your machine.\n\n" +
+             "Please rerun the Vite installation after installing NodeJS.\n" +
+             "In your project, use the following command:\n\n" +
+             "#{' '*2}npm install -D vite"
+      end
     end
   end
 end

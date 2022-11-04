@@ -10,7 +10,10 @@ Write your code using the JS api and Ruby syntax, and the server will automatica
   - [2.2 More parameters](#22-more-parameters)
 - [3 Development](#3-development)
 - [4 Examples](#4-examples)
-- [5 Contributors](#5-contributors)
+- [5 Unexpected errors](#5-unexpected-errors)
+  - [5.1 Third-party libraries](#51-third-party-libraries)
+  - [5.2 NPM](#52-npm)
+- [6 Contributors](#6-contributors)
 
 ## 1 Installation
 The executable application and libraries are installed using the ruby gem during installation.
@@ -60,5 +63,32 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 - [adb2-weapon-rjs](https://github.com/filipvrba/adb2-weapon-rjs) - Here, a web application was built with scaffolding and uploaded to Vercel.
 - [suitescript-generator](https://github.com/filipvrba/suitescript-generator) - It is a console program that utilizes npm. Here, the file tracking and compilation command is employed. 
 
-## 5 Contributors
+## 5 Unexpected errors
+When using this utility, some problems could happen.
+
+### 5.1 Third-party libraries
+Certain library dependencies must be installed for the program to function as a whole. (The section on [development](#3-development) has more details regarding libraries.)
+
+*Use this command if the software indicates that the library was not found:*
+```bash
+gem install ruby2js &&
+gem install listen
+```
+
+### 5.2 NPM
+The process of constructing a project could go wrong. This is because Vite is attempting to be installed using the NPM tool during the scaffolding phase. This indicates that your machine does not have NodeJS installed. [Installing it is necessary!](https://nodejs.org) Run a command in your project to install the Vite library after you've finished the installation.
+
+*Vite installation command:*
+```bash
+npm install -D vite
+```
+
+You can launch the server and begin developing your project after the installation has been successfully completed.
+
+*An order to launch the server:*
+```bash
+bin/server
+```
+
+## 6 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer

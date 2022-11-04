@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version     = RubyJS::VERSION
   s.licenses    = ['MIT']
   s.summary     = "Converts the syntax of ruby into javascript."
-  s.description = ""
+  s.description = File.open("./README.md").read
   s.authors     = ["Filip Vrba"]
   s.email       = 'filipvrbaxi@gmail.com'
   s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'app/**/*.rb', 'lib/**/*.rb', 'share/**/*'])
