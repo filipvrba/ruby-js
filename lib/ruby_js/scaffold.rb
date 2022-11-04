@@ -28,11 +28,14 @@ module RubyJS
       if is_done
         puts "\nDone. Now run:\n\n  cd #{project}\n  bin/server\n\n"
       else
+        wspaces = ' '*2
         puts "\nThe Vite library installation encountered an issue.\n" +
-             "NPM is probably not installed on your machine.\n\n" +
+             "NodeJS is probably not installed on your machine.\n" +
              "Please rerun the Vite installation after installing NodeJS.\n" +
-             "In your project, use the following command:\n\n" +
-             "#{' '*2}npm install -D vite"
+             "Use these instructions:\n\n" +
+             "#{wspaces}cd #{project}\n" +
+             "#{wspaces}npm install -D vite\n" +
+             "#{wspaces}bin/server"
       end
     end
   end
