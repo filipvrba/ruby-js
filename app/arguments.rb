@@ -5,7 +5,7 @@ require "option_parser"
   watch:   false,
   output:  Dir.pwd,
   source:  Dir.pwd,
-  eslevel: @config.parse(:eslevel).to_i
+  eslevel: Config::get_eslevel
 }
 
 OptionParser.parse do |parser|
