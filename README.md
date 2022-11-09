@@ -54,6 +54,9 @@ rjsv -c -w -s src/rjs -o src/js
 
 ![rjsv-compile-watch](./public/rjsv_cw.gif)
 
+> ### Info
+> If *scaffolding* was used in the project's construction, a **bin/watch** executable is embedded.
+
 ## 3 Development
 Look in the *'lib'* folder if you want to edit this RubyJS Vite project. Everything you require for file transformation and change tracking is available. The console portion is under the *'app'* subdirectory. Everything that needs to be executed with various arguments is available here. 
 
