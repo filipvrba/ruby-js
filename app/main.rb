@@ -1,4 +1,5 @@
 require "ruby_js"
+require_relative "config"
 require_relative "arguments"
 require_relative "signals"
 
