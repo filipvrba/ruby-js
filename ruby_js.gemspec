@@ -1,5 +1,6 @@
 require_relative "lib/ruby_js/version"
 require_relative "lib/ruby_js/constants"
+require_relative "lib/description"
 
 EXECUTABLE = RubyJS::Constants::APP_NAME
 
@@ -8,7 +9,8 @@ Gem::Specification.new do |s|
   s.version     = RubyJS::VERSION
   s.licenses    = ['MIT']
   s.summary     = "Converts the syntax of ruby into javascript."
-  s.description = "To learn more, go to this page: https://github.com/filipvrba/ruby-js"
+  s.description = "#{Description::get_readme(2)}\n\nSee GitHub for further information. " +
+                  "|> https://github.com/filipvrba/ruby-js"
   s.authors     = ["Filip Vrba"]
   s.email       = 'filipvrbaxi@gmail.com'
   s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'app/**/*.rb', 'lib/**/*.rb', 'share/**/*'])
