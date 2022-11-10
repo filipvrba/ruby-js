@@ -1,4 +1,18 @@
-# RubyJS Vite
+<h1 align="center">
+  <a href="https://rubygems.org/gems/rubyjs-vite">
+    <!-- <img src="https://raw.githubusercontent.com/ElMassimo/vite_ruby/main/logo.svg" width="120px"/> -->
+    <img src="public/rjsv_gem.gif" width="128px"/>
+    <!-- <img src="public/rjsv_gem.png" width="128px"/> -->
+  </a>
+  <p>RubyJS Vite</p>
+  <p align="center">
+    <img alt="Stars" src="https://img.shields.io/github/stars/filipvrba/ruby-js?style=for-the-badge"/>
+    <a href="https://github.com/filipvrba/ruby-js/blob/main/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/filipvrba/ruby-js?style=for-the-badge"/>
+    </a>
+  </p>
+</h1>
+
 Web applications may be made with the help of RubyJS Vite. The programmer can avoid using JS syntax, which is helpful. Everything is done automatically; all you have to do is start the server and build a project using scaffolding.
 
 Write your code using the JS api and Ruby syntax, and the server will automatically translate it. It then stores it in a file with the extension ".js". You will then be able to publish the project to [Vercel](https://vercel.com/) or directly to the [NPM package](https://www.npmjs.com/), and you will have a website that is written in the native JS language.
@@ -72,8 +86,7 @@ Certain library dependencies must be installed for the program to function as a 
 
 *Use this command if the software indicates that the library was not found:*
 ```bash
-gem install ruby2js &&
-gem install listen
+gem install ruby2js listen
 ```
 
 ### 4.2 NPM
