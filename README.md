@@ -2,11 +2,10 @@
   <a href="https://rubygems.org/gems/rubyjs-vite">
     <!-- <img src="https://raw.githubusercontent.com/ElMassimo/vite_ruby/main/logo.svg" width="120px"/> -->
     <!-- <img src="public/rjsv_gem.gif" width="128px"/> -->
-    <img src="public/rjsv_gem.png" width="256px"/>
+    <img src="public/rjsv_gem.png" width="192px"/>
   </a>
   <p>RubyJS Vite</p>
   <p align="center">
-    <img alt="Stars" src="https://img.shields.io/github/stars/filipvrba/ruby-js?style=for-the-badge"/>
     <a href="https://github.com/filipvrba/ruby-js/blob/main/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/filipvrba/ruby-js?style=for-the-badge"/>
     </a>
