@@ -11,7 +11,7 @@ class JsonParser
   end
 
   def on symbol, value
-    if exist?
+    unless @db.include?(symbol.to_s)
       parse symbol, value
     end
   end
