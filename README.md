@@ -1,8 +1,8 @@
 <h1 align="center">
   <a href="https://rubygems.org/gems/rubyjs-vite">
     <!-- <img src="https://raw.githubusercontent.com/ElMassimo/vite_ruby/main/logo.svg" width="120px"/> -->
-    <img src="public/rjsv_gem.gif" width="128px"/>
-    <!-- <img src="public/rjsv_gem.png" width="128px"/> -->
+    <!-- <img src="public/rjsv_gem.gif" width="128px"/> -->
+    <img src="public/rjsv_gem.png" width="128px"/>
   </a>
   <p>RubyJS Vite</p>
   <p align="center">
