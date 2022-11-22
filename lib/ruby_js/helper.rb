@@ -23,8 +23,12 @@ module RubyJS
       file.close
     end
 
-    def self.free path_o
-      File.delete(path_o) if File.exists? path_o
+    def self.free path_fro
+      # File
+      File.delete(path_fro) if File.exists? path_fro
+      # Dir
+      path_dro = File.dirname(path_fro)
+      Dir.delete(path_dro) if Dir.empty? path_dro
     end
 
     def self.event_p event, path_f

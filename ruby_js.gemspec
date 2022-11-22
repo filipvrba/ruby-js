@@ -9,7 +9,8 @@ Gem::Specification.new do |s|
   s.version     = RubyJS::VERSION
   s.licenses    = ['MIT']
   s.summary     = "Converts the syntax of ruby into javascript."
-  s.description = "#{Description::get_readme(2)}\n\nSee GitHub for further information. " +
+  s.description = "Using this translation tool, you can run Vite server and write code in Ruby syntax using JS API. " +
+                  "See GitHub for further information. " +
                   "|> https://github.com/filipvrba/ruby-js"
   s.authors     = ["Filip Vrba"]
   s.email       = 'filipvrbaxi@gmail.com'
