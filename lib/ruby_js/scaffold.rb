@@ -15,15 +15,17 @@ module RubyJS
       json_cj = JsonParser.new File.join(path_ao, ".codejoin")
       json_cj.parse :name, project.downcase
 
-      change_watch_f(path_ao)
+      change_name_f(path_ao)
       install_vite(project, path_ao)
     end
 
-    def self.change_watch_f path_ao
-      path_bin_ao = "#{path_ao}/bin/watch"
-      content = Helper.open(path_bin_ao)
-      content_ch = content.sub("APP_NAME", Constants::APP_NAME)
-      Helper.write(path_bin_ao, content_ch)
+    def self.change_name_f path_ao
+      paths_bin_ao = ["#{path_ao}/bin/watch", "#{path_ao}/bin/generate"]
+      paths_bin_ao.each do |p|
+        content = Helper.open(p)
+        content_ch = content.sub("APP_NAME", Constants::APP_NAME)
+        Helper.write(p, content_ch)
+      end
     end
 
     def self.install_vite project, path_ao
