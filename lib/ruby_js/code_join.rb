@@ -4,12 +4,18 @@ module RubyJS
   FileS = Struct.new :path, :content, :class_rid
 
   class CodeJoin
+    FILE_N = "FILE_N"
+    TEST_N = "test.rjs"
+    FILE_HN = ".codejoin"
+
     attr_reader :json_cj
 
     def initialize path_s
       @files = []
 
-      @json_cj = JsonParser.new File.join(path_s, ".codejoin")
+      @json_cj = JsonParser.new File.join(path_s, FILE_HN)
+      @json_cj.on :name, "project"
+      @json_cj.on :ignore, ["#{FILE_N}.*.rjs", TEST_N]
     end
 
     def add_file path_f
@@ -17,6 +23,14 @@ module RubyJS
       i_c = content.index /class/
       i_n = content.index(/\n/, i_c) if i_c
       @files << FileS.new(path_f, content, [i_c, i_n])
+    end
+
+    def get_ignore_r
+      result = ""
+      @json_cj.parse(:ignore).each do |i|
+          result << i.sub(/#{FILE_N}/, @json_cj.parse(:name).downcase.gsub(' ', '_')).concat("|")
+      end
+      return result.sub(/\|$/, '')
     end
 
     def get_pos_class

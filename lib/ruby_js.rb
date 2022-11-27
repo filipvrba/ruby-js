@@ -10,8 +10,8 @@ module RubyJS
   require "ruby_js/scaffold"
   require "ruby_js/code_join"
 
-  def self.watch path
-    listener = Listen.to(path, only: /\.#{Constants::FILE_TYPE}$/) do |modified, added, removed|
+  def self.watch path, ignore = ""
+    listener = Listen.to(path, only: /\.#{Constants::FILE_TYPE}$/, ignore: /#{ignore}/) do |modified, added, removed|
       yield modified, added, removed
     end
     listener.start
@@ -34,7 +34,12 @@ module RubyJS
   end
 
   def self.generate_cj path_s
-    code_join = CodeJoin.new path_s
+    path_hfd = path_s
+    unless File.exist?(File.join(path_s, CodeJoin::FILE_HN))
+      path_hfd = ROOT
+    end
+
+    code_join = CodeJoin.new path_hfd
     get_files(path_s).each do |path_f|
       code_join.add_file path_f
     end
@@ -47,7 +52,7 @@ module RubyJS
     RubyJS::Helper.write(path_f, content_join)
     puts Helper.event_p("generated", path_f)
     
-    return path_f
+    return code_join
   end
 
   def self.free path_f, options

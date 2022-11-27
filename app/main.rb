@@ -12,37 +12,39 @@ def compile_fun path_f
 end
 
 def compile path_f
-  if @options[:compile] == 0
+  if @options[:compile]
     compile_fun(path_f)
   else
-    puts "This '#{path_f}' file was edited, but it wasn't made into a js file."
+    puts RubyJS::Helper.event_p("warning", "This '#{path_f}' file was edited, " +
+                                "but it wasn't made into a js file.")
   end
 end
 
-if @options[:compile] > -1
-  def state_two
+def generate
+  if @options[:generate]
     path_s = @options[:source]
-    path_f = RubyJS.generate_cj path_s
-    compile_fun(path_f)
+    code_j = RubyJS.generate_cj path_s
+    return code_j.get_ignore_r
   end
 
-  case @options[:compile]
-  when 0..1
-    RubyJS.get_files(@options[:source]).each do |path_f|
-      compile_fun(path_f)
-    end
-    state_two if @options[:compile] == 1
-  when 2
-    state_two
+  return RubyJS::CodeJoin::TEST_N
+end
+ignore_cjfs = generate()
+
+if @options[:compile]
+  RubyJS.get_files(@options[:source]).each do |path_f|
+    compile_fun(path_f)
   end
 end
 
 if @options[:watch]
-  puts "There is now a watch for edited files."
+  puts RubyJS::Helper.event_p("message", "There is now a watch for edited files.")
   path_s = @options[:source]
   
   RubyJS::Helper.create_dir(path_s)
-  RubyJS.watch path_s do |modified, added, removed|
+  RubyJS.watch path_s, ignore_cjfs do |modified, added, removed|
+    generate()
+
     unless added.empty?
       compile(added.last)
     end

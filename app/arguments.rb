@@ -1,7 +1,8 @@
 require "option_parser"
 
 @options = {
-  compile: -1,
+  compile: false,
+  generate: false,
   watch:   false,
   output:  Dir.pwd,
   source:  Dir.pwd,
@@ -25,18 +26,11 @@ OptionParser.parse do |parser|
   parser.on( "-w", "--watch", "Watch scripts for changes and rerun commands." ) do
     @options[:watch] = true
   end
-  parser.on( "-c ID", "--compile ID", "Compile to JavaScript and save as .js files.\n" +
-             "The default: 0\n\n" +
-             "[1] a file is produced using the rjs source code.\n" +
-             "Then, all rjs files will be converted into js.\n" +
-             "[2] a file is produced using the rjs source code,\n" +
-             "and it is then further compiled into js.\n" ) do |id|
-    is_int = id.to_i.to_s == id
-    if is_int
-      @options[:compile] = id.to_i
-    else
-      @options[:compile] = 0
-    end
+  parser.on( "-c", "--compile", "Compile to JavaScript and save as .js files." ) do
+    @options[:compile] = true
+  end
+  parser.on( "-g", "--generate", "Copies every rjs file into a single rjs file." ) do
+    @options[:generate] = true
   end
   parser.on("-o DIR", "--output DIR", "Set the output path or path/filename\n" +
             "for compiled JavaScript." ) do |dir|
