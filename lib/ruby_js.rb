@@ -41,7 +41,7 @@ module RubyJS
 
     code_join = CodeJoin.new path_hfd
     get_files(path_s).each do |path_f|
-      code_join.add_file path_f
+      code_join.add_file(path_f) unless path_f.index(/#{code_join.get_ignore_r}/)
     end
 
     content_join = code_join.to_s

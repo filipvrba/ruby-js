@@ -28,7 +28,7 @@ module RubyJS
     def get_ignore_r
       result = ""
       @json_cj.parse(:ignore).each do |i|
-          result << i.sub(/#{FILE_N}/, @json_cj.parse(:name).downcase.gsub(' ', '_')).concat("|")
+          result << i.sub(/#{FILE_N}/, @json_cj.parse(:name).downcase.gsub(' ', '_')).concat("$|")
       end
       return result.sub(/\|$/, '')
     end
@@ -52,10 +52,12 @@ module RubyJS
       files_c = []
       extends_pos_class(files_ch).each do |c|
         @files.each do |f|
-          r_class = f.content[f.class_rid[0], f.class_rid[1] - f.class_rid[0]]
-          if r_class.index("class #{c}")
-            files_c << f
-            break
+          if f.class_rid[0]
+            r_class = f.content[f.class_rid[0], f.class_rid[1] - f.class_rid[0]]
+            if r_class.index("class #{c}")
+              files_c << f
+              break
+            end
           end
         end
       end
