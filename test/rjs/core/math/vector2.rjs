@@ -1,0 +1,88 @@
+export default class Vector2
+	attr_reader :x, :y
+	attr_writer :x, :y
+
+  def initialize x = 0, y = 0
+    @x = x
+    @y = y
+  end
+
+  def length
+		return Math.sqrt(@x * @x + @y * @y)
+	end
+
+  def lerp vector, alpha
+		@x += ( vector.x - @x ) * alpha
+		@y += ( vector.y - @y ) * alpha
+		return self
+	end
+
+  def normalized
+		v = this.clone
+		v._normalize
+		return v
+	end
+
+  def multiply vector
+		@x *= vector.x
+		@y *= vector.y
+		return self
+  end
+
+  def multiply_scalar scalar
+		@x *= scalar
+		@y *= scalar
+		return this
+	end
+
+  def clone
+		return this.constructor.new @x, @y
+	end
+
+  def add vector
+		@x += vector.x
+		@y += vector.y
+		return self
+	end
+
+  def sub vector
+		@x -= vector.x
+		@y -= vector.y
+		return self
+	end
+
+  def sub_scalar scalar
+		@x -= scalar
+		@y -= scalar
+		return self
+  end
+
+  def equals vector
+		return vector.x == @x && vector.y == @y
+	end
+
+  def distance_to vector
+		return Math.sqrt( distance_to_squared(vector) )
+	end
+
+  def distance_to_squared vector
+    dx = @x - vector.x
+    dy = @y - vector.y
+		return dx * dx + dy * dy
+  end
+
+  def dot vector
+		return @x * vector.x + @y * vector.y
+  end
+
+  # private
+  def _normalize
+		l = @x * @x + @y * @y
+	  unless l == 0
+			l = Math.sqrt(l)
+			@x /= l
+			@y /= l
+    end
+		return self
+  end
+end

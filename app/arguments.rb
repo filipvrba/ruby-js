@@ -1,7 +1,7 @@
 require "option_parser"
 
 @options = {
-  compile: false,
+  compile: -1,
   watch:   false,
   output:  Dir.pwd,
   source:  Dir.pwd,
@@ -22,8 +22,13 @@ OptionParser.parse do |parser|
     puts "Version is #{RubyJS::VERSION}"
     exit
   end
-  parser.on( "-c", "--compile", "Compile to JavaScript and save as .js files." ) do
-    @options[:compile] = true
+  parser.on( "-c ID", "--compile ID", "Compile to JavaScript and save as .js files." ) do |id|
+    is_int = id.to_i.to_s == id
+    if is_int
+      @options[:compile] = id.to_i
+    else
+      @options[:compile] = 0
+    end
   end
   parser.on( "-w", "--watch", "Watch scripts for changes and rerun commands." ) do
     @options[:watch] = true

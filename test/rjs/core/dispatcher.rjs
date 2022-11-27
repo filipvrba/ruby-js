@@ -1,0 +1,70 @@
+export default class Dispatcher
+  ADDED  = "added"
+  READY  = "ready"
+  UPDATE = "update"
+  DRAW   = "draw"
+
+  attr_reader :signals
+  attr_writer :signals
+
+  def initialize
+    @signals = nil
+  end
+
+  def connect type_s, handler
+    if @signals == undefined
+      @signals = { }
+    end
+
+    if @signals[type_s] == undefined
+      @signals[type_s] = []
+    end
+
+    if @signals[type_s].indexOf(handler) == -1
+      @signals[type_s].push(handler)
+    end
+  end
+
+  def disconnect type_s, handler
+    if @signals == undefined
+      return
+    end
+
+    signal_arr = @signals[type_s]
+
+    unless signal_arr == undefined
+      index = signal_arr.indexOf(handler)
+    end
+
+    unless index == -1
+      signal_arr.splice(index, 1)
+    end
+  end
+
+  def has_signal type_s, handler
+    if @signals == undefined
+      return false
+    end
+
+    return @signals[type_s] != undefined &&
+           @signals[type_s].indexOf(handler) != -1
+  end
+
+  def emit_signal type_s, *args
+    if @signals == undefined
+      return
+    end
+
+    signal_arr = @signals[type_s]
+
+    unless signal_arr == undefined
+      if type_s == 'added' && typeof(this.ready) == 'undefined'
+        return
+      end
+
+      signal_arr.slice(0).forEach do |sig|
+        sig(*args)
+      end
+    end
+  end
+end

@@ -1,0 +1,27 @@
+import "Clock", "./clock"
+import "Dispatcher", "./dispatcher"
+
+export default class TDRenderer
+  DIMENSION = '2d'
+
+  def initialize canvas
+    @canvas = canvas
+    @clock  = Clock.new
+  end
+
+  def set_size width, height
+    @canvas.width = width
+    @canvas.height = height
+  end
+
+  def renderer
+    @canvas.getContext(DIMENSION)
+  end
+
+  def render scene
+    renderer.clearRect(0, 0, @canvas.width, @canvas.height)
+
+    scene.emit_signal Dispatcher::DRAW, renderer
+    scene.emit_signal Dispatcher::UPDATE, @clock.delta_time
+  end
+end

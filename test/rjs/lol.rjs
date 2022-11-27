@@ -1,5 +1,0 @@
-class Greeting
-  def greet name
-    console.log "Hello #{name}"
-  end
-end

@@ -1,0 +1,12 @@
+export default class Clock
+  def initialize
+    @time = Date.now()
+  end
+
+  def delta_time
+    current_time = Date.now()
+    dt = (current_time - @time) / 1_000
+    @time = current_time
+    return dt
+  end
+end

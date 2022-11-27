@@ -12,16 +12,28 @@ def compile_fun path_f
 end
 
 def compile path_f
-  if @options[:compile]
+  if @options[:compile] == 0
     compile_fun(path_f)
   else
     puts "This '#{path_f}' file was edited, but it wasn't made into a js file."
   end
 end
 
-if @options[:compile]
-  RubyJS.get_files(@options[:source]).each do |path_f|
+if @options[:compile] > -1
+  def state_two
+    path_s = @options[:source]
+    path_f = RubyJS.generate_cj path_s
     compile_fun(path_f)
+  end
+
+  case @options[:compile]
+  when 0..1
+    RubyJS.get_files(@options[:source]).each do |path_f|
+      compile_fun(path_f)
+    end
+    state_two if @options[:compile] == 1
+  when 2
+    state_two
   end
 end
 

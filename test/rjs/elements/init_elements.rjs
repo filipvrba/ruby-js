@@ -1,0 +1,3 @@
+import "Canvas2DElement", "./canvas_2d"
+
+window.customElements.define( 'canvas-2d', Canvas2DElement )

@@ -1,0 +1,48 @@
+import "BasicObject", './basic_object'
+import "Vector2", '../math/vector2'
+
+export default class Object2D < BasicObject
+  attr_reader :position
+  attr_writer :position, :global_position
+
+  def initialize
+    super
+
+    @position = Vector2.new
+    @global_position = Vector2.new
+  end
+
+  def global_position
+    update_global_position()
+    return @global_position
+  end
+
+  def update_global_position()
+    if this.parent == nil
+      return
+    end
+
+    # unsafe
+    add_vector = this.parent._global_position.clone.add(@position)
+    unless @global_position.equals(add_vector)
+      @global_position = add_vector
+    end
+    # end
+  end
+
+  def update_world()
+    if this.children.length > 0
+      this.children.forEach do |child|
+
+        if defined? child.update_global_position
+          child.update_global_position()
+          child.update_world()
+        end
+      end
+    else
+      if defined? this.update_global_position
+        this.update_global_position()
+      end
+    end
+  end
+end

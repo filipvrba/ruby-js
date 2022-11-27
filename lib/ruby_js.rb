@@ -8,6 +8,7 @@ module RubyJS
   require "ruby_js/helper"
   require "ruby_js/constants"
   require "ruby_js/scaffold"
+  require "ruby_js/code_join"
 
   def self.watch path
     listener = Listen.to(path, only: /\.#{Constants::FILE_TYPE}$/) do |modified, added, removed|
@@ -30,6 +31,23 @@ module RubyJS
         # p exception.inspect
         puts Helper.event_p("error", "#{path_o} #{exception}")
     end
+  end
+
+  def self.generate_cj path_s
+    code_join = CodeJoin.new path_s
+    get_files(path_s).each do |path_f|
+      code_join.add_file path_f
+    end
+
+    content_join = code_join.to_s
+
+    name_f = "#{code_join.json_cj.parse(:name).downcase.gsub(' ', '_')}_" +
+             "#{Time.now.strftime("%ya%m%d")}.#{Constants::FILE_TYPE}"
+    path_f = File.join(path_s, name_f)
+    RubyJS::Helper.write(path_f, content_join)
+    puts Helper.event_p("generated", path_f)
+    
+    return path_f
   end
 
   def self.free path_f, options
