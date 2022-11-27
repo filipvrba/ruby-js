@@ -12,7 +12,7 @@ module RubyJS
       json_oc = JsonParser.new File.join(path_ao, "package.json")
       json_oc.parse :name, project.downcase
 
-      json_cj = JsonParser.new File.join(path_ao, "src/rjs/.codejoin")
+      json_cj = JsonParser.new File.join(path_ao, ".codejoin")
       json_cj.parse :name, project.downcase
 
       change_watch_f(path_ao)
