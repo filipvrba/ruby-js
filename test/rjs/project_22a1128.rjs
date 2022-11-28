@@ -1,0 +1,66 @@
+
+class Canvas2DElement < HTMLElement
+  RESIZE = "resize"
+
+  attr_reader :scene_r
+
+  def initialize
+    super
+    @resizeHandler = lambda { resize() }
+
+    @renderer = TDRenderer.new init_canvas("c2d")
+    @scene_r = Scene.new
+    @scene_r.ready
+    resize()  # change renderer size
+  end
+
+  def init_canvas id
+    template = document.createElement( 'template' )
+    template.innerHTML = """
+      <style type='text/css'>
+      canvas {
+          position: fixed;
+          top: 0;
+          left: 0;
+          outline: none;
+          z-index: -1;
+      }
+      </style>
+
+      <canvas id='#{id}'></canvas>
+    """
+
+    this.attachShadow( { mode: 'open' } )
+    this.shadowRoot.appendChild( template.content.cloneNode( true ) )
+    return this.shadowRoot.getElementById(id);
+  end
+
+  def tick()
+    @renderer.render @scene_r
+    requestAnimationFrame lambda { tick() }
+  end
+
+  def resize()
+    @renderer.set_size(window.innerWidth, window.innerHeight)
+    @scene_r.emit_signal RESIZE
+    @scene_r.update_world()
+  end
+
+  def win_center_position
+    widthHalf = @renderer._canvas.width / 2
+    heightHalf = @renderer._canvas.height / 2
+    return Vector2.new widthHalf, heightHalf
+  end
+
+  def connectedCallback()
+    tick
+    window.addEventListener RESIZE, @resizeHandler
+  end
+
+  def disconnectedCallback()
+    @scene_r.free
+    window.removeEventListener RESIZE, @resizeHandler
+  end
+end
+
+window.customElements.define( 'canvas-2d', Canvas2DElement )

@@ -1,7 +1,8 @@
 {
   "name": "project",
   "ignore": [
-    "FILE_N.*.rjs",
-    "test.rjs"
+    "FILE_N_.*.rjs",
+    "test.rjs",
+    "/core/.*"
   ]
 }

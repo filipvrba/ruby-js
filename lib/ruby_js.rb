@@ -36,7 +36,7 @@ module RubyJS
   def self.generate_cj path_s
     path_hfd = path_s
     unless File.exist?(File.join(path_s, CodeJoin::FILE_HN))
-      path_hfd = ROOT
+      path_hfd = Dir.pwd
     end
 
     code_join = CodeJoin.new path_hfd
