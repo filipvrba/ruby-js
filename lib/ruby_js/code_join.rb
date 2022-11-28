@@ -61,7 +61,7 @@ module RubyJS
           end
         end
       end
-      
+
       return files_c + files_nc
     end
 
@@ -91,8 +91,14 @@ module RubyJS
         end
       end
 
-      fe_arr_u = fe_arr.group_by{|x|x[1]}.values.map(&:last).reverse 
-      return fa_arr.clone.concat(fe_arr_u).to_s.gsub(/[\[\]\"]/, '').split(', ')
+      fe_arr_ue = []
+      fe_arr.each do |cs|
+        cs.each do |c|
+          fe_arr_ue << c
+        end
+      end
+
+      return fa_arr.clone.concat(fe_arr_ue.uniq)
     end
 
     def to_s

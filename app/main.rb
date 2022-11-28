@@ -22,7 +22,6 @@ end
 
 def generate
   if @options[:generate]
-    # path_s = @options[:generate].empty? ? @options[:source] : @options[:generate]
     code_j = RubyJS.generate_cj @options[:source], @options[:generate]
     return code_j.get_ignore_r
   end
