@@ -33,7 +33,7 @@ module RubyJS
     end
   end
 
-  def self.generate_cj path_s
+  def self.generate_cj path_s, path_g
     path_hfd = path_s
     unless File.exist?(File.join(path_s, CodeJoin::FILE_HN))
       path_hfd = Dir.pwd
@@ -50,7 +50,8 @@ module RubyJS
 
     name_f = "#{code_join.json_cj.parse(:name).downcase.gsub(' ', '_')}_" +
              "#{Time.now.strftime("%ya%m%d")}.#{Constants::FILE_TYPE}"
-    path_f = File.join(path_s, name_f)
+    path_w = path_g.empty? ? path_s : path_g
+    path_f = File.join(path_w, name_f)
     RubyJS::Helper.write(path_f, content_join)
     puts Helper.event_p("generated", path_f)
     

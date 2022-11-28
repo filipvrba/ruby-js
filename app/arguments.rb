@@ -2,7 +2,7 @@ require "option_parser"
 
 @options = {
   compile: false,
-  generate: false,
+  generate: nil,
   watch:   false,
   output:  Dir.pwd,
   source:  Dir.pwd,
@@ -29,8 +29,12 @@ OptionParser.parse do |parser|
   parser.on( "-c", "--compile", "Compile to JavaScript and save as .js files." ) do
     @options[:compile] = true
   end
-  parser.on( "-g", "--generate", "Copies every rjs file into a single rjs file." ) do
-    @options[:generate] = true
+  parser.on( "-g PATH", "--generate PATH", "Copies every rjs file into a single rjs file." ) do |path|
+    if File.directory?(path)
+      @options[:generate] = path
+    else
+      @options[:generate] = ""
+    end
   end
   parser.on("-o DIR", "--output DIR", "Set the output path or path/filename\n" +
             "for compiled JavaScript." ) do |dir|
