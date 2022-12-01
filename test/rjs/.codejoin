@@ -3,6 +3,6 @@
   "ignore": [
     "FILE_N_.*.rjs",
     "test.rjs",
-    "/core/.*"
+    "main.rjs"
   ]
 }

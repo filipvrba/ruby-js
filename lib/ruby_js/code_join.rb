@@ -15,7 +15,7 @@ module RubyJS
 
       @json_cj = JsonParser.new File.join(path_s, FILE_HN)
       @json_cj.on :name, "project"
-      @json_cj.on :ignore, ["#{FILE_N}_.*.rjs", TEST_N]
+      @json_cj.on :ignore, ["#{FILE_N}_.*.rjs", TEST_N, "main.rjs"]
     end
 
     def add_file path_f

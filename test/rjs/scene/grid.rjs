@@ -1,0 +1,41 @@
+import "BasicObject", '../core/objects/basic_object'
+
+export default class Grid < BasicObject
+  attr_accessor :scale, :visible
+
+  def initialize size_v
+    super
+
+    @size_v = size_v
+    @scale = 1
+    @visible = true
+  end
+
+  def draw r
+    unless @visible
+      return
+    end
+
+    x = @size_v.w * @scale
+    y = @size_v.h * @scale
+    r.lineWidth = 1
+
+    # x
+    (0...r.canvas.width / x).step(1) do |i|
+      r.beginPath()
+      r.moveTo(x * i, 0)
+      r.lineTo(x * i, r.canvas.height)
+      r.fill()
+      r.stroke()
+    end
+
+    # y
+    (0...r.canvas.height / y).step(1) do |i|
+      r.beginPath()
+      r.moveTo(0, y * i)
+      r.lineTo(r.canvas.width, y * i)
+      r.fill()
+      r.stroke()
+    end
+  end
+end

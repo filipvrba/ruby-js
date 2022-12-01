@@ -1,0 +1,8 @@
+export default class SSprite
+  attr_accessor :position, :size
+
+  def initialize source_position, source_size
+    @position  = source_position
+    @size      = source_size
+  end
+end

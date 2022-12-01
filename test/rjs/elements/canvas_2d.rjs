@@ -1,6 +1,7 @@
 import "Scene", '../core/objects/scene'
 import "TDRenderer", "../core/td_renderer"
 import "Vector2", "../core/math/vector2"
+import "Grid", "../scene/grid"
 
 export default class Canvas2DElement < HTMLElement
   RESIZE = "resize"
@@ -13,7 +14,7 @@ export default class Canvas2DElement < HTMLElement
 
     @renderer = TDRenderer.new init_canvas("c2d")
     @scene_r = Scene.new
-    @scene_r.ready
+    @scene_r.ready()
     resize()  # change renderer size
   end
 

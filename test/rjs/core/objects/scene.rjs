@@ -5,12 +5,14 @@ export default class Scene < Object2D
 
   def initialize
     super
-    this.id = "scene_r"
+    self.id = "scene_r"
   end
 
-  def ready
+  def ready()
     unless this.parent
-      this.global_position = this.position
+      self.global_position = self.position
+    else
+      self.update_global_position()
     end
   end
 end
