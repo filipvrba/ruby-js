@@ -66,8 +66,8 @@ module RubyJS
     end
 
     def extends_pos_class hash
-      fe_arr = []
-      fa_arr = []
+      fe_arr = []  # Extend class
+      fa_arr = []  # No extend class
       hash.each do |c, e|
         if e
           arr_c = [c, e]
@@ -91,14 +91,44 @@ module RubyJS
         end
       end
 
+      last_class = check_last_extend_class(fe_arr)
+
       fe_arr_ue = []
       fe_arr.each do |cs|
         cs.each do |c|
           fe_arr_ue << c
         end
       end
+      fe_arr_uniq = change_extend_class_position(last_class, fe_arr_ue.uniq)
 
-      return fa_arr.clone.concat(fe_arr_ue.uniq)
+      return fa_arr.clone.concat(fe_arr_uniq)
+    end
+
+    def change_extend_class_position last_class, fe_arr_uniq
+      last_class.each do |c|
+        i_c = fe_arr_uniq.delete c
+        fe_arr_uniq.push c
+      end
+      return fe_arr_uniq
+    end
+
+    def check_last_extend_class fe_arr
+      last_class = []
+      fe_arr.each do |cs|
+        unless last_class.empty?
+          last_class.each do |c|
+            is_exist = cs.find_index(c)
+            if is_exist
+              last_class.delete(c)
+            end
+          end
+        end
+
+        if cs.length == 1
+          last_class << cs[0]
+        end
+      end
+      return last_class
     end
 
     def to_s

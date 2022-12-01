@@ -1,0 +1,543 @@
+class Clock
+  def initialize
+    @time = Date.now()
+  end
+
+  def delta_time
+    current_time = Date.now()
+    dt = (current_time - @time) / 1_000
+    @time = current_time
+    return dt
+  end
+end
+class Dispatcher
+  ADDED  = "added"
+  READY  = "ready"
+  UPDATE = "update"
+  DRAW   = "draw"
+
+  attr_reader :signals
+  attr_writer :signals
+
+  def initialize
+    @signals = nil
+  end
+
+  def connect type_s, handler
+    if @signals == undefined
+      @signals = { }
+    end
+
+    if @signals[type_s] == undefined
+      @signals[type_s] = []
+    end
+
+    if @signals[type_s].indexOf(handler) == -1
+      @signals[type_s].push(handler)
+    end
+  end
+
+  def disconnect type_s, handler
+    if @signals == undefined
+      return
+    end
+
+    signal_arr = @signals[type_s]
+
+    unless signal_arr == undefined
+      index = signal_arr.indexOf(handler)
+    end
+
+    unless index == -1
+      signal_arr.splice(index, 1)
+    end
+  end
+
+  def has_signal type_s, handler
+    if @signals == undefined
+      return false
+    end
+
+    return @signals[type_s] != undefined &&
+           @signals[type_s].indexOf(handler) != -1
+  end
+
+  def emit_signal type_s, *args
+    if @signals == undefined
+      return
+    end
+
+    signal_arr = @signals[type_s]
+
+    unless signal_arr == undefined
+      if type_s == 'added' && typeof(this.ready) == 'undefined'
+        return
+      end
+
+      signal_arr.slice(0).forEach do |sig|
+        sig(*args)
+      end
+    end
+  end
+end
+class Vector2
+	attr_accessor :x, :y
+
+  def initialize x = 0, y = 0
+    @x = x
+    @y = y
+  end
+
+	def w
+		return @x
+	end
+
+	def h
+		return @y
+	end
+
+  def length
+		return Math.sqrt(@x * @x + @y * @y)
+	end
+
+  def lerp vector, alpha
+		@x += ( vector.x - @x ) * alpha
+		@y += ( vector.y - @y ) * alpha
+		return self
+	end
+
+  def normalized
+		v = this.clone
+		v._normalize
+		return v
+	end
+
+  def multiply vector
+		@x *= vector.x
+		@y *= vector.y
+		return self
+  end
+
+  def multiply_scalar scalar
+		@x *= scalar
+		@y *= scalar
+		return this
+	end
+
+  def clone
+		return this.constructor.new @x, @y
+	end
+
+  def add vector
+		@x += vector.x
+		@y += vector.y
+		return self
+	end
+
+  def sub vector
+		@x -= vector.x
+		@y -= vector.y
+		return self
+	end
+
+  def sub_scalar scalar
+		@x -= scalar
+		@y -= scalar
+		return self
+  end
+
+  def equals vector
+		return vector.x == @x && vector.y == @y
+	end
+
+  def distance_to vector
+		return Math.sqrt( distance_to_squared(vector) )
+	end
+
+  def distance_to_squared vector
+    dx = @x - vector.x
+    dy = @y - vector.y
+		return dx * dx + dy * dy
+  end
+
+  def dot vector
+		return @x * vector.x + @y * vector.y
+  end
+
+  # private
+  def _normalize
+		l = @x * @x + @y * @y
+	  unless l == 0
+			l = Math.sqrt(l)
+			@x /= l
+			@y /= l
+    end
+		return self
+  end
+end
+
+class TDRenderer
+  DIMENSION = '2d'
+
+  def initialize canvas
+    @canvas = canvas
+    @clock  = Clock.new
+  end
+
+  def set_size width, height
+    @canvas.width = width
+    @canvas.height = height
+  end
+
+  def renderer
+    @canvas.getContext(DIMENSION)
+  end
+
+  def render scene
+    renderer.clearRect(0, 0, @canvas.width, @canvas.height)
+
+    scene.emit_signal Dispatcher::DRAW, renderer
+    scene.emit_signal Dispatcher::UPDATE, @clock.delta_time
+  end
+end
+class SSprite
+  attr_accessor :position, :size
+
+  def initialize source_position, source_size
+    @position  = source_position
+    @size      = source_size
+  end
+end
+
+class BasicObject < Dispatcher
+  attr_reader :id, :parent, :children
+  attr_writer :id, :parent
+
+  def initialize
+    super
+
+    @id = undefined
+		@parent = nil
+		@children = []
+  end
+
+  def add object, id = undefined
+    if object == self
+      console.error "#{self.class.name}.add: object can't be added as a child of itself."
+      return self
+    end
+
+    if object
+      unless object.parent == nil
+        object.parent.remove(object)
+      end
+
+      object.parent = self
+
+      if object.id == undefined
+        object.id = id
+      end
+
+      @children.push(object)
+      # TODO: updateGlobalPosition
+      add_signals(object)
+    else
+      console.error "#{self.class.name}.add: object not an instance of #{self.class.name}"
+    end
+
+    return self
+  end
+
+  def add_signals object
+    # Added
+    if defined? object.ready
+      object.ready()
+    end
+
+    # Update
+    if defined? object.update
+      object.update_handler = lambda { |dt| object.update dt }
+      get_scene(true).connect(Dispatcher::UPDATE, object.update_handler)
+    end
+
+    # Draw
+    if defined? object.draw
+      object.draw_handler = lambda { |ren| object.draw ren }
+      get_scene(true).connect(Dispatcher::DRAW, object.draw_handler)
+    end
+  end
+
+  def remove object
+    index = @children.indexOf(object)
+    unless index == -1
+      object.id = undefined
+      object.parent = nil
+      @children.splice(index, 1)
+    end
+
+    return self
+  end
+
+  def free
+    if @children.length > 0
+      _children = @children.slice()  # Clone array
+      _children.forEach do |child|
+        child.free
+      end
+    else
+      if @parent
+        free_signals
+        @parent.remove(self)
+      end
+    end
+
+    if @parent
+      @parent.free
+    end
+  end
+
+  def free_signals
+    # this.signals = nil
+    if defined? this.update
+      get_scene(true).disconnect(Dispatcher::UPDATE, this.update_handler)
+    end
+
+    if defined? this.draw
+      get_scene(true).disconnect(Dispatcher::DRAW, this.draw_handler)
+    end
+  end
+
+  def get_scene(is_root = false)
+    _scene  = self
+    _parent = _scene.parent
+
+    while true
+      if is_root
+        if _parent == nil
+          break
+        end
+      else
+        super_class_name = Object.getPrototypeOf(
+                           Object.getPrototypeOf(_parent)).constructor.name
+
+        if _parent.constructor.name == Scene::NAME_SCENE ||
+           super_class_name == Scene::NAME_SCENE
+          _scene  = _parent
+          break  
+        end
+      end
+
+      _scene  = _parent
+      _parent = _scene.parent
+    end
+
+    return _scene 
+  end
+
+  def find_child(id)
+    result = nil
+    for i in @children
+      child = @children[i]
+      if child.id == id
+        result = child
+        break
+      end
+    end
+
+    return result
+  end
+end
+
+class Object2D < BasicObject
+  attr_reader :position
+  attr_writer :position, :global_position
+
+  def initialize
+    super
+
+    @position = Vector2.new
+    @global_position = Vector2.new
+  end
+
+  def global_position
+    update_global_position()
+    return @global_position
+  end
+
+  def update_global_position()
+    if this.parent == nil
+      return
+    end
+
+    # unsafe
+    add_vector = this.parent._global_position.clone.add(@position)
+    unless @global_position.equals(add_vector)
+      @global_position = add_vector
+    end
+    # end
+  end
+
+  def update_world()
+    if this.children.length > 0
+      this.children.forEach do |child|
+
+        if defined? child.update_global_position
+          child.update_global_position()
+          child.update_world()
+        end
+      end
+    else
+      if defined? this.update_global_position
+        this.update_global_position()
+      end
+    end
+  end
+end
+
+class Scene < Object2D
+  NAME_SCENE = "Scene"
+
+  def initialize
+    super
+    self.id = "scene_r"
+  end
+
+  def ready()
+    unless this.parent
+      self.global_position = self.position
+    else
+      self.update_global_position()
+    end
+  end
+end
+
+class Grid < BasicObject
+  attr_accessor :scale, :visible
+
+  def initialize size_v
+    super
+
+    @size_v = size_v
+    @scale = 1
+    @visible = true
+  end
+
+  def draw r
+    unless @visible
+      return
+    end
+
+    x = @size_v.w * @scale
+    y = @size_v.h * @scale
+    r.lineWidth = 1
+
+    # x
+    (0...r.canvas.width / x).step(1) do |i|
+      r.beginPath()
+      r.moveTo(x * i, 0)
+      r.lineTo(x * i, r.canvas.height)
+      r.fill()
+      r.stroke()
+    end
+
+    # y
+    (0...r.canvas.height / y).step(1) do |i|
+      r.beginPath()
+      r.moveTo(0, y * i)
+      r.lineTo(r.canvas.width, y * i)
+      r.fill()
+      r.stroke()
+    end
+  end
+end
+
+class Sprite < Object2D
+  attr_accessor :scale, :type, :img
+
+  def initialize s_sprite
+    super
+
+    @scale = 1
+    @s_sprite = s_sprite
+    @img = nil
+  end
+
+  def ready()
+    if @s_sprite 
+      this.position = Vector2.new(-((@s_sprite.size.w * @scale)/2), -((@s_sprite.size.h * @scale)/2))
+    end
+  end
+
+  def draw r
+    if @img and @s_sprite
+      r.drawImage(@img, @s_sprite.position.x, @s_sprite.position.y, @s_sprite.size.w, @s_sprite.size.h,
+        this.global_position.x, this.global_position.y, @s_sprite.size.w * @scale, @s_sprite.size.h * @scale)
+    end
+  end
+end
+
+class Canvas2DElement < HTMLElement
+  RESIZE = "resize"
+
+  attr_reader :scene_r
+
+  def initialize
+    super
+    @resizeHandler = lambda { resize() }
+
+    @renderer = TDRenderer.new init_canvas("c2d")
+    @scene_r = Scene.new
+    @scene_r.ready()
+    resize()  # change renderer size
+  end
+
+  def init_canvas id
+    template = document.createElement( 'template' )
+    template.innerHTML = """
+      <style type='text/css'>
+      canvas {
+          position: fixed;
+          top: 0;
+          left: 0;
+          outline: none;
+          z-index: -1;
+      }
+      </style>
+
+      <canvas id='#{id}'></canvas>
+    """
+
+    this.attachShadow( { mode: 'open' } )
+    this.shadowRoot.appendChild( template.content.cloneNode( true ) )
+    return this.shadowRoot.getElementById(id);
+  end
+
+  def tick()
+    @renderer.render @scene_r
+    requestAnimationFrame lambda { tick() }
+  end
+
+  def resize()
+    @renderer.set_size(window.innerWidth, window.innerHeight)
+    @scene_r.emit_signal RESIZE
+    @scene_r.update_world()
+  end
+
+  def win_center_position
+    widthHalf = @renderer._canvas.width / 2
+    heightHalf = @renderer._canvas.height / 2
+    return Vector2.new widthHalf, heightHalf
+  end
+
+  def connectedCallback()
+    tick
+    window.addEventListener RESIZE, @resizeHandler
+  end
+
+  def disconnectedCallback()
+    @scene_r.free
+    window.removeEventListener RESIZE, @resizeHandler
+  end
+end
+
+window.customElements.define( 'canvas-2d', Canvas2DElement )
