@@ -107,7 +107,9 @@ bin/server
 Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 
 - [adb2-weapon-rjs](https://github.com/filipvrba/adb2-weapon-rjs) - Here, a web application was built with scaffolding and uploaded to Vercel.
-- [suitescript-generator](https://github.com/filipvrba/suitescript-generator) - It is a console program that utilizes npm. Here, the file tracking and compilation command is employed. 
+- [suitescript-generator](https://github.com/filipvrba/suitescript-generator) - It is a console program that utilizes npm. Here, the file tracking and compilation command is employed.
+- [edu-game-rjs](https://github.com/filipvrba/edu-game-rjs) - An web application that is a learning game. The utilization of scaffolding and uploading to Vercel.
+- [engine2d-rjs](https://github.com/filipvrba/engine2d-rjs) - This engine renders video games. For this project, scaffolding and unified code generation were employed.
 
 ## 6 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
