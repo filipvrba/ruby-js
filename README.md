@@ -110,6 +110,7 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 - [suitescript-generator](https://github.com/filipvrba/suitescript-generator) - It is a console program that utilizes npm. Here, the file tracking and compilation command is employed.
 - [edu-game-rjs](https://github.com/filipvrba/edu-game-rjs) - An web application that is a learning game. The utilization of scaffolding and uploading to Vercel.
 - [engine2d-rjs](https://github.com/filipvrba/engine2d-rjs) - This engine renders video games. For this project, scaffolding and unified code generation were employed.
+- [mtg-gui-rjs](https://github.com/filipvrba/mtg-gui-rjs) - A web application that uses an API to connect to databases and exchange data.
 
 ## 6 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
