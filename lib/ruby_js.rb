@@ -19,7 +19,8 @@ module RubyJS
   end
 
   def self.compile path_f, options
-    path_o = Helper.absolute_path path_f, { path_s: options[:path_s], path_o: options[:path_o] }
+    path_o = Helper.absolute_path(path_f,
+      { path_s: options[:path_s], path_o: options[:path_o] }, options[:type_o])
 
     begin
       content_rb = Helper.open(path_f)

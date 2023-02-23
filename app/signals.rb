@@ -1,4 +1,4 @@
 Signal.trap("INT") do
-  puts "\nExiting"
+  puts "\n" + RubyJS::Helper.event_p("exiting")
   exit
 end

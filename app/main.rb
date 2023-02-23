@@ -7,7 +7,8 @@ def compile_fun path_f
   RubyJS.compile path_f, {
     eslevel: @options[:eslevel],
     path_s:  @options[:source],
-    path_o:  @options[:output]
+    path_o:  @options[:output],
+    type_o:  @options[:output_type],
   }
 end
 

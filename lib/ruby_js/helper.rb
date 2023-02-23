@@ -31,11 +31,11 @@ module RubyJS
       Dir.delete(path_dro) if Dir.empty? path_dro
     end
 
-    def self.event_p event, path_f
+    def self.event_p event, path_f = ""
       "#{Time.now.strftime("%l:%M:%S %p").lstrip} [#{Constants::APP_NAME}] #{event} #{path_f}"
     end
 
-    def self.absolute_path path_f, path_options, prefix = "js"
+    def self.absolute_path path_f, path_options, prefix
       path_ffr = path_f.sub("#{Dir.pwd}/", '').sub(path_options[:path_s], '').sub(Constants::FILE_TYPE, prefix)
       path_ffa = File.join(path_options[:path_o], path_ffr)
       path_ffa
