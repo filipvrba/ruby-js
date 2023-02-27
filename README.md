@@ -27,7 +27,8 @@ Write your code using the JS api and Ruby syntax, and the server will automatica
   - [4.1 Third-party libraries](#41-third-party-libraries)
   - [4.2 NPM](#42-npm)
 - [5 Examples](#5-examples)
-- [6 Contributors](#6-contributors)
+- [6 Documents](#6-documents)
+- [7 Contributors](#7-contributors)
 
 ## Why use this tool?
 For me, developer productivity is everything. It is vital to link these codes together if one developer is proficient in Ruby and another in JS. As a result, a module written in Ruby can be connected in JS, and vice versa. Additionally, Vite makes it simpler to launch the server and develop the project.
@@ -112,5 +113,10 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 - [engine2d-rjs](https://github.com/filipvrba/engine2d-rjs) - This engine renders video games. For this project, scaffolding and unified code generation were employed.
 - [mtg-gui-rjs](https://github.com/filipvrba/mtg-gui-rjs) - A web application that uses an API to connect to databases and exchange data.
 
-## 6 Contributors
+## 6 Documents
+Using the RubyJS-Vite utility is explained in the following documents.
+
+- [Godot with Ruby syntax](./docs/gwrs.md)
+
+## 7 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
