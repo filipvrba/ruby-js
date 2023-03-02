@@ -60,7 +60,7 @@ module RubyJS
   end
 
   def self.free path_f, options
-    path_o = Helper.absolute_path path_f, options
+    path_o = Helper.absolute_path path_f, options, options[:type_o]
     Helper.free path_o
 
     puts Helper.event_p("deleted", path_o)

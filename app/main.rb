@@ -56,7 +56,8 @@ if @options[:watch]
     unless removed.empty?
       RubyJS.free removed.last, {
         path_s:  @options[:source],
-        path_o:  @options[:output]
+        path_o:  @options[:output],
+        type_o:  @options[:output_type],
       }
     end
   end
