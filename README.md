@@ -117,6 +117,7 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 Using the RubyJS-Vite utility is explained in the following documents.
 
 - [Godot with Ruby syntax](./docs/gwrs.md)
+- [Godot with Ruby syntax II](./docs/gwrs_2.md)
 
 ## 7 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
