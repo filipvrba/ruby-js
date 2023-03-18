@@ -27,6 +27,8 @@
 - [7 Conclusion](#7-conclusion)
   - [7.1 Advantages & Disadvantages](#71-advantages--disadvantages)
   - [7.2 Other options](#72-other-options)
+    - [7.2.1 Template](#721-template)
+    - [7.2.2 MRuby](#722-mruby)
 - [8 Comment](#8-comment)
 
 ## 1 Godot with Ruby syntax
@@ -487,8 +489,8 @@ using *Ruby* syntax, so congrats.
 
 ## 7 Conclusion
 Finally, I'd want to let you know about the benefits and drawbacks of the
-*RubyJS-Vite* tool and *ECMAScript* module. I'll then let you know about
-further alternatives that will eventually be resolved with *GDNative*.
+*RubyJS-Vite* tool and *ECMAScript* module. Then I will present some alternatives
+to solve the problem.
 
 ### 7.1 Advantages & Disadvantages
 Here, we'll examine the benefits and drawbacks and determine the overall
@@ -526,6 +528,14 @@ assessment.
 > project is being built do issues surface.
 
 ### 7.2 Other options
+Here are some options that should help you solve the problem with the production version of your game project. The first option is to create an export template that is easier to implement. The second option is to use the MRuby library, but this option is still under development and not recommended for current use.
+
+### 7.2.1 Template
+To make your game project fully functional in production, it is essential to create a platform-specific export template. This process consists of several steps, which are described in detail in this article.
+
+- [Godot with Ruby syntax II](./gwrs_2.md)
+
+### 7.2.2 MRuby
 When I realized this was not a good choice, I looked up more information in
 the *Godot* articles. What I'm discovering is that *GDNative*, which provides
 a dynamic library, can be used. This library was created using the *C*
@@ -547,6 +557,7 @@ Hence, no outside text editor would be used.
 
 ## 8 Comment
 - Doc Repository: [Godot Languages Support](https://github.com/Vivraan/godot-lang-support)
+- Doc Repository: [Godot with Ruby syntax II](./gwrs_2.md)
 - Repository: [ECMAScript](https://github.com/Geequlim/ECMAScript)
 - Repository: [RubyJS-Vite](https://github.com/filipvrba/ruby-js)
 - Repository: [Godot](https://github.com/godotengine/godot)
