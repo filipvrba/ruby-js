@@ -112,6 +112,7 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 - [engine2d-rjs](https://github.com/filipvrba/engine2d-rjs) - This engine renders video games. For this project, scaffolding and unified code generation were employed.
 - [mtg-gui-rjs](https://github.com/filipvrba/mtg-gui-rjs) - A web application that uses an API to connect to databases and exchange data.
 - [cv-v](https://github.com/filipvrba/cv-v) - A web CV (portfolio) application that is multilingual-programmed. RJS is used to create the front-end whereas V is used to create the back-end. The website has been upload on a fly.io cloud.
+- [dragonruby-egg-ui-rjs](https://github.com/filipvrba/dragonruby-egg-ui-rjs) - A web page that is like a module manager. It displays all added repositories for DragonRuby and uses the REST API for the backend.
 
 ## 6 Documents
 Using the RubyJS-Vite utility is explained in the following documents.
