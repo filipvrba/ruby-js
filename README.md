@@ -29,6 +29,7 @@ Write your code using the JS api and Ruby syntax, and the server will automatica
 - [5 Examples](#5-examples)
 - [6 Documents](#6-documents)
 - [7 Contributors](#7-contributors)
+- [8 Log](#8-log)
 
 ## Why use this tool?
 For me, developer productivity is everything. It is vital to link these codes together if one developer is proficient in Ruby and another in JS. As a result, a module written in Ruby can be connected in JS, and vice versa. Additionally, Vite makes it simpler to launch the server and develop the project.
@@ -122,3 +123,10 @@ Using the RubyJS-Vite utility is explained in the following documents.
 
 ## 7 Contributors
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
+
+## 8 Log
+- **1.1.0**
+
+  *Fix:*
+    1. Bash script for server. The linux signal is used to shut down rjsv applications.
+    2. Creating a scaffolding will not create a conflict with an already created folder (the ideal solution for a cloned repository).

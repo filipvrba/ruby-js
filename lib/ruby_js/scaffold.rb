@@ -7,7 +7,15 @@ module RubyJS
       path_ao = File.join(Dir.pwd, project)
 
       puts "Scaffolding project in #{path_ao}..."
-      FileUtils.cp_r path_as, path_ao
+      unless Dir.exist? path_ao
+        FileUtils.cp_r(path_as, path_ao)
+      else
+        files = Dir.glob("#{path_as}/**/*")
+        files.each do |pas|
+          pao = pas.sub(path_as, path_ao)
+          FileUtils.cp_r(pas, pao)
+        end
+      end
 
       json_oc = JsonParser.new File.join(path_ao, "package.json")
       json_oc.parse :name, project.downcase
@@ -20,7 +28,7 @@ module RubyJS
     end
 
     def self.change_name_f path_ao
-      paths_bin_ao = ["#{path_ao}/bin/watch", "#{path_ao}/bin/generate"]
+      paths_bin_ao = Dir.glob("#{path_ao}/bin/*")
       paths_bin_ao.each do |p|
         content = Helper.open(p)
         content_ch = content.sub("APP_NAME", Constants::APP_NAME)
