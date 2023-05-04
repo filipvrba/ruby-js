@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+Signal.trap("INT") do
+  puts
+  exit
+end
+
+GEMSPEC = "ruby_js.gemspec"
+ROOT = File.expand_path("..", __dir__)
+
+path_af = File.join(ROOT, GEMSPEC)
+name_fg = %x(gem build '#{path_af}').gsub("\n", ' ').sub(/^.*File:/, '').strip()
+
+print("Do you want to push this #{name_fg} file to the gem? (y/n) ")
+input = STDIN.gets.chomp
+if input.index('y')
+  system("gem push #{name_fg}")
+end
