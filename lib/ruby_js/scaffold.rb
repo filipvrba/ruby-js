@@ -7,14 +7,11 @@ module RubyJS
       path_ao = File.join(Dir.pwd, project)
 
       puts "Scaffolding project in #{path_ao}..."
-      unless Dir.exist? path_ao
-        FileUtils.cp_r(path_as, path_ao)
-      else
-        files = Dir.glob("#{path_as}/**/*")
-        files.each do |pas|
-          pao = pas.sub(path_as, path_ao)
-          FileUtils.cp_r(pas, pao)
-        end
+      files = Dir.glob("#{path_as}/**/*", File::FNM_DOTMATCH).select { |f| File.file?(f) }
+      files.each do |pas|
+        pao = pas.sub(path_as, path_ao)
+        FileUtils.mkdir_p(File.dirname(pao))
+        FileUtils.cp(pas, pao)
       end
 
       json_oc = JsonParser.new File.join(path_ao, "package.json")

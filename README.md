@@ -125,6 +125,10 @@ Using the RubyJS-Vite utility is explained in the following documents.
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
 
 ## 8 Log
+- **1.1.1**
+  *Fix:*
+  1. Fix for file copy function.
+
 - **1.1.0**
 
   *Fix:*
