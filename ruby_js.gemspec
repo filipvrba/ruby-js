@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
                   "|> https://github.com/filipvrba/ruby-js"
   s.authors     = ["Filip Vrba"]
   s.email       = 'filipvrbaxi@gmail.com'
-  s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'app/**/*.rb', 'lib/**/*.rb', 'share/**/*'])
+  s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'app/**/*.rb', 'lib/**/*.rb']) +
+                  Dir.glob('share/**/*', File::FNM_DOTMATCH).select { |f| File.file?(f) }
   s.homepage    = 'https://rubygems.org/gems/rubyjs-vite'
   s.metadata    = { "source_code_uri" => "https://github.com/filipvrba/ruby-js" }
   s.bindir      = 'bin'
