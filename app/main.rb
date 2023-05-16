@@ -38,7 +38,16 @@ if @options[:compile]
 end
 
 if @options[:watch]
+  h_sigusr = lambda do
+    pid = @options[:pid]
+    if pid
+      Process.kill("USR1", pid)
+    end
+  end
+
   puts RubyJS::Helper.event_p("message", "There is now a watch for edited files.")
+  h_sigusr.call()
+
   path_s = @options[:source]
   
   RubyJS::Helper.create_dir(path_s)
@@ -60,5 +69,7 @@ if @options[:watch]
         type_o:  @options[:output_type],
       }
     end
+
+    h_sigusr.call()
   end
 end

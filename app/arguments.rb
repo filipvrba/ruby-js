@@ -7,7 +7,8 @@ require "option_parser"
   output:  Dir.pwd,
   output_type: RubyJS::Constants::FILE_TYPE_O,
   source:  Dir.pwd,
-  eslevel: Config::get_eslevel
+  eslevel: Config::get_eslevel,
+  pid: nil,
 }
 
 OptionParser.parse do |parser|
@@ -54,6 +55,10 @@ OptionParser.parse do |parser|
             "(Accepted level ranges 2015...2022.)") do |level|
 
     @options[:eslevel] = level.to_i
+  end
+  parser.on("--pid PROCESS", "", "When the pid is set, the SIGUSR1\n" +
+            "signal is triggered." ) do |pid|
+    @options[:pid] = pid.to_i
   end
   parser.on("--create PROJECT", nil, "Creates a new project using scaffolding." ) do |project|
     RubyJS::Scaffold.create project

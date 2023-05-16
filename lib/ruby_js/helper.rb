@@ -25,7 +25,7 @@ module RubyJS
 
     def self.free path_fro
       # File
-      File.delete(path_fro) if File.exists? path_fro
+      File.delete(path_fro) if File.exist? path_fro
       # Dir
       path_dro = File.dirname(path_fro)
       Dir.delete(path_dro) if Dir.empty? path_dro

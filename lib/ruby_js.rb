@@ -24,7 +24,8 @@ module RubyJS
 
     begin
       content_rb = Helper.open(path_f)
-      content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel]) unless content_rb.empty?
+      content_js = Ruby2JS.convert(content_rb, eslevel: options[:eslevel],
+        filters: [:camelCase]) unless content_rb.empty?
 
       path_write = Helper.write(path_o, content_js)
       puts Helper.event_p("compiled", path_o)

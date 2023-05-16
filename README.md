@@ -126,15 +126,18 @@ Using the RubyJS-Vite utility is explained in the following documents.
 
 ## 8 Log
 - **1.1.2**
-  *Fix:*
+  - Added:
+    1. When the RJS file is changed, the *SIGUSR1* signal is called if the value for PID is set.
+
+  - Fix:
     1. Fix package that wraps shared files.
+    2. Bug fix for automatic file deletion.
 
 - **1.1.1**
-  *Fix:*
+  - Fix:
     1. Fix for file copy function.
 
 - **1.1.0**
-
-  *Fix:*
+  - Fix:
     1. Bash script for server. The linux signal is used to shut down rjsv applications.
     2. Creating a scaffolding will not create a conflict with an already created folder (the ideal solution for a cloned repository).
