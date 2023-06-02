@@ -125,6 +125,10 @@ Using the RubyJS-Vite utility is explained in the following documents.
 - [Filip Vrba](https://github.com/filipvrba) - creator and maintainer
 
 ## 8 Log
+- **1.1.3**
+  - Remove:
+    1. Filter for camel case.
+
 - **1.1.2**
   - Added:
     1. When the RJS file is changed, the *SIGUSR1* signal is called if the value for PID is set.
