@@ -114,6 +114,7 @@ Here, I'll outline a few projects where RubyJS Vite was applied to alter code.
 - [mtg-gui-rjs](https://github.com/filipvrba/mtg-gui-rjs) - A web application that uses an API to connect to databases and exchange data.
 - [cv-v](https://github.com/filipvrba/cv-v) - A web CV (portfolio) application that is multilingual-programmed. RJS is used to create the front-end whereas V is used to create the back-end. The website has been upload on a fly.io cloud.
 - [dragonruby-egg-ui-rjs](https://github.com/filipvrba/dragonruby-egg-ui-rjs) - A web page that is like a module manager. It displays all added repositories for DragonRuby and uses the REST API for the backend.
+- [czech-rjs](https://github.com/filipvrba/czech-rjs) - This project serves to correct the Czech text to make it more suitable for blog posts. To make everything work properly, an API via GPT is used. This project also includes a program for generating elements via scaffolding. The web application is hosted on Vercel.
 
 ## 6 Documents
 Using the RubyJS-Vite utility is explained in the following documents.
