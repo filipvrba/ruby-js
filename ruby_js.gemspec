@@ -4,6 +4,8 @@ require_relative "lib/description"
 
 EXECUTABLE = RubyJS::Constants::APP_NAME
 
+#TODO: change info for 2.0.0
+
 Gem::Specification.new do |s|
   s.name        = "rubyjs-vite"
   s.version     = RubyJS::VERSION
@@ -21,6 +23,6 @@ Gem::Specification.new do |s|
   s.bindir      = 'bin'
   s.executables << EXECUTABLE
 
-  s.add_dependency "ruby2js", "~> 5.0"
-  s.add_dependency "listen", "~> 3.7"
+  s.add_dependency "ruby2js", "~> 5.1"
+  s.add_dependency "listen", "~> 3.8"
 end

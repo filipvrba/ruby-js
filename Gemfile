@@ -2,5 +2,5 @@
 
 source "https://rubygems.org"
 
-gem "ruby2js", "~> 5.0"
-gem "listen", "~> 3.7"
+gem "ruby2js", "~> 5.1"
+gem "listen", "~> 3.8"

@@ -32,7 +32,7 @@ module RJSV
         end
         parser.on("-s DIR", "--source DIR", "The path of the source folder where\n" +
                                             "all RB files are found (example of\n" +
-                                            "ending file type *.js.rb).\n") do |dir|
+                                            "ending file type *.js.#{RJSV::Constants::SUFFIX_RB}).\n") do |dir|
           @options[:source] = dir
         end
         parser.on("-o DIR", "--output DIR", "The path of the output folder where\n" +
