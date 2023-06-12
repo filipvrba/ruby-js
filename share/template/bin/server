@@ -1,7 +1,0 @@
-#!/bin/bash
-
-APP_NAME -c -w -s src/rjs -o src/.js &
-npm run dev
-
-trap - SIGINT
-kill $!

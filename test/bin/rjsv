@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+/home/filip/Desktop/rubyjs-rb/bin/rjsv $@

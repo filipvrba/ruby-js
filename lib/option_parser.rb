@@ -62,8 +62,12 @@ class OptionParser
                 end
             end
         else
-            flag = @flags[0]
-            flag[:block].call
+            @flags.each do |flag|
+                if flag[:short_flag] == '-h' or flag[:long_flag] == '--help'
+                    flag[:block].call
+                    break
+                end
+            end
         end
     end
 

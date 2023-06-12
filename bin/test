@@ -1,3 +1,0 @@
-#!/bin/bash
-
-bin/rjsv -g -s test/rjs -o test/js
