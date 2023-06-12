@@ -1,8 +1,10 @@
 require 'rjsv/version'
 require 'rjsv/constants'
+require 'rjsv/plugin'
 
 require 'rjsv/core/event'
 require 'rjsv/core/files'
+require 'rjsv/core/constants'
 
 require 'rjsv/cli/signals'
 require 'rjsv/cli/plugins'

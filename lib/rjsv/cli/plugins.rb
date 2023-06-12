@@ -5,46 +5,41 @@ module RJSV
 
       module_function
 
-      def find_all_index(path = Dir.pwd)
-        Dir.glob File.join(path, 'plugins', '**', 'index.rb')
+      def find_all_init(path = Dir.pwd)
+        Dir.glob File.join(path, 'plugins', '**', 'init.rb')
       end
 
-      def require_all_index(&block)
-        indexs = []
-        find_all_index().each do |plugin_index_path|
+      def require_all_init()
+        find_all_init().each do |plugin_index_path|
           require plugin_index_path
-          
-          File.open plugin_index_path do |f|
-            module_name = f.read.scan(/module.*$/)[0].sub('module ', '')
-            block.call(module_name) if block
-            indexs << module_name
-          end
         end
 
-        return indexs
-      end#require_all_index
+        if defined?(RJSV::Plugins)
+          return Core::Constants.get_classes(RJSV::Plugins)
+        end
+
+        return []
+      end
 
       def add_arguments(parser)
-        @modules.each_with_index do |module_name, i|
+        @classes.each_with_index do |plugin_class, i|
           begin
-            if module_name
-              constants = [
-                eval("#{module_name}::PLUGIN_NAME"),
-                eval("#{module_name}::PLUGIN_DESCRIPTION")
-              ]
-              parser.on( constants[0], "", "#{constants[1]}\n" +
-                  "#{PLUGIN_INFO}#{"\n" if @modules.length == i+1}" ) do
-                eval("#{module_name}::CLI::Arguments.init()")
+            if plugin_class
+              plugin = plugin_class.new
+              parser.on(plugin.name, "", "#{plugin.description}\n" +
+                  "#{PLUGIN_INFO}#{"\n" if @classes.length == i+1}" ) do
+                plugin.arguments()
+                plugin.init()
               end
             end
           rescue
-            Core::Event.print('module', "The program found the '#{module_name}' module, " +
+            Core::Event.print('class', "The program found the '#{plugin_class.name}' class, " +
                                         "but its arguments cannot be created.")
           end
         end
       end#add_arguments
 
-      @modules = require_all_index()
+      @classes = require_all_init()
     end
   end
 end
