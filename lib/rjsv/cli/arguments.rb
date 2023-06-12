@@ -54,6 +54,15 @@ module RJSV
       def self.options
         @options
       end
-    end#arguments
+
+      def self.active_plugin?
+        ARGV.each do |arg|
+          if arg.index(/^-/) == nil
+            return true
+          end
+        end
+        return false
+      end
+    end#Arguments
   end
 end

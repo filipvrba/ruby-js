@@ -1,29 +1,24 @@
 module RJSV
   module Plugins
-    class Scaffold < RJSV::Plugin
-      def initialize
-      end
+    module Scaffold
+      require_relative './scaffold/cli/arguments'
 
-      def description
-        'lol'
-      end
-
-      def arguments
-        OptionParser.parse do |parser|
-          parser.banner(
-            "#{description()}\n\n" +
-            "Usage: #{APP_NAME} #{name()} [options]\n" +
-            "\nOptions:"
-          )
-          parser.on( "-h", "--help", "Show help" ) do
-            puts parser
-            exit
-          end
+      class Init < RJSV::Plugin
+        def initialize
+          @arguments_cli = RJSV::Plugins::Scaffold::CLI::Arguments
         end
-      end#arguments
 
-      def init()
-        
+        def description
+          'lol'
+        end
+
+        def arguments
+          @arguments_cli.init(self)
+        end#arguments
+
+        def init()
+          # p @arguments_cli.options
+        end
       end
     end
   end

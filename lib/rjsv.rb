@@ -54,13 +54,15 @@ module RJSV
   end#watch_state
 
   def main()
-    if @options_cli[:translate]
-      files_rb = Core::Files.find_all(@options_cli[:source])
-      files_rb.each do |path|
-        translate_state(path)
+    unless CLI::Arguments.active_plugin?
+      if @options_cli[:translate]
+        files_rb = Core::Files.find_all(@options_cli[:source])
+        files_rb.each do |path|
+          translate_state(path)
+        end
       end
-    end
 
-    watch_state()
-  end
+      watch_state()
+    end
+  end#main
 end

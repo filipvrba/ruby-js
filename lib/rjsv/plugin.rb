@@ -5,7 +5,7 @@ module RJSV
     end
 
     def name
-      self.class.name.split('::').last.downcase
+      self.class.name.split('::')[-2].downcase
     end
 
     def arguments
