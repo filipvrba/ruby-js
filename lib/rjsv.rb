@@ -37,20 +37,23 @@ module RJSV
       Core::Event.print('message', 'There is now a watch for edited files.')
       Watch.modified_files(@options_cli[:source]) do |modified, added, removed|
         unless added.empty?
-          path = added.last
-          translate_state(path)
+          added.each do |path|
+            translate_state(path)
+          end
         end
     
         unless modified.empty?
-          path = modified.last
-          translate_state(path)
+          modified.each do |path|
+            translate_state(path)
+          end
         end
     
         unless removed.empty?
-          path = removed.last
-          path_output = Core::Files.change_path_to_output(path, @options_cli)
-          Core::Files.remove(path_output)
-          Core::Event.print('deleted', path_output)
+          removed.each do |path|
+            path_output = Core::Files.change_path_to_output(path, @options_cli)
+            Core::Files.remove(path_output)
+            Core::Event.print('deleted', path_output)
+          end
         end
       end
     end
