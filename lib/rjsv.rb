@@ -1,3 +1,6 @@
+require 'option_parser'
+require 'json_parser'
+
 require 'rjsv/version'
 require 'rjsv/constants'
 require 'rjsv/plugin'

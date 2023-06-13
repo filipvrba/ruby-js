@@ -1,8 +1,6 @@
 module RJSV
   module CLI
     module Arguments
-      require "option_parser"
-
       @options = {
         translate: false,
         watch:   false,

@@ -42,6 +42,16 @@ module RJSV
         path_all = File.join(path, '**', '*')
         Dir.glob("#{path_all}.*.#{Constants::SUFFIX_RB}")
       end
+
+      def copy(path_input, path_output)
+        files = Dir.glob("#{path_input}/**/*", File::FNM_DOTMATCH)
+                .select { |f| File.file?(f) }
+        files.each do |path_file|
+          path_cp = path_file.sub(path_input, path_output)
+          FileUtils.mkdir_p File.dirname(path_cp)
+          FileUtils.cp(path_file, path_cp)
+        end
+      end
     end
   end
 end
