@@ -54,12 +54,9 @@ module RJSV
       end
 
       def self.active_plugin?
-        ARGV.each do |arg|
-          if arg.index(/^-/) == nil
-            return true
-          end
+        unless ARGV.empty?
+          return ARGV[0].index(/^-/) == nil
         end
-        return false
       end
     end#Arguments
   end

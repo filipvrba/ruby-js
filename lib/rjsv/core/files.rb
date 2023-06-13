@@ -34,13 +34,13 @@ module RJSV
       def change_path_to_output(path, options_cli)
         path.sub(File.join(Dir.pwd, ''), '')
             .sub(options_cli[:source], '')
-            .sub(/\.#{Constants::SUFFIX_RB}$/, '')
+            .sub(/\.#{RJSV::Constants::SUFFIX_RB}$/, '')
             .prepend(options_cli[:output])
       end
 
       def find_all(path)
         path_all = File.join(path, '**', '*')
-        Dir.glob("#{path_all}.*.#{Constants::SUFFIX_RB}")
+        Dir.glob("#{path_all}.*.#{RJSV::Constants::SUFFIX_RB}")
       end
 
       def copy(path_input, path_output)

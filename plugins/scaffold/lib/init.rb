@@ -3,6 +3,7 @@ module RJSV
     module Scaffold
       require_relative './scaffold/cli/arguments'
 
+      require_relative './scaffold/vite'
       require_relative './scaffold/states'
       require_relative './scaffold/create'
 

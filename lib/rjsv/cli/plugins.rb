@@ -6,7 +6,11 @@ module RJSV
       module_function
 
       def find_all_init(path = Dir.pwd)
-        Dir.glob File.join(path, 'plugins', '**', 'init.rb')
+        l_path = lambda { |p| File.join(p, 'plugins', '**', 'init.rb') }
+        Dir.glob [
+          l_path.call(path),
+          l_path.call(ROOT)
+        ]
       end
 
       def require_all_init()
