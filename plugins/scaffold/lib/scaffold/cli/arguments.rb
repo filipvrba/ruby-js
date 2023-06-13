@@ -18,11 +18,11 @@ module RJSV
                 "\nOptions:"
               )
 
-              parser.on( "-cw NAME", "--create-web NAME", "Creates a new web project with\n" +
+              parser.on( "web NAME", "", "Creates a new web project with\n" +
                                                           "a basic code architecture." ) do |name|
                 @options[:create_web] = name
               end
-              parser.on( "-elm NAME", "--element NAME", "Creates scaffolding for the new element." ) do |name|
+              parser.on( "element NAME", "", "Creates scaffolding for the new element.\n" ) do |name|
                 @options[:element] = name
               end
 
