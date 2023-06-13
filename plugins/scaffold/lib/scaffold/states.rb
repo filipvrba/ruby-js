@@ -25,6 +25,15 @@ module RJSV
             end
           end
         end
+
+        def create_element_state(options)
+          name = options[:element]
+          if name
+            Create.element(name) do |message|
+              RJSV::Core::Event.print('scaffold', message)
+            end
+          end
+        end
       end#States
     end
   end

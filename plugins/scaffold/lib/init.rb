@@ -23,6 +23,7 @@ module RJSV
 
         def init()
           Scaffold::States.create_web_state(@arguments_cli.options)
+          Scaffold::States.create_element_state(@arguments_cli.options)
         end
       end
     end

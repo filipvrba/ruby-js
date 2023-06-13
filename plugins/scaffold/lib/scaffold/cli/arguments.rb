@@ -4,7 +4,8 @@ module RJSV
       module CLI
         module Arguments
           @options = {
-            create_web: nil
+            create_web: nil,
+            element: nil,
           }
 
           module_function
@@ -17,13 +18,17 @@ module RJSV
                 "\nOptions:"
               )
 
-              parser.on( "-h", "--help", "Show help" ) do
-                puts parser
-                exit
-              end
               parser.on( "-cw NAME", "--create-web NAME", "Creates a new web project with\n" +
                                                           "a basic code architecture." ) do |name|
                 @options[:create_web] = name
+              end
+              parser.on( "-elm NAME", "--element NAME", "Creates scaffolding for the new element." ) do |name|
+                @options[:element] = name
+              end
+
+              parser.on( "-h", "--help", "Show help" ) do
+                puts parser
+                exit
               end
             end
           end

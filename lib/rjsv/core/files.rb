@@ -15,12 +15,12 @@ module RJSV
         return nil
       end
 
-      def write_with_dir(content, path)
+      def write_with_dir(content, path, mode = 'w+')
         unless Dir.exist? File.dirname(path)
           FileUtils.mkdir_p File.dirname(path)
         end
 
-        File.open path, "w+" do |f|
+        File.open path, mode do |f|
           f.write(content)
         end
       end
