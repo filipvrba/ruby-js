@@ -16,10 +16,23 @@ require 'rjsv/cli/arguments'
 require 'rjsv/translate'
 require 'rjsv/watch'
 
+##
+# This is the main initialization module of
+# all modules that are needed for the functionality
+# of this RubyJS-Vite transpiler. The methods that
+# shape the direction of the application are
+# also written here.
+
 module RJSV
   @options_cli = CLI::Arguments.options
   
   module_function
+
+  ##
+  # Block of code that handles the transpilation of scipt.
+  # This is opening a Ruby scipt container file,
+  # which is then converted into a JavaScript file.
+  # The file is saved to the output path.
 
   def translate_state(path)
     if @options_cli[:translate]
@@ -31,6 +44,12 @@ module RJSV
       end
     end
   end
+
+  ##
+  # Block of code that tracks files under the input path.
+  # If a file has been logged, several events are performed
+  # such as to add, modify and remove logged files.
+  # These then trigger procedural methods to process the requests.
 
   def watch_state()
     if @options_cli[:watch]
@@ -58,6 +77,15 @@ module RJSV
       end
     end
   end#watch_state
+
+  ##
+  # This is the main function to run the desired
+  # block function scenarios. In order to arm itself
+  # regarding plugins and directly Arguments,
+  # this method checks the accessibility of the plugin
+  # by checking if it is active or attached in
+  # the argument given by the confirmed command
+  # from the terminal.
 
   def main()
     unless CLI::Arguments.active_plugin?

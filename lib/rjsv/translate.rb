@@ -1,8 +1,20 @@
 module RJSV
+  ##
+  # Here we can load everything necessary for
+  # the transpilation process of Ruby script into JavaScript.
+  # The transpilation process uses the Ruby2JS library.
+  # The transpilation is safe and catches error messages
+  # if the Ruby script has been written incorrectly.
+
   module Translate
     require 'ruby2js'
 
     module_function
+
+    ##
+    # Converts Ruby script to JavaScript using Ruby2JS library.
+    # If an error occurs during transpilation, the error
+    # message is raised in the next nested code block.
 
     def ruby_to_js(content_ruby, &block)
       begin
@@ -12,6 +24,11 @@ module RJSV
         return nil
       end
     end
+
+    ##
+    # Converts Ruby script to JavaScript using Ruby2JS library.
+    # The final transpilation is followed by saving it to
+    # a file with a predefined path.
 
     def ruby_to_js_with_write(content_ruby, path)
       content_js = ruby_to_js(content_ruby) do |err|
