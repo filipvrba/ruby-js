@@ -1,7 +1,7 @@
 module RJSV
   module CLI
     module Plugins
-      PLUGIN_INFO = "(this is the next level of setup)"
+      PLUGIN_INFO = "(this is a plugin)"
 
       module_function
 
@@ -36,9 +36,9 @@ module RJSV
                 plugin.init()
               end
             end
-          rescue
+          rescue => exception
             Core::Event.print('class', "The program found the '#{plugin_class.name}' class, " +
-                                        "but its arguments cannot be created.")
+                                        "but its arguments cannot be created.\n\n")
           end
         end
       end#add_arguments

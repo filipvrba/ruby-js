@@ -1,5 +1,12 @@
 module RJSV
   module CLI
+    ##
+    # Module for all arguments to the CLI application.
+    # The argument initializes the OptionParser,
+    # which defines the arguments in detail.
+    # It is also nested with a function that adds
+    # all arguments from modules.
+
     module Arguments
       @options = {
         translate: false,
@@ -49,9 +56,16 @@ module RJSV
         end
       end
 
+      ##
+      # Options is a get method and gets
+      # all options from arguments.
+      
       def self.options
         @options
       end
+
+      ##
+      # It finds out if the plugin is written in the argument.
 
       def self.active_plugin?
         unless ARGV.empty?

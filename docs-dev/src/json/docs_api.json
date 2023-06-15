@@ -1,0 +1,22 @@
+[
+  {
+    "file": "arguments.rb",
+    "comments_with_keywords": [
+      {
+        "comment": "Module for all arguments to the CLI application. The argument initializes the OptionParser, which defines the arguments in detail. It is also nested with a function that adds all arguments from modules.",
+        "keyword": "module",
+        "name": "Arguments"
+      },
+      {
+        "comment": "Options is a get method and gets all options from arguments.",
+        "keyword": "def",
+        "name": "self.options"
+      },
+      {
+        "comment": "It finds out if the plugin is written in the argument.",
+        "keyword": "def",
+        "name": "self.active_plugin?"
+      }
+    ]
+  }
+]
