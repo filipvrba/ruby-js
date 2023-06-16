@@ -8,7 +8,7 @@ import './elements'
 import './core/events'
 
 document.querySelector('#app').innerHTML = """
-<div class='py-5'>
+<div class='py-3'>
   <elm-header></elm-header>
   <main>
     <elm-content></elm-content>

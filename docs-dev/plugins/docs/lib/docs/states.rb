@@ -14,7 +14,10 @@ module RJSV
             output_path = File.join(Dir.pwd, output_path_relative)
 
             docs_api = Generate.docs_api(input_path)
-            docs_api_json = JSON.pretty_generate(docs_api)
+            docs_api_json = JSON.pretty_generate({
+              docs_api: docs_api,
+              generated: Time.now.strftime("%d. %m. %Y %H:%M:%S").lstrip
+            })
 
             RJSV::Core::Files.write_with_dir(docs_api_json, output_path)
             RJSV::Core::Event.print('docs', "A '#{output_path_relative}' file has been generated.")
