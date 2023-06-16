@@ -29,8 +29,8 @@ module RJSV
   module_function
 
   ##
-  # Block of code that handles the transpilation of scipt.
-  # This is opening a Ruby scipt container file,
+  # Block of code that handles the transpilation of script.
+  # This is opening a Ruby script container file,
   # which is then converted into a JavaScript file.
   # The file is saved to the output path.
 

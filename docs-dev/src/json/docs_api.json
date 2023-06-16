@@ -194,7 +194,7 @@
       {
         "comment": "Converts Ruby script to JavaScript using Ruby2JS library. The final transpilation is followed by saving it to a file with a predefined path.",
         "keyword": "def",
-        "name": "ruby_to_js_with_write(content_ruby, path)"
+        "name": "ruby_to_js_with_write(content_ruby, path, &block)"
       }
     ]
   },
@@ -224,7 +224,7 @@
         "name": "RJSV"
       },
       {
-        "comment": "Block of code that handles the transpilation of scipt. This is opening a Ruby scipt container file, which is then converted into a JavaScript file. The file is saved to the output path.",
+        "comment": "Block of code that handles the transpilation of script. This is opening a Ruby script container file, which is then converted into a JavaScript file. The file is saved to the output path.",
         "keyword": "def",
         "name": "translate_state(path)"
       },

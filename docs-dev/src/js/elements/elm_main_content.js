@@ -2,7 +2,7 @@ export default class ElmMainContent extends HTMLElement {
   // init_elm()
   constructor() {
     super();
-    this._hNic = e => this.changeContent(e.detail)
+    this._hNic = e => this.changeContent(e.detail, true)
   };
 
   connectedCallback() {
@@ -38,18 +38,27 @@ export default class ElmMainContent extends HTMLElement {
     let pathFile = `${info.path}/${info.file}`;
     let firstKeyword = info.comments_with_keywords[0];
     let template = `${`
+    <div class='container'>
       <h1>${firstKeyword.name}</h1>
-      <h3>${firstKeyword.keyword}</h3>
-      <p>${pathFile}</p>
+      
+      <ul class='nav flex-column'>
+        <li class='nav-item'>
+          <h3 style='padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);'>${firstKeyword.keyword}</h3>
+        </li>
+        <li class='nav-item'>
+          <a class='nav-link active' href='${GH_PROFILE_URL}/${pathFile}' target='_blank'>${pathFile}</a>
+        </li>
+      </ul>
       <br>
       <p class=''>${firstKeyword.comment}</p>
-      <hr>
+      <br>
       ${lCommentsKeywords()}
+    </div>
     `}`;
     return this.innerHTML = template
   };
 
-  changeContent(info) {
-    return this.initElm(info)
+  changeContent(info, isApi) {
+    if (isApi) return this.initElm(info)
   }
 }
