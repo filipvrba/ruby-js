@@ -30,9 +30,9 @@ module RJSV
     # The final transpilation is followed by saving it to
     # a file with a predefined path.
 
-    def ruby_to_js_with_write(content_ruby, path)
+    def ruby_to_js_with_write(content_ruby, path, &block)
       content_js = ruby_to_js(content_ruby) do |err|
-        Core::Event.print('error', "#{path} #{err}")
+        block.call(err) if block
       end
       Core::Files.write_with_dir(content_js, path) if content_js
     end

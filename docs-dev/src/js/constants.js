@@ -1,0 +1,1 @@
+window.EVENTS = {navItemContent: "nic"}
