@@ -47,7 +47,7 @@ module RJSV
       ##
       # Safely removes the file from the path.
       # If the file is the last one in the folder,
-      # the folder is also deleted with the file
+      # the folder is also deleted with the file.
 
       def remove(path)
         File.delete(path) if File.exist?(path)
