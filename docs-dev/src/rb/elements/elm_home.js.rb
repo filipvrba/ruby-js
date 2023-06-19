@@ -34,6 +34,8 @@ export default class ElmHome < HTMLElement
   def enter_hash()
     if location.hash
       endpoint(location.hash.replace('#', ''))
+    else
+      endpoint('0-introduction')
     end
   end
 

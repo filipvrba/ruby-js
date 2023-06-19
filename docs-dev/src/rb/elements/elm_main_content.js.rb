@@ -14,8 +14,6 @@ export default class ElmMainContent < HTMLElement
       api_reference: apiReference,
       introduction: introduction
     }
-    
-    init_html(@html[:introduction])
   end
 
   def connectedCallback()

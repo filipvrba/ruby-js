@@ -11,8 +11,7 @@ export default class ElmMainContent extends HTMLElement {
       return this.changeContent(e.detail, isApi)
     };
 
-    this._html = {gettingStarted, apiReference, introduction};
-    this.initHtml(this._html.introduction)
+    this._html = {gettingStarted, apiReference, introduction}
   };
 
   connectedCallback() {

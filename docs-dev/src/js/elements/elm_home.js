@@ -32,7 +32,7 @@ export default class ElmHome extends HTMLElement {
   };
 
   enterHash() {
-    if (location.hash) return this.endpoint(location.hash.replace("#", ""))
+    return location.hash ? this.endpoint(location.hash.replace("#", "")) : this.endpoint("0-introduction")
   };
 
   endpoint(pageName) {
