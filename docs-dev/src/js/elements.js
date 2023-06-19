@@ -5,4 +5,6 @@ window.customElements.define("elm-main-content", ElmMainContent);
 import ElmHeader from "./elements/elm_header";
 window.customElements.define("elm-header", ElmHeader);
 import ElmFooter from "./elements/elm_footer";
-window.customElements.define("elm-footer", ElmFooter)
+window.customElements.define("elm-footer", ElmFooter);
+import ElmHome from "./elements/elm_home";
+window.customElements.define("elm-home", ElmHome)

@@ -40,7 +40,8 @@ module RJSV
       if content_ruby && path
         path_output = Core::Files.change_path_to_output(path, @options_cli)
         Translate.ruby_to_js_with_write(content_ruby, path_output) do |err|
-          Core::Event.print('error', "#{path} #{err}")
+          Core::Event.print('error', "#{path.sub(File.join(Dir.pwd, ''), '')} #{err}")
+          return
         end
         Core::Event.print('translated', path_output)
       end

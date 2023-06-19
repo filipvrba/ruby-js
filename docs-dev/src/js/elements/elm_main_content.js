@@ -68,16 +68,10 @@ export default class ElmMainContent extends HTMLElement {
   };
 
   initHtml(nameHtml) {
-    let contentHtml = eval(nameHtml);
-
-    switch (nameHtml) {
-    case "introduction":
-
-      contentHtml = contentHtml.replaceAll(
-        "GH_PROFILE_URL",
-        GH_PROFILE_URL.replace("/blob/main", "")
-      ).replace("VERSION", DOCS_API_VERSION)
-    };
+    let contentHtml = eval(nameHtml).replaceAll(
+      "\#{GH_PROFILE_URL}",
+      GH_PROFILE_URL.replace("/blob/main", "")
+    ).replace("\#{DOCS_API_VERSION}", DOCS_API_VERSION);
 
     return this.innerHTML = contentHtml
   };

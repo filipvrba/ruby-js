@@ -64,13 +64,8 @@ export default class ElmMainContent < HTMLElement
 
   def init_html(name_html)
     content_html = eval(name_html)
-
-    case name_html
-    when 'introduction'
-      content_html = content_html
-      .gsub('GH_PROFILE_URL', GH_PROFILE_URL.replace('/blob/main', ''))
-      .replace('VERSION', DOCS_API_VERSION)
-    end
+      .gsub('#{GH_PROFILE_URL}', GH_PROFILE_URL.replace('/blob/main', ''))
+      .replace('#{DOCS_API_VERSION}', DOCS_API_VERSION)
 
     self.innerHTML = content_html
   end

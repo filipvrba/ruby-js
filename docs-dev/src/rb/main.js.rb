@@ -7,6 +7,4 @@ import './elements'
 
 import './core/events'
 
-import 'homePage', '../html/home.html?raw'
-
-document.querySelector('#app').innerHTML = home_page
+document.querySelector('#app').innerHTML = "<elm-home></elm-home>"

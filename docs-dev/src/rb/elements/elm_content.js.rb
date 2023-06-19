@@ -37,10 +37,10 @@ export default class ElmContent < HTMLElement
       list_data(path).each do |info, i| 
         name = info['comments_with_keywords'][0].name
         name_file_no_suffix = info.file.replace('.rb', '')
-        href = "#{info.path}/#{name_file_no_suffix}"
+        href = "1-#{i}-#{info.path}/#{name_file_no_suffix}"
         li_item_dom = """
           <ul class='nav-item'>
-            <a class='nav-link' href='##{href}' onclick='navItemContentClick(#{i})'>#{name}</a>
+            <a class='nav-link' href='##{href}'>#{name}</a>
           </ul>
         """
         template << li_item_dom
@@ -71,13 +71,13 @@ export default class ElmContent < HTMLElement
           <nav class='sidebar'>
             <ul class='nav flex-column'>
               <li class='nav-item'>
-                <a class='nav-link active' href='#introduction' onclick='navItemCategoryClick(\"introduction\")'>Introduction</a>
+                <a class='nav-link active' href='#0-introduction'>Introduction</a>
               </li>
               <li class='nav-item'>
-                <a class='nav-link active' href='#getting-started' onclick='navItemCategoryClick(\"gettingStarted\")'>Getting Started</a>
+                <a class='nav-link active' href='#0-getting-started'>Getting Started</a>
               </li>
               <li class='nav-item'>
-                <a class='nav-link' href='#api-reference' onclick='navItemCategoryClick(\"apiReference\")'>API Reference</a>
+                <a class='nav-link' href='#0-api-reference'>API Reference</a>
                 #{l_list_item()}
               </li>
             </ul>

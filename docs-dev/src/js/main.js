@@ -4,5 +4,4 @@ import "./constants";
 import "./objects";
 import "./elements";
 import "./core/events";
-import homePage from "../html/home.html?raw";
-document.querySelector("#app").innerHTML = homePage
+document.querySelector("#app").innerHTML = "<elm-home></elm-home>"

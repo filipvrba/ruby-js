@@ -10,3 +10,6 @@ window.customElements.define('elm-header', ElmHeader)
 
 import 'ElmFooter', './elements/elm_footer'
 window.customElements.define('elm-footer', ElmFooter)
+
+import 'ElmHome', './elements/elm_home'
+window.customElements.define('elm-home', ElmHome)
