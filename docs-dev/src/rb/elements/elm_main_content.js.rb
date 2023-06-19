@@ -9,8 +9,13 @@ export default class ElmMainContent < HTMLElement
       is_api = typeof(e.detail) == 'object'
       change_content(e.detail, is_api)
     end
+    @html = {
+      getting_started: getting_started,
+      api_reference: apiReference,
+      introduction: introduction
+    }
     
-    init_html('introduction')
+    init_html(@html[:introduction])
   end
 
   def connectedCallback()
@@ -62,8 +67,8 @@ export default class ElmMainContent < HTMLElement
     self.innerHTML = template
   end
 
-  def init_html(name_html)
-    content_html = eval(name_html)
+  def init_html(content_html)
+    content_html = content_html
       .gsub('#{GH_PROFILE_URL}', GH_PROFILE_URL.replace('/blob/main', ''))
       .replace('#{DOCS_API_VERSION}', DOCS_API_VERSION)
 
@@ -74,7 +79,7 @@ export default class ElmMainContent < HTMLElement
     if is_api
       init_elm(info)
     else
-      init_html(info)
+      init_html(@html[info])
     end
   end
 end

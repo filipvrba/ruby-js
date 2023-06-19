@@ -11,7 +11,8 @@ export default class ElmMainContent extends HTMLElement {
       return this.changeContent(e.detail, isApi)
     };
 
-    this.initHtml("introduction")
+    this._html = {gettingStarted, apiReference, introduction};
+    this.initHtml(this._html.introduction)
   };
 
   connectedCallback() {
@@ -67,8 +68,8 @@ export default class ElmMainContent extends HTMLElement {
     return this.innerHTML = template
   };
 
-  initHtml(nameHtml) {
-    let contentHtml = eval(nameHtml).replaceAll(
+  initHtml(contentHtml) {
+    contentHtml = contentHtml.replaceAll(
       "\#{GH_PROFILE_URL}",
       GH_PROFILE_URL.replace("/blob/main", "")
     ).replace("\#{DOCS_API_VERSION}", DOCS_API_VERSION);
@@ -77,6 +78,6 @@ export default class ElmMainContent extends HTMLElement {
   };
 
   changeContent(info, isApi) {
-    return isApi ? this.initElm(info) : this.initHtml(info)
+    return isApi ? this.initElm(info) : this.initHtml(this._html[info])
   }
 }
