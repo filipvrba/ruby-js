@@ -1,7 +1,13 @@
+import 'gettingStarted', '../../html/getting_started.html?raw'
+import 'apiReference', '../../html/api_reference.html?raw'
+
 export default class ElmMainContent < HTMLElement
   def initialize
     super
-    @h_nic = lambda { |e| change_content(e.detail, true) }
+    @h_nic = lambda do |e|
+      is_api = typeof(e.detail) == 'object'
+      change_content(e.detail, is_api)
+    end
     
     # init_elm()
   end
@@ -55,9 +61,15 @@ export default class ElmMainContent < HTMLElement
     self.innerHTML = template
   end
 
+  def init_html(name_html)
+    self.innerHTML = eval(name_html)
+  end
+
   def change_content(info, is_api)
     if is_api
       init_elm(info)
+    else
+      init_html(info)
     end
   end
 end

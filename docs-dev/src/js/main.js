@@ -4,12 +4,5 @@ import "./constants";
 import "./objects";
 import "./elements";
 import "./core/events";
-document.querySelector("#app").innerHTML = `${`
-<div class='py-3'>
-  <elm-header></elm-header>
-  <main>
-    <elm-content></elm-content>
-  </main>
-  <elm-footer></elm-footer>
-</div>
-`}`
+import homePage from "../html/home.html?raw";
+document.querySelector("#app").innerHTML = homePage

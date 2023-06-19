@@ -1,8 +1,15 @@
+import gettingStarted from "../../html/getting_started.html?raw";
+import apiReference from "../../html/api_reference.html?raw";
+
 export default class ElmMainContent extends HTMLElement {
   // init_elm()
   constructor() {
     super();
-    this._hNic = e => this.changeContent(e.detail, true)
+
+    this._hNic = (e) => {
+      let isApi = typeof e.detail === "object";
+      return this.changeContent(e.detail, isApi)
+    }
   };
 
   connectedCallback() {
@@ -58,7 +65,11 @@ export default class ElmMainContent extends HTMLElement {
     return this.innerHTML = template
   };
 
+  initHtml(nameHtml) {
+    return this.innerHTML = eval(nameHtml)
+  };
+
   changeContent(info, isApi) {
-    if (isApi) return this.initElm(info)
+    return isApi ? this.initElm(info) : this.initHtml(info)
   }
 }

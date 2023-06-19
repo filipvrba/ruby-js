@@ -3,7 +3,8 @@ export default class ElmContent extends HTMLElement {
     super();
     this._data = DOCS_API;
     this.initElm(this._data);
-    window.navItemContentClick = this.navItemContentClick.bind(this)
+    window.navItemContentClick = this.navItemContentClick.bind(this);
+    window.navItemCategoryClick = this.navItemCategoryClick.bind(this)
   };
 
   listPath() {
@@ -69,21 +70,21 @@ export default class ElmContent extends HTMLElement {
     <div class='container-fluid'>
       <div class='row'>
         <!-- Sidebar -->
-        <div class='col-md-3 col-lg-2'>
+        <div class='col-sm-3 col-lg-2'>
           <nav class='sidebar'>
             <ul class='nav flex-column'>
               <li class='nav-item'>
-                <a class='nav-link active' href='#'>Getting Started</a>
+                <a class='nav-link active' href='#getting-started' onclick='navItemCategoryClick("gettingStarted")'>Getting Started</a>
               </li>
               <li class='nav-item'>
-                <a class='nav-link' href='#'>API Reference</a>
+                <a class='nav-link' href='#api-reference' onclick='navItemCategoryClick("apiReference")'>API Reference</a>
                 ${lListItem()}
               </li>
             </ul>
           </nav>
         </div>
 
-        <div class='col-md-9 col-lg-10'>
+        <div class='col-sm-9 col-lg-10'>
           <elm-main-content></elm-main-content>
         </div>
       </div>
@@ -94,5 +95,9 @@ export default class ElmContent extends HTMLElement {
 
   navItemContentClick(id) {
     return Events.send(EVENTS.navItemContent, this._data[id])
+  };
+
+  navItemCategoryClick(file) {
+    return Events.send(EVENTS.navItemContent, file)
   }
 }

@@ -5,6 +5,7 @@ export default class ElmContent < HTMLElement
     @data = DOCS_API
     init_elm(@data)
     window.nav_item_content_click = nav_item_content_click
+    window.nav_item_category_click = nav_item_category_click
   end
 
   def list_path()
@@ -66,21 +67,21 @@ export default class ElmContent < HTMLElement
     <div class='container-fluid'>
       <div class='row'>
         <!-- Sidebar -->
-        <div class='col-md-3 col-lg-2'>
+        <div class='col-sm-3 col-lg-2'>
           <nav class='sidebar'>
             <ul class='nav flex-column'>
               <li class='nav-item'>
-                <a class='nav-link active' href='#'>Getting Started</a>
+                <a class='nav-link active' href='#getting-started' onclick='navItemCategoryClick(\"gettingStarted\")'>Getting Started</a>
               </li>
               <li class='nav-item'>
-                <a class='nav-link' href='#'>API Reference</a>
+                <a class='nav-link' href='#api-reference' onclick='navItemCategoryClick(\"apiReference\")'>API Reference</a>
                 #{l_list_item()}
               </li>
             </ul>
           </nav>
         </div>
 
-        <div class='col-md-9 col-lg-10'>
+        <div class='col-sm-9 col-lg-10'>
           <elm-main-content></elm-main-content>
         </div>
       </div>
@@ -92,5 +93,9 @@ export default class ElmContent < HTMLElement
 
   def nav_item_content_click(id)
     Events.send(EVENTS.nav_item_content, @data[id])
+  end
+
+  def nav_item_category_click(file)
+    Events.send(EVENTS.nav_item_content, file)
   end
 end
