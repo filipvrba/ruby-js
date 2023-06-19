@@ -1,15 +1,17 @@
 import gettingStarted from "../../html/getting_started.html?raw";
 import apiReference from "../../html/api_reference.html?raw";
+import introduction from "../../html/introduction.html?raw";
 
 export default class ElmMainContent extends HTMLElement {
-  // init_elm()
   constructor() {
     super();
 
     this._hNic = (e) => {
       let isApi = typeof e.detail === "object";
       return this.changeContent(e.detail, isApi)
-    }
+    };
+
+    this.initHtml("introduction")
   };
 
   connectedCallback() {
@@ -66,7 +68,18 @@ export default class ElmMainContent extends HTMLElement {
   };
 
   initHtml(nameHtml) {
-    return this.innerHTML = eval(nameHtml)
+    let contentHtml = eval(nameHtml);
+
+    switch (nameHtml) {
+    case "introduction":
+
+      contentHtml = contentHtml.replaceAll(
+        "GH_PROFILE_URL",
+        GH_PROFILE_URL.replace("/blob/main", "")
+      ).replace("VERSION", DOCS_API_VERSION)
+    };
+
+    return this.innerHTML = contentHtml
   };
 
   changeContent(info, isApi) {

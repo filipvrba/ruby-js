@@ -74,6 +74,9 @@ export default class ElmContent extends HTMLElement {
           <nav class='sidebar'>
             <ul class='nav flex-column'>
               <li class='nav-item'>
+                <a class='nav-link active' href='#introduction' onclick='navItemCategoryClick("introduction")'>Introduction</a>
+              </li>
+              <li class='nav-item'>
                 <a class='nav-link active' href='#getting-started' onclick='navItemCategoryClick("gettingStarted")'>Getting Started</a>
               </li>
               <li class='nav-item'>

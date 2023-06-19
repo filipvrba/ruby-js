@@ -1,5 +1,6 @@
 import 'gettingStarted', '../../html/getting_started.html?raw'
 import 'apiReference', '../../html/api_reference.html?raw'
+import 'introduction', '../../html/introduction.html?raw'
 
 export default class ElmMainContent < HTMLElement
   def initialize
@@ -9,7 +10,7 @@ export default class ElmMainContent < HTMLElement
       change_content(e.detail, is_api)
     end
     
-    # init_elm()
+    init_html('introduction')
   end
 
   def connectedCallback()
@@ -62,7 +63,16 @@ export default class ElmMainContent < HTMLElement
   end
 
   def init_html(name_html)
-    self.innerHTML = eval(name_html)
+    content_html = eval(name_html)
+
+    case name_html
+    when 'introduction'
+      content_html = content_html
+      .gsub('GH_PROFILE_URL', GH_PROFILE_URL.replace('/blob/main', ''))
+      .replace('VERSION', DOCS_API_VERSION)
+    end
+
+    self.innerHTML = content_html
   end
 
   def change_content(info, is_api)

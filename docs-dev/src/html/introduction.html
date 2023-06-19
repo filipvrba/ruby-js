@@ -1,0 +1,35 @@
+<div class='container'>
+  <h1>Introduction</h1>
+  <br>
+  <table frame='void' rules='none'>
+    <colgroup>
+      <col>
+      <col>
+    </colgroup>
+    <tbody valign='top'>
+      <tr><th>Author:</th><td>Filip Vrba</td></tr>
+      <tr><th>Version:</th><td>VERSION</td></tr>
+      <tr><th>GitHub:</th><td>
+        <a href='GH_PROFILE_URL'>
+          GH_PROFILE_URL
+        </a>
+      </td></tr>
+      <tr><th>License:</th><td>MIT</td></tr>
+    </tbody>
+  </table>
+  <br>
+  <p>This tool is written in Ruby which uses a library to transpile Ruby script into JavaScript. To give you a better idea of what this CLI application does, it can track files with the extension '.*.rb' in real time and transpile them to another file with native JS script (note that the extension has a star and this indicates the type of file we want to save the transpiled script to).</p>
+  <p>
+    The program utilizes a <a href="https://www.ruby2js.com/">Ruby2JS</a> transpiler in conjunction with a separate module for monitoring file modifications. The collaboration of these libraries resulted in the creation of this RubyJS tool. It can be used almost anywhere, as long as the virtual environment supports <a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> (JS).
+    There are various tools like this one, such as <a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="https://fable.io/">Fable</a>, and <a href="https://coffeescript.org/">CoffeeScript</a>, that offer similar functionalities. You can utilize your preferred scripting syntax to execute the supplied command. However, these transpilers have a disadvantage in that they only provide a JavaScript API.
+  </p>
+  <p>
+    Another possibility of the CLI application tool is that it has its own ecosystem created by inserting a plugin into it, which extends the functionality of the RubyJS tool. The default plugin is a scaffold that can generate various elements. With this plugin, you can create a new web project that is built exactly for RubyJS-Vite, or add a new DOM Element to a web project for faster site creation (something similar to Ruby on Rails).
+    I recommend studying Ruby2JS so you can write scripts to transpile into native JS. There's a lot that this Ruby2JS library can do, and it's mostly configuration independent. What I mean by this is that you can configure the transpiler using a configuration file. Just add 'config/ruby2js.rb' to your project and the RubyJS CLI tool will recognize this file and adapt to the configurations.
+  </p>
+  <br>
+  <blockquote>
+    <h3 id="info">Info</h3>
+    <p>Since the Vite tool is a secondary feature of the RubyJS tool, it is appropriate to refer to the combined tool as RubyJS-Vite, which is available online. Therefore, both RubyJS and RubyJS-Vite are identical tools.</p>
+  </blockquote>
+</div>
