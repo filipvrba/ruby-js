@@ -1,8 +1,46 @@
 <div class='container'>
-  <h1>Getting Started</h1>
-  <br>
-  <h2>Installation</h2>
-  <p>
-    
-  </p>
+<h1 id="getting-started">Getting Started</h1>
+<p>Before we start using the RubyJS tool, let me give you some background information. You'll learn how to install the CLI application, how to use it with basic features and a little bit about configuring the transpiler.</p>
+<h2 id="0-getting-started-1-installation">1 Installation</h2>
+<p>Installing the RubyJS CLI tool is simple and we use the Ruby language ecosystem to do it using the 'gem' command. This installs everything needed for RubyJS and then creates an executable file called 'rjsv'.</p>
+<p><em>Just type this command into the terminal to install it:</em></p>
+<pre class="hljs"><code><div>gem install rubyjs-vite
+</div></code></pre>
+<p>After successful installation, we can test the functionality of the application by typing the RubyJS version into the terminal.</p>
+<p><em>This command will print the version:</em></p>
+<pre class="hljs"><code><div>rjsv -v
+</div></code></pre>
+<blockquote>
+<h3 id="info">Info</h3>
+<p>If you see version 2.0.0 or greater and it doesn't throw any errors, you have RubyJS-Vite installed correctly.</p>
+</blockquote>
+<h2 id="0-getting-started-2-basic-usage">2 Basic usage</h2>
+<p>At the base RubyJS has 4 functions that are used for transpiling Ruby scripts. The most basic is defining input and output paths that will be used during transpilation. In order for transpilation to take place, it needs to be marked as active and if it is not done, no file is transpiled. The last feature is file tracking, which is useful for rapid web development and communicates with the Vite tool.</p>
+<p>The way it works is that if we create, edit or remove a file, the tracker will capture the event that the transpilation is working with next (that's why it's important that the transpilation is always active). Once the files are transpiled into the native JavaScript syntax, the Vite tool catches the changes and it automatically restarts the server and refreshes the web page if necessary.</p>
+<p><em>Here are the 4 basic functions that are broken down into points and are applicable as the 'rjsv' cli application argument:</em></p>
+<ol>
+<li><strong>-s DIR, --source DIR</strong> (The path of the source folder where all RB files are found. Example of ending file type *.js.rb.)</li>
+<li><strong>-o DIR, --output DIR</strong> (The path of the output folder where all Ruby codes will be translated into JavaScript with the prepared file type.)</li>
+<li><strong>-t, --translate</strong> (It translates all loaded RB files into JavaScript code and stores them in certain type files.)</li>
+<li><strong>-w, --watch</strong> (Monitors all RB files in real time to see if they have been modified.)</li>
+</ol>
+<h3 id="0-getting-started-21-paths-suffix">2.1 Paths &amp; Suffix</h3>
+<p>I'd better mention here that input and output paths can be relative. Files in the input directory for Ruby scripts should have 2x extensions. The idea is that the 1st suffix is the file type, for the output folder, and the 2nd suffix is to indicate the RB file. So if we want to store JavaScript syntax in a 'js' extension, we do that by writing two '*.js.rb' extensions. Or, if we want to use a specific file type, we write this '*.jsx.rb' extension (this 'jsx' extension is used for React). If we don't write 2x extension then RubyJS won't automatically recognize the file in the input folder.</p>
+<h2 id="0-getting-started-3-configuration">3 Configuration</h2>
+<p>Configuration of the Ruby2JS transpiler can be done in the 'config/ruby2js.rb' file and should be allocated in the project root. If a RubyJS-Vite (rjsv) application is enabled with the transpilation argument enabled. So the config file is automatically detected and the transpilation is adapted as you expect.</p>
+<p>You can find this configuration file if you have created a new web project using scaffolding. If you are creating a project manually, it is required that you create a configuration file. If the configuration file does not exist, Ruby2JS has predefined default configuration parameters. It shouldn't happen that RubyJS doesn't throw an error message. The error message happens when the Ruby script is poorly written and the transpiler fails to recognize the syntax.</p>
+<h3 id="0-getting-started-31-basic-configuration">3.1 Basic Configuration</h3>
+<p>The configuration can be varied, so I will list the basic file configuration here. If you don't understand the configuration, I recommend reading the <a href="https://www.ruby2js.com/docs/options">Options</a> article. It will walk you through everything you need to know.</p>
+<p><em>Here is the basic configuration:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># config/ruby2js.rb</span>
+
+preset
+
+filter <span class="hljs-symbol">:functions</span>
+filter <span class="hljs-symbol">:camelCase</span>
+
+eslevel <span class="hljs-number">2021</span>
+
+include_method <span class="hljs-symbol">:class</span>
+</div></code></pre>
 </div>

@@ -1,0 +1,115 @@
+<!-- This HTML file was automatically generated using 'markdown' plugin. -->
+
+<h1>Getting Started</h1>
+
+<p>Než začneme využívat RubyJS nástroj, tak vás seznámím
+se základními informacemi. Dozvíte se, jak nainstalovat
+CLI aplikaci, jak jej používat se základními funkcemi a
+něco málo o konfiguraci transpilátoru.</p>
+
+<h2>1 Installation</h2>
+
+<p>Instalace RubyJS CLI nástroje je jednoduchá a použijeme
+k tomu ekosystém Ruby jazyka pomocí &#39;gem&#39; příkazu.
+Ten vše nainstaluje co je potřeba k RubyJS a následně
+vytvoří spustitelný soubor s názvem &#39;rjsv&#39;.</p>
+
+<p>Stačí napsat do terminálu tento příkaz k instalaci:
+<code>bash
+gem install rubyjs-vite
+</code></p>
+
+<p>Po úspěné instalaci můžeme otestovat funkčnost aplikace
+tím, že si do terminálu vypíšeme RubyJS verzi.</p>
+
+<p>Tímto příkazem vytiskneme verzi:
+<code>bash
+rjsv -v
+</code></p>
+
+<blockquote>
+<h3>Info</h3>
+
+<p>Pokud vidíte verzi 2.0.0 nebo větší a nevyhodí vám
+žádnou chybu, tak máte správně nainstalovaný RubyJS-Vite.</p>
+</blockquote>
+
+<h2>2 Basic usage</h2>
+
+<p>V základu má RubyJS 4 funkce, které se využívají pro
+transpilaci Ruby scriptů. Nejzákladnější je definování
+input a output cest, které při transpilaci budou využity.
+Aby transpilace probíhala, tak je potřeba označit za
+aktivní a pokud se tak neučiní, žádnej soubor se netranspiluje. Poslední funkcí je sledování souborů,
+která je užitečná při rychlém vývoji webu a komunikuje s
+Vite nástrojem.</p>
+
+<p>Funguje to tak, že pokud vytvoříme,
+upravíme a nebo odebereme soubor, tak sledovač zachytí
+událost se kterou se na dále pracuje s transpilací (proto
+je důležité, aby transpilace byla vždy aktivní).
+Po transpilaci souborů do nativního JavaScript syntaxe,
+tak Vite nástroj zachytí změny a ten automaticky
+restartuje server a obnoví popřípadě webovou stránku.</p>
+
+<p>Zde jsou uvedeny 4 základní funkce, které jsou rozepsány
+v bodech a jsou aplikovatelné jako argument &#39;rjsv&#39; cli
+aplikace:</p>
+
+<ol>
+<li><strong>-s DIR, --source DIR</strong> (The path of the source folder where all RB files are found. Example of ending file type *.js.rb.)<br></li>
+<li><strong>-o DIR, --output DIR</strong> (The path of the output folder where all Ruby codes will be translated into JavaScript with the prepared file type.)</li>
+<li><strong>-t, --translate</strong> (It translates all loaded RB files into JavaScript code and stores them in certain type files.)</li>
+<li><strong>-w, --watch</strong> (Monitors all RB files in real time to see if they have been modified.)</li>
+</ol>
+
+<h3>2.1 Paths &amp; Suffix</h3>
+
+<p>Ještě tu raději zmíním, že input a output cesty mohou být relativní.
+Soubory v input adresáři pro Ruby scripty mají mít 2x příponu.
+Myšleno tak, že 1. přípona je typ souboru, pro output složku a
+2. přípona je pro označení RB souboru. Takže pokud chceme uložit JavaScript
+syntaxi do &#39;js&#39; přípony, tak to provedeme napsání dvou přípon
+&#39;*.js.rb&#39;. Nebo, pokud chceme využívat specifický typ souboru,
+tak napíše tuto příponu &#39;*.jsx.rb&#39; (tato přípona &#39;jsx&#39; se používá
+pro React). Pokud nenapíšeme 2x příponu tak RubyJS nerozpozná
+automaticky soubor v input složce.</p>
+
+<h2>3 Configuration</h2>
+
+<p>Konfigurace Ruby2JS transpilátoru je možné provádět v souboru
+&#39;config/ruby2js.rb&#39; a má být přidělen v kořenové složce projektu.
+Pokud se zapne RubyJS-Vite (rjsv) aplikace s aktivovaným argumentem
+pro transpilaci. Tak konfigurační soubor se automaticky rozpozná a
+přizpůsobuje se transpilace, podle vašich očekávání.</p>
+
+<p>Tento konfigurační soubor naleznete, pokud jste si vytvořili nový
+webový projekt pomocí lešení. Pokud vytváříte projekt manuálně,
+tak je žádocí, aby jste si vytvořili konfigurační soubor. Pokud
+konfigurační soubor neexistuje, tak Ruby2JS má předem definované
+výchozí konfigurační parametry. Nemělo by se stát, že RubyJS
+nevyhodí chybové hlášení. Chybové hlášení se stává tehdy pokud
+Ruby script je špatně napsán a transpilátor nedokáže rozpoznat
+syntaxi.</p>
+
+<h3>3.1 Basic Configuration</h3>
+
+<p>Konfigurace může být různorodá a proto zde uvedu základní
+konfiguraci souboru. Pokud konfiguraci nerozumíte, tak doporučuji
+si přečíst článek o <a href="https://www.ruby2js.com/docs/options">Options</a>.
+Ten vás provede vším co potřebujete znát.</p>
+
+<p>Zde je základní konfigurace:
+```ruby</p>
+
+<h1>config/ruby2js.rb</h1>
+
+<p>preset</p>
+
+<p>filter :functions
+filter :camelCase</p>
+
+<p>eslevel 2021</p>
+
+<p>include_method :class
+```</p>

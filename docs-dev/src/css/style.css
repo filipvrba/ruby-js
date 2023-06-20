@@ -12,3 +12,26 @@ blockquote {
 	background: rgba(127, 127, 127, 0.1);
 	border-color: rgba(0, 122, 204, 0.5);
 }
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+
+	border-width: 1px;
+	border-style: solid;
+
+	background-color: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
