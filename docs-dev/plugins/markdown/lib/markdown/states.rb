@@ -34,6 +34,10 @@ module RJSV
             path_relative_output_file = path_output_file.sub(
               File.join(Dir.pwd, ''), '')
 
+            content_html = content_html
+                           .prepend('<!-- This HTML file was automatically ' +
+                           "generated using 'APP' plugin. -->\n\n"
+                           .sub('APP', "#{Constants::APP[:name]}"))
             RJSV::Core::Files.write_with_dir(content_html, path_output_file)
             RJSV::Core::Event.print('to-html',
               "Saved #{path_relative_output_file} file."

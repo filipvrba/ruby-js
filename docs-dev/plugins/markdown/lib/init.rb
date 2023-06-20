@@ -5,9 +5,11 @@ module RJSV
         require_relative './markdown/cli/arguments'
         require_relative './markdown/states'
         require_relative './markdown/parser'
+        require_relative './markdown/constants'
 
         def initialize
           @options_cli = CLI::Arguments.options
+          Constants::APP[:name] = self.name
         end
 
         def description
