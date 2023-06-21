@@ -11,10 +11,12 @@
 <p><em>This command will print the version:</em></p>
 <pre class="hljs"><code><div>rjsv -v
 </div></code></pre>
+<br>
 <blockquote>
 <h3 id="info">Info</h3>
 <p>If you see version 2.0.0 or greater and it doesn't throw any errors, you have RubyJS-Vite installed correctly.</p>
 </blockquote>
+<br>
 <h2 id="0-getting-started-2-basic-usage">2 Basic usage</h2>
 <p>At the base RubyJS has 4 functions that are used for transpiling Ruby scripts. The most basic is defining input and output paths that will be used during transpilation. In order for transpilation to take place, it needs to be marked as active and if it is not done, no file is transpiled. The last feature is file tracking, which is useful for rapid web development and communicates with the Vite tool.</p>
 <p>The way it works is that if we create, edit or remove a file, the tracker will capture the event that the transpilation is working with next (that's why it's important that the transpilation is always active). Once the files are transpiled into the native JavaScript syntax, the Vite tool catches the changes and it automatically restarts the server and refreshes the web page if necessary.</p>

@@ -1,5 +1,164 @@
 <div class='container'>
-  <h1>Plugins</h1>
-  <br>
-  <p>dasds</p>
+<h1 id="plugins">Plugins</h1>
+<br>
+<p>It is an extension element of the CLI application. If a plugin is inserted into the root project, RubyJS will recognize the existence of the plugin in the 'plugins' folder. Everything is triggered with the 'rjsv' command and the plugin name. If we are not sure what the name of the plugin is, it is recommended to use the help command. This will print out all the arguments to the application itself with and plugins.</p>
+<p><em>Here is the command to display the help:</em></p>
+<pre class="hljs"><code><div>rjsv -h
+</div></code></pre>
+<h2 id="1-location">1 Location</h2>
+<p>As I mentioned before, the plugin is placed in the 'plugins' folder, which is located in the root folder of the project. Anything that can run a RubyJS application is taken as a project. As a RubyJS-Vite project itself, it already has its own plugin called 'scaffold'. So, it can be used all the time where it is needed.</p>
+<p><em>As an example, here I will give a tree structure of folders:</em></p>
+<pre class="hljs"><code><div>A
+└── plugins
+    ├── markdown
+    └── vue
+B
+└── plugins
+    ├── docs
+    └── react
+</div></code></pre>
+<br>
+<blockquote>
+<h3 id="info">Info</h3>
+<p>Plugins are relative to projects. If project A has a specific plugin, you won't see that plugin in project B.</p>
+</blockquote>
+<br>
+<h2 id="2-development">2 Development</h2>
+<p>If you are developing a project with RubyJS and you need to change the way functions work, you need to create a specific plugin. To create a plugin, we need to know a few criteria to be able to initialize it in the CLI of the application. If these criteria are met and the specific plugin can initialize, then we can write the function logic.</p>
+<br>
+<blockquote>
+<h3 id="info">Info</h3>
+<p>Here it should be emphasized that we can use the API Reference to manipulate an existing function. Most functions are independent and reusable.</p>
+</blockquote>
+<br>
+<h3 id="21-criteria">2.1 Criteria</h3>
+<p><em>Here is a list of criteria to be followed:</em></p>
+<ol>
+<li>Structure the folders so that everything is under the plugin name in the 'lib' folder.</li>
+<li>Initialization is done in the 'init.rb' file. In it, the class 'Init' is written, which inherits the ready abstract class 'RSJV::Plugin'.</li>
+<li>The 'Init' class is nested in modules to indicate that it is a plugin with that name.</li>
+<li>The 'Init' class is taken as a representative content snippet of the plugin. Imported scripts are to be written here, and abstract functions are to be wrapped to run functions from different libraries (there should be no logic here).</li>
+<li>The name of the plugin is automatically written according to the name of the module, which should be the third nested one.</li>
+</ol>
+<p>I have described 5 criteria to follow when creating your own plugin. In order to understand it better, I will elaborate on each criterion separately.</p>
+<h3 id="211-folder-structure">2.1.1 Folder Structure</h3>
+<p>A folder structure is needed to better organize libraries. Therefore it is essential to make sure that the plugin itself is in the plugins folder and then in a folder under its own name. It should have a libraries folder and an initialization file in it. RubyJS recognizes this structuring and knows in advance that it will find there all the important information or functions to be run.</p>
+<p><em>Here is an example of the tree structure:</em></p>
+<pre class="hljs"><code><div>.
+└── plugins
+    └── &lt;plugin name&gt;
+        └── lib
+            └── init.rb
+</div></code></pre>
+<h3 id="212-initialization-file">2.1.2 Initialization File</h3>
+<p>Initialization is done in the 'init.rb' file. In it, the class 'Init' is written, which inherits the ready abstract class <a href="#1-7-lib/rjsv/plugin">RSJV::Plugin</a>. You need to know this abstract class, mainly because of the abstract methods. The methods should be defined in the class and populated.</p>
+<p><em>It is these abstract methods:</em></p>
+<ul>
+<li><strong>description</strong> - a short description of the plugin, which will be printed during help.</li>
+<li><strong>arguments</strong> - initialization of arguments if the plugin is running.</li>
+<li><strong>init</strong> - initialization method that starts the logic of the plugin functions. It is similar to a method like main().</li>
+</ul>
+<p><em>Here is a sample of the listed class:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># lib/init.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Init</span> &lt; RJSV::Plugin</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">description</span></span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arguments</span></span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<h3 id="213-nesting-modules">2.1.3 Nesting Modules</h3>
+<p>You need to pay attention to the structure of the modules when creating a plugin. In order for RubyJS to recognize a custom plugin, it looks for all classes in the RJSV::Plugins module. If they are not there, it cannot recognize that it is a plugin.</p>
+<p><em>Therefore, the initialization file should look similar:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># lib/init.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">RJSV</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Plugins</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">module</span> &lt;PluginName&gt;</span>
+      <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Init</span> &lt; RJSV::Plugin</span>
+        <span class="hljs-comment"># ...</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<br>
+<blockquote>
+<h3 id="info">Info</h3>
+<p>When creating plugin libraries, the structure of the modules should also be followed. If it is not followed, there is a possible conflict of functions from different plugins or separate RubyJS applications.</p>
+</blockquote>
+<br>
+<h3 id="214-representative-content-snippet">2.1.4 Representative Content Snippet</h3>
+<p>Simply put, an initialization file is like the contents of a book. If we open this file, we can see everything the plugin contains and what functions it runs when it initializes.</p>
+<p><em>Here is an example of what an initialization file should look like, for the scaffold plugin:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># lib/init.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">RJSV</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Plugins</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Scaffold</span></span>
+      require_relative <span class="hljs-string">'./scaffold/cli/arguments'</span>
+
+      require_relative <span class="hljs-string">'./scaffold/vite'</span>
+      require_relative <span class="hljs-string">'./scaffold/states'</span>
+      require_relative <span class="hljs-string">'./scaffold/create'</span>
+
+      <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Init</span> &lt; RJSV::Plugin</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>
+          @arguments_cli = RJSV::Plugins::Scaffold::CLI::Arguments
+        <span class="hljs-keyword">end</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">description</span></span>
+          <span class="hljs-string">"Scaffolding can create new\n"</span> +
+          <span class="hljs-string">"projects or create new elements."</span>
+        <span class="hljs-keyword">end</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arguments</span></span>
+          @arguments_cli.init(<span class="hljs-keyword">self</span>)
+        <span class="hljs-keyword">end</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>
+          Scaffold::States.create_web_state(@arguments_cli.options)
+          Scaffold::States.create_element_state(@arguments_cli.options)
+        <span class="hljs-keyword">end</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<h3 id="215-plugin-name">2.1.5 Plugin Name</h3>
+<p>The plugin name is automatically written from the third module. Therefore it is important to have the third module written. So the 'RJSV::Plugin.name()' method is not abstract, but it can be overloaded. Overloading this function is rare, but possible if we want to have a specific plugin name.</p>
+<p><em>Here is a sample name of the third plugin:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># lib/init.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">RJSV</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Plugins</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Scaffold</span>  <span class="hljs-comment"># This is the 'scaffold' plugin name.</span></span>
+    <span class="hljs-comment">#...</span>
+</div></code></pre>
+<p><em>Or here is an example of overloading the 'name()' method, which shortens the plugin name:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># lib/init.rb</span>
+
+<span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">RJSV</span></span>
+  <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Plugins</span></span>
+    <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">Scaffold</span></span>
+      <span class="hljs-comment">#...</span>
+      <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Init</span> &lt; RJSV::Plugin</span>
+        <span class="hljs-comment">#...</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">name</span></span>
+          <span class="hljs-string">'scaf'</span>
+        <span class="hljs-keyword">end</span>
+        <span class="hljs-comment">#...</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</div></code></pre>
+<h3 id="22-logic-of-functions">2.2 Logic of Functions</h3>
+<p>Function logic should be split into libraries and should not be in the initialization file itself. When writing functions, we can use predefined functions in the RJSV module. It's a good idea to read the API Reference, which breaks down the module or function classes. If we use a function from the RJSV module, it is recommended to write the whole path to the function.</p>
+
 </div>
