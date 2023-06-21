@@ -1,6 +1,8 @@
 import 'gettingStarted', '../../html/getting_started.html?raw'
 import 'apiReference', '../../html/api_reference.html?raw'
 import 'introduction', '../../html/introduction.html?raw'
+import 'plugins', '../../html/plugins.html?raw'
+import 'pluginScaffold', '../../html/plugins/scaffold.html?raw'
 
 export default class ElmMainContent < HTMLElement
   def initialize
@@ -12,7 +14,9 @@ export default class ElmMainContent < HTMLElement
     @html = {
       getting_started: getting_started,
       api_reference: apiReference,
-      introduction: introduction
+      introduction: introduction,
+      plugins: plugins,
+      plugin_scaffold: plugin_scaffold
     }
   end
 

@@ -1,6 +1,8 @@
 import gettingStarted from "../../html/getting_started.html?raw";
 import apiReference from "../../html/api_reference.html?raw";
 import introduction from "../../html/introduction.html?raw";
+import plugins from "../../html/plugins.html?raw";
+import pluginScaffold from "../../html/plugins/scaffold.html?raw";
 
 export default class ElmMainContent extends HTMLElement {
   constructor() {
@@ -11,7 +13,13 @@ export default class ElmMainContent extends HTMLElement {
       return this.changeContent(e.detail, isApi)
     };
 
-    this._html = {gettingStarted, apiReference, introduction}
+    this._html = {
+      gettingStarted,
+      apiReference,
+      introduction,
+      plugins,
+      pluginScaffold
+    }
   };
 
   connectedCallback() {

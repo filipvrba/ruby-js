@@ -80,6 +80,13 @@ export default class ElmContent extends HTMLElement {
                 <a class='nav-link active' href='#0-getting-started'>Getting Started</a>
               </li>
               <li class='nav-item'>
+                <a class='nav-link active' href='#0-plugins'>Plugins</a>
+
+                <ul class='nav-item'>
+                  <a class='nav-link active' href='#0-plugin-scaffold'>Scaffold</a>
+                </ul>
+              </li>
+              <li class='nav-item'>
                 <a class='nav-link' href='#0-api-reference'>API Reference</a>
                 ${lListItem()}
               </li>
