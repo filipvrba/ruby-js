@@ -1,5 +1,24 @@
 <div class='container'>
-  <h1>Scaffold</h1>
-  <br>
-  <p>dsdsd</p>
+  <h1 id="scaffold">Scaffold</h1>
+  <p>This is a plugin that extends the functionality of RubyJS-Vite. As the name implies, it is a scaffold that can create new projects and elements for an existing web project. To run this plugin, just type the name of the plugin (which is 'scaffold') after the command and use the ideal argument for the functionality. If you don't know what functionality exists, just view the help.</p>
+  <p><em>The command to view the help for scaffold:</em></p>
+<pre class="hljs"><code><div>rjsv scaffold -h
+</div></code></pre>
+  <h2 id="1-web">1 Web</h2>
+  <p>This is an argument that can create a new web project. Just type the argument and add the project name after it. The project is created in the directory you have set as the default terminal directory. After the project is successfully created, the terminal will print the information procedure and it will tell you how to turn on the development server.</p>
+  <p><em>Here is the command to create a web project:</em></p>
+<pre class="hljs"><code><div>rjsv scaffold web NAME
+</div></code></pre>
+  <h2 id="2-element">2 Element</h2>
+  <p>It is another argument that creates an element for an existing web project. This element is created in a specific element folder with an initialization file. After creation, the terminal will list the name under which you can call the element in the HTML file. The initialization file needs to be imported into the 'main.*.rb' file to recognize the server, the already existing elements.</p>
+  <p><em>The command to create the element:</em></p>
+<pre class="hljs"><code><div>rjsv scaffold element NAME
+</div></code></pre>
+  <p><em>Here is a Ruby script for importing existing elements:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/main.*.rb</span>
+
+<span class="hljs-comment">#...</span>
+import <span class="hljs-string">'./elements'</span>
+<span class="hljs-comment">#...</span>
+</div></code></pre>  
 </div>
