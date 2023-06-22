@@ -1,8 +1,8 @@
-(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))a(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const i of s.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function n(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function a(t){if(t.ep)return;t.ep=!0;const s=n(t);fetch(t.href,s)}})();window.EVENTS={navItemContent:"nic"};window.GH_PROFILE_URL="https://github.com/filipvrba/ruby-js/blob/main";window.APP_NAME="RubyJS-Vite";const m=[{file:"arguments.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"Module for all arguments to the CLI application. The argument initializes the OptionParser, which defines the arguments in detail. It is also nested with a function that adds all arguments from modules.",keyword:"module",name:"Arguments"},{comment:"Options is a get method and gets all options from arguments.",keyword:"def",name:"self.options"},{comment:"It finds out if the plugin is written in the argument.",keyword:"def",name:"self.active_plugin?"}]},{file:"plugins.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"This is the module that handles plugins so that they are found, imported and inizialized.",keyword:"module",name:"Plugins"},{comment:"Finds all init.rb files in the plugins folder. Otherwise, the absolute path is determined by the Dir.pwd() method.",keyword:"def",name:"find_all_init(path = Dir.pwd)"},{comment:"Imports all found init.rb files into Ruby script. Returns the classes that are imported, otherwise returns an empty array.",keyword:"def",name:"require_all_init()"},{comment:"Adds a plugin argument and initializes its nested arguments. It chooses the name and description of the argument to be the one written on behalf of the plugin,  which is found from the RJSV::Plugin class.",keyword:"def",name:"add_arguments(parser)"}]},{file:"signals.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"Dedicated to all signals for Unix system. Here we find the signal for INT.",keyword:"module",name:"Signals"}]},{file:"constants.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"All constant variables.",keyword:"module",name:"Constants"}]},{file:"constants.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"The module is reserved for handling classes and modules. Thus, it is a manipulation of constant keywords.",keyword:"module",name:"Constants"},{comment:"This method tries to find already initialized classes from the mod (module) using the abstract class RJSV::Plugin. It returns an array of classes.",keyword:"def",name:"get_classes(mod)"}]},{file:"event.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"Event module for handling fifo events. This is so far a module for just the basic event printing element.",keyword:"module",name:"Event"},{comment:"Prints an event type using the puts() method that shows the time, cli application name, event and event message.",keyword:"def",name:'print(event, message = "")'}]},{file:"files.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"The file module ensures safe handling of files. It always checks if a file really exists on the input path or if a certain folder exists on the output path. It can also change the absolute path or find all necessary files for further manipulation.",keyword:"module",name:"Files"},{comment:"Opens the file securely and returns the content from the file. If the file does not exist, it returns nil.",keyword:"def",name:"open(path)"},{comment:"Stores the file with the assigned container by safely discovering its folder and, if necessary, creating it when it does not exist in the path. It can also be assigned a file write mode.",keyword:"def",name:"write_with_dir(content, path, mode = 'w+')"},{comment:"Safely removes the file from the path. If the file is the last one in the folder, the folder is also deleted with the file.",keyword:"def",name:"remove(path)"},{comment:"The method is special in that it examines arguments from the CLI and modifies the definition path for the output path.",keyword:"def",name:"change_path_to_output(path, options_cli)"},{comment:"Finds all files with the extension '.*.rb' from the defined path.",keyword:"def",name:"find_all(path)"},{comment:"Copies all files from the input path to the output path. This is a method that copies all files even those that are invisible to the UNIX system (dot file).",keyword:"def",name:"copy(path_input, path_output)"}]},{file:"plugin.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Abstract 'class' for creating initialization plagins. They are teachable for defining basic information and is the starting point for triggering functions using the init() function. If we are creating a custom plugin, we need to inherit this 'class' into its own 'class'.",keyword:"class",name:"Plugin"},{comment:"Description of the plugin that is printed to the CLI during help.",keyword:"def",name:"description"},{comment:"This function is not mandatory and automatically defines the 'module' name according to the plugin 'module'.",keyword:"def",name:"name"},{comment:"The method should pass an initialization method for all arguments of this plugin.",keyword:"def",name:"arguments"},{comment:"The method that is the main initialization block for the code that the plugin should execute.",keyword:"def",name:"init"},{comment:"A private method that raises an error message about an abstract class with a function name.",keyword:"def",name:"abstract_error(fn_name)"}]},{file:"translate.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Here we can load everything necessary for the transpilation process of Ruby script into JavaScript. The transpilation process uses the Ruby2JS library. The transpilation is safe and catches error messages if the Ruby script has been written incorrectly.",keyword:"module",name:"Translate"},{comment:"Converts Ruby script to JavaScript using Ruby2JS library. If an error occurs during transpilation, the error message is raised in the next nested code block.",keyword:"def",name:"ruby_to_js(content_ruby, &block)"},{comment:"Converts Ruby script to JavaScript using Ruby2JS library. The final transpilation is followed by saving it to a file with a predefined path.",keyword:"def",name:"ruby_to_js_with_write(content_ruby, path, &block)"}]},{file:"watch.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Module for real-time monitoring of files on the local disk. It uses the 'listen' library for this function. There is only one method that can be loaded here which triggers everything.",keyword:"module",name:"Watch"},{comment:"Tracks modified files in the path that is defined as the source directory. When this function is called, the event listener is triggered for events such as modified, added, and deleted file events. Therefore, the method can put the application to sleep and silently monitor the event process. It watches all files with extension '.*.rb', which asterisk means any sub extension such as '.js'.",keyword:"def",name:"modified_files(path, &block)"}]},{file:"rjsv.rb",path:"lib",comments_with_keywords:[{comment:"This is the main initialization module of all modules that are needed for the functionality of this RubyJS-Vite transpiler. The methods that shape the direction of the application are also written here.",keyword:"module",name:"RJSV"},{comment:"Block of code that handles the transpilation of script. This is opening a Ruby script container file, which is then converted into a JavaScript file. The file is saved to the output path.",keyword:"def",name:"translate_state(path)"},{comment:"Block of code that tracks files under the input path. If a file has been logged, several events are performed such as to add, modify and remove logged files. These then trigger procedural methods to process the requests.",keyword:"def",name:"watch_state()"},{comment:"This is the main function to run the desired block function scenarios. In order to arm itself regarding plugins and directly Arguments, this method checks the accessibility of the plugin by checking if it is active or attached in the argument given by the confirmed command from the terminal.",keyword:"def",name:"main()"}]}],u="19. 06. 2023 07:43:53",f="2.0.0",c={docs_api:m,generated:u,version:f};window.DOCS_API=c.docs_api;window.DOCS_API_GENERATED=c.generated;window.DOCS_API_VERSION=c.version;class g extends HTMLElement{constructor(){super(),this._data=DOCS_API,this.initElm(this._data),window.navItemContentClick=this.navItemContentClick.bind(this),window.navItemCategoryClick=this.navItemCategoryClick.bind(this)}listPath(){let e=[];for(let n=0;n<this._data.length;n++){let a=this._data[n];e.includes(a.path)||e.push(a.path)}return e.sort()}listData(e){let n=[];for(let a=0;a<this._data.length;a++){let t=this._data[a];t.path===e&&n.push([t,a])}return n}initElm(e){let n=s=>{let i=[];for(let[o,r]of this.listData(s)){let h=o.comments_with_keywords[0].name,d=o.file.replace(".rb",""),p=`${`
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const a of s.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function n(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(t){if(t.ep)return;t.ep=!0;const s=n(t);fetch(t.href,s)}})();window.EVENTS={navItemContent:"nic"};window.GH_PROFILE_URL="https://github.com/filipvrba/ruby-js/blob/main";window.APP_NAME="RubyJS-Vite";const m=[{file:"arguments.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"Module for all arguments to the CLI application. The argument initializes the OptionParser, which defines the arguments in detail. It is also nested with a function that adds all arguments from modules.",keyword:"module",name:"Arguments"},{comment:"Options is a get method and gets all options from arguments.",keyword:"def",name:"self.options"},{comment:"It finds out if the plugin is written in the argument.",keyword:"def",name:"self.active_plugin?"}]},{file:"plugins.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"This is the module that handles plugins so that they are found, imported and inizialized.",keyword:"module",name:"Plugins"},{comment:"Finds all init.rb files in the plugins folder. Otherwise, the absolute path is determined by the Dir.pwd() method.",keyword:"def",name:"find_all_init(path = Dir.pwd)"},{comment:"Imports all found init.rb files into Ruby script. Returns the classes that are imported, otherwise returns an empty array.",keyword:"def",name:"require_all_init()"},{comment:"Adds a plugin argument and initializes its nested arguments. It chooses the name and description of the argument to be the one written on behalf of the plugin,  which is found from the RJSV::Plugin class.",keyword:"def",name:"add_arguments(parser)"}]},{file:"signals.rb",path:"lib/rjsv/cli",comments_with_keywords:[{comment:"Dedicated to all signals for Unix system. Here we find the signal for INT.",keyword:"module",name:"Signals"}]},{file:"constants.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"All constant variables.",keyword:"module",name:"Constants"}]},{file:"constants.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"The module is reserved for handling classes and modules. Thus, it is a manipulation of constant keywords.",keyword:"module",name:"Constants"},{comment:"This method tries to find already initialized classes from the mod (module) using the abstract class RJSV::Plugin. It returns an array of classes.",keyword:"def",name:"get_classes(mod)"}]},{file:"event.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"Event module for handling fifo events. This is so far a module for just the basic event printing element.",keyword:"module",name:"Event"},{comment:"Prints an event type using the puts() method that shows the time, cli application name, event and event message.",keyword:"def",name:'print(event, message = "")'}]},{file:"files.rb",path:"lib/rjsv/core",comments_with_keywords:[{comment:"The file module ensures safe handling of files. It always checks if a file really exists on the input path or if a certain folder exists on the output path. It can also change the absolute path or find all necessary files for further manipulation.",keyword:"module",name:"Files"},{comment:"Opens the file securely and returns the content from the file. If the file does not exist, it returns nil.",keyword:"def",name:"open(path)"},{comment:"Stores the file with the assigned container by safely discovering its folder and, if necessary, creating it when it does not exist in the path. It can also be assigned a file write mode.",keyword:"def",name:"write_with_dir(content, path, mode = 'w+')"},{comment:"Safely removes the file from the path. If the file is the last one in the folder, the folder is also deleted with the file.",keyword:"def",name:"remove(path)"},{comment:"The method is special in that it examines arguments from the CLI and modifies the definition path for the output path.",keyword:"def",name:"change_path_to_output(path, options_cli)"},{comment:"Finds all files with the extension '.*.rb' from the defined path.",keyword:"def",name:"find_all(path)"},{comment:"Copies all files from the input path to the output path. This is a method that copies all files even those that are invisible to the UNIX system (dot file).",keyword:"def",name:"copy(path_input, path_output)"}]},{file:"plugin.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Abstract 'class' for creating initialization plagins. They are teachable for defining basic information and is the starting point for triggering functions using the init() function. If we are creating a custom plugin, we need to inherit this 'class' into its own 'class'.",keyword:"class",name:"Plugin"},{comment:"Description of the plugin that is printed to the CLI during help.",keyword:"def",name:"description"},{comment:"This function is not mandatory and automatically defines the 'module' name according to the plugin 'module'.",keyword:"def",name:"name"},{comment:"The method should pass an initialization method for all arguments of this plugin.",keyword:"def",name:"arguments"},{comment:"The method that is the main initialization block for the code that the plugin should execute.",keyword:"def",name:"init"},{comment:"A private method that raises an error message about an abstract class with a function name.",keyword:"def",name:"abstract_error(fn_name)"}]},{file:"translate.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Here we can load everything necessary for the transpilation process of Ruby script into JavaScript. The transpilation process uses the Ruby2JS library. The transpilation is safe and catches error messages if the Ruby script has been written incorrectly.",keyword:"module",name:"Translate"},{comment:"Converts Ruby script to JavaScript using Ruby2JS library. If an error occurs during transpilation, the error message is raised in the next nested code block.",keyword:"def",name:"ruby_to_js(content_ruby, &block)"},{comment:"Converts Ruby script to JavaScript using Ruby2JS library. The final transpilation is followed by saving it to a file with a predefined path.",keyword:"def",name:"ruby_to_js_with_write(content_ruby, path, &block)"}]},{file:"watch.rb",path:"lib/rjsv",comments_with_keywords:[{comment:"Module for real-time monitoring of files on the local disk. It uses the 'listen' library for this function. There is only one method that can be loaded here which triggers everything.",keyword:"module",name:"Watch"},{comment:"Tracks modified files in the path that is defined as the source directory. When this function is called, the event listener is triggered for events such as modified, added, and deleted file events. Therefore, the method can put the application to sleep and silently monitor the event process. It watches all files with extension '.*.rb', which asterisk means any sub extension such as '.js'.",keyword:"def",name:"modified_files(path, &block)"}]},{file:"rjsv.rb",path:"lib",comments_with_keywords:[{comment:"This is the main initialization module of all modules that are needed for the functionality of this RubyJS-Vite transpiler. The methods that shape the direction of the application are also written here.",keyword:"module",name:"RJSV"},{comment:"Block of code that handles the transpilation of script. This is opening a Ruby script container file, which is then converted into a JavaScript file. The file is saved to the output path.",keyword:"def",name:"translate_state(path)"},{comment:"Block of code that tracks files under the input path. If a file has been logged, several events are performed such as to add, modify and remove logged files. These then trigger procedural methods to process the requests.",keyword:"def",name:"watch_state()"},{comment:"This is the main function to run the desired block function scenarios. In order to arm itself regarding plugins and directly Arguments, this method checks the accessibility of the plugin by checking if it is active or attached in the argument given by the confirmed command from the terminal.",keyword:"def",name:"main()"}]}],u="19. 06. 2023 07:43:53",f="2.0.0",c={docs_api:m,generated:u,version:f};window.DOCS_API=c.docs_api;window.DOCS_API_GENERATED=c.generated;window.DOCS_API_VERSION=c.version;class g extends HTMLElement{constructor(){super(),this._data=DOCS_API,this.initElm(this._data),window.navItemContentClick=this.navItemContentClick.bind(this),window.navItemCategoryClick=this.navItemCategoryClick.bind(this)}listPath(){let e=[];for(let n=0;n<this._data.length;n++){let i=this._data[n];e.includes(i.path)||e.push(i.path)}return e.sort()}listData(e){let n=[];for(let i=0;i<this._data.length;i++){let t=this._data[i];t.path===e&&n.push([t,i])}return n}initElm(e){let n=s=>{let a=[];for(let[l,r]of this.listData(s)){let h=l.comments_with_keywords[0].name,p=l.file.replace(".rb",""),d=`${`
           <ul class='nav-item'>
-            <a class='nav-link' href='#${`1-${r}-${o.path}/${d}`}'>${h}</a>
+            <a class='nav-link' href='#${`1-${r}-${l.path}/${p}`}'>${h}</a>
           </ul>
-        `}`;i.push(p)}return i.join(`
+        `}`;a.push(d)}return a.join(`
 `)};this._listPath=this.listPath();let t=`${`
     <div class='container-fluid'>
       <div class='row'>
@@ -15,6 +15,10 @@
               </li>
               <li class='nav-item'>
                 <a class='nav-link active' href='#0-getting-started'>Getting Started</a>
+
+                <ul class='nav-item'>
+                  <a class='nav-link active' href='#0-tutorial-table-users'>Tutorial</a>
+                </ul>
               </li>
               <li class='nav-item'>
                 <a class='nav-link active' href='#0-plugins'>Plugins</a>
@@ -23,14 +27,15 @@
                   <a class='nav-link active' href='#0-plugin-scaffold'>Scaffold</a>
                 </ul>
               </li>
+
               <li class='nav-item'>
                 <a class='nav-link' href='#0-api-reference'>API Reference</a>
-                ${(()=>{let s=[];for(let i of this._listPath){let o=`${`
+                ${(()=>{let s=[];for(let a of this._listPath){let l=`${`
           <ul class='nav-item'>
-            <span class='nav-link'>${i}</span>
-            ${n(i)}
+            <span class='nav-link'>${a}</span>
+            ${n(a)}
           </ul>
-        `}`;s.push(o)}return s.join(`
+        `}`;s.push(l)}return s.join(`
 `)})()}
               </li>
             </ul>
@@ -90,7 +95,7 @@ eslevel <span class="hljs-number">2021</span>
 
 include_method <span class="hljs-symbol">:class</span>
 </div></code></pre>
-</div>`,y=`<div class='container'>
+</div>`,b=`<div class='container'>
   <h1 id="api-reference">API Reference</h1>
   <br>
   <p>This is the basic API of the modules, or classes, of the RubyJS application itself. They are written in Ruby language and can be further used to create custom plugins. In order to navigate which module belongs where. They have submodules starting with the 'lib' component tag. The basic module is 'RJSV', in which we find the main() method. This executes a particular function marked 'state'.</p>
@@ -108,7 +113,7 @@ include_method <span class="hljs-symbol">:class</span>
   </blockquote>
   <br>
   <p>API reference is automatically generated from Ruby scripts. If you want to see the source script, just click on the link below the module or class name.</p>  
-</div>`,b=`<div class='container'>
+</div>`,y=`<div class='container'>
   <h1>Introduction</h1>
   <br>
   <table frame='void' rules='none'>
@@ -142,7 +147,7 @@ include_method <span class="hljs-symbol">:class</span>
     <h3>Info</h3>
     <p>Since the Vite tool is a secondary feature of the RubyJS tool, it is appropriate to refer to the combined tool as RubyJS-Vite, which is available online. Therefore, both RubyJS and RubyJS-Vite are identical tools.</p>
   </blockquote>
-</div>`,v=`<div class='container'>
+</div>`,j=`<div class='container'>
 <h1 id="plugins">Plugins</h1>
 <br>
 <p>It is an extension element of the CLI application. If a plugin is inserted into the root project, RubyJS will recognize the existence of the plugin in the 'plugins' folder. Everything is triggered with the 'rjsv' command and the plugin name. If we are not sure what the name of the plugin is, it is recommended to use the help command. This will print out all the arguments to the application itself with and plugins.</p>
@@ -305,7 +310,7 @@ B
 <h3 id="22-logic-of-functions">2.2 Logic of Functions</h3>
 <p>Function logic should be split into libraries and should not be in the initialization file itself. When writing functions, we can use predefined functions in the RJSV module. It's a good idea to read the API Reference, which breaks down the module or function classes. If we use a function from the RJSV module, it is recommended to write the whole path to the function.</p>
 
-</div>`,j=`<div class='container'>
+</div>`,v=`<div class='container'>
   <h1 id="scaffold">Scaffold</h1>
   <p>This is a plugin that extends the functionality of RubyJS-Vite. As the name implies, it is a scaffold that can create new projects and elements for an existing web project. To run this plugin, just type the name of the plugin (which is 'scaffold') after the command and use the ideal argument for the functionality. If you don't know what functionality exists, just view the help.</p>
   <p><em>The command to view the help for scaffold:</em></p>
@@ -328,14 +333,176 @@ B
 import <span class="hljs-string">'./elements'</span>
 <span class="hljs-comment">#...</span>
 </div></code></pre>  
-</div>`;class k extends HTMLElement{constructor(){super(),this._hNic=e=>{let n=typeof e.detail=="object";return this.changeContent(e.detail,n)},this._html={gettingStarted:w,apiReference:y,introduction:b,plugins:v,pluginScaffold:j}}connectedCallback(){return document.addEventListener(EVENTS.navItemContent,this._hNic)}disconnectedCallback(){return document.removeEventListener(EVENTS.navItemContent,this._hNic)}initElm(e){let n=()=>{let i=[];for(let o=1;o<e.comments_with_keywords.length;o++){let r=e.comments_with_keywords[o],h=`${`
+</div>`,k=`<div class='container'>
+<h1 id="table-users">Tutorial</h1>
+<br>
+<p>In this tutorial, we'll show how to create a web project using scaffolding and adding a new element. The element will render a table with user information that we have stored in a json file. This is a simple project so we won't be creating anything complicated for styling.</p>
+<h2 id="1-new-project">1 New Project</h2>
+<p>In order to start developing, we need RubyJS-Vite, so make sure you already have this tool since version 2.0.0. Using the 'scaffold' plugin, we will create a project called 'tutorial_table_users'. Make sure the default directory is set to the desktop. This is where the already created web project will be located.</p>
+<p><em>Here is the overall command to set up the directory and create the web project:</em></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~/Desktop &amp;&amp;
+rjsv scaffold web tutorial_table_users
+</div></code></pre>
+<p>After creation, the terminal tells us that the project is already created and we can access it in the directory and start the server. If we do so, the server starts and we get the url address where we can view the site. If you issue 'Hello RubyJS' on the site, then you have a properly working server with the RubyJS-Vite tool.</p>
+<p><em>Here is the command to start the server:</em></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> tutorial_table_users &amp;&amp;
+bin/server
+</div></code></pre>
+<h2 id="2-creating-an-element">2 Creating an Element</h2>
+<p>We have already created a web project and we create a new element using the 'scaffold' plugin. This plugin takes an argument named 'element' and we type the name of the element as a parameter. We name the element 'table_users' and let it be created. Once created, the terminal will tell us that it has modified the files and the name of the element to use in the HTML syntax.</p>
+<p><em>Here is the command to create the new element:</em></p>
+<pre class="hljs"><code><div>rjsv scaffold element table_users
+</div></code></pre>
+<h3 id="21-importing-elements">2.1 Importing Elements</h3>
+<p>In order for the server to recognize the created elements, it is necessary to import the library that initializes the elements. This is the 'elements.js.rb' file. This is done by opening the 'main.js.rb' file and writing the import of the required file here.</p>
+<p><em>Here is an example script:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/main.js.rb</span>
+
+import <span class="hljs-string">'../css/style.css'</span>
+
+import <span class="hljs-string">'./elements'</span>
+<span class="hljs-comment">#...</span>
+</div></code></pre>
+<p>After inserting the import, save the file and the server will respond immediately. From now on we can insert elements in HTML syntax and they are non-binding.</p>
+<h2 id="3-element-table-users">3 Element Table Users</h2>
+<p>Now we need the element to be in HTML. We do this by using 'innerHTML' in the 'main.js.rb' file to insert the DOM tag 'elm-table-users'. This will run the script in 'elm_table_users.js.rb'. We will then modify the script to use a single method called 'init_elm()'. We need to have some user data. So we will create a file 'users.json' and put some data in it. We will open this data using import and convert it into HTML syntax. This will create a table, which we will further customize to a neater styling using a 'style.css' file.</p>
+<h3 id="31-inner-html">3.1 Inner HTML</h3>
+<p>So, first we edit the 'main.js.rb' file and insert the DOM label of our already created element into the innerHTML.</p>
+<p><em>Here is the script of the solution:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/main.js.rb</span>
+
+<span class="hljs-comment">#...</span>
+document.querySelector(<span class="hljs-string">'#app'</span>).innerHTML = <span class="hljs-string">"&lt;elm-table-users&gt;&lt;/elm-table-users&gt;"</span>
+</div></code></pre>
+<h3 id="32-json">3.2 Json</h3>
+<p>Another thing needed for rendering data is a json file. Therefore, this will list the user content that will be put into the 'users.json' file. We then import it over the ElmTableUsers class to have this data present in the 'elm_table_users.js.rb' file.</p>
+<h3 id="321-users-content">3.2.1 Users Content</h3>
+<p>This dumped content is stored in the 'users.json' file. Therefore it is necessary to create the necessary folder or file.</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"users"</span>: [
+    {
+      <span class="hljs-attr">"company"</span>: <span class="hljs-string">"Alfreds Futterkiste"</span>,
+      <span class="hljs-attr">"contact"</span>: <span class="hljs-string">"Maria Anders"</span>,
+      <span class="hljs-attr">"country"</span>: <span class="hljs-string">"Germany"</span>
+    },
+    {
+      <span class="hljs-attr">"company"</span>: <span class="hljs-string">"Centro comercial Moctezuma"</span>,
+      <span class="hljs-attr">"contact"</span>: <span class="hljs-string">"Francisco Chang"</span>,
+      <span class="hljs-attr">"country"</span>: <span class="hljs-string">"Mexico"</span>
+    },
+    {
+      <span class="hljs-attr">"company"</span>: <span class="hljs-string">"Ernst Handel"</span>,
+      <span class="hljs-attr">"contact"</span>: <span class="hljs-string">"Roland Mendel"</span>,
+      <span class="hljs-attr">"country"</span>: <span class="hljs-string">"Austria"</span>
+    }
+  ]
+}
+</div></code></pre>
+<h3 id="322-import-content">3.2.2 Import Content</h3>
+<p>Finally, we import the container so that the server recognizes that it is a JSON file. We do this by appending an extension after the file. We'll put the import in the 'elm_table_users.js.rb' file, so we need to modify it. We will wrap the import under the 'usersObj' name.</p>
+<p><em>The modification should look like this:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/elements/elm_table_users.js.rb</span>
+
+import <span class="hljs-string">'usersObj'</span>, <span class="hljs-string">'../../json/users.json'</span>
+
+export default <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElmTableUsers</span> &lt; HTMLElement</span>
+<span class="hljs-comment">#...</span>
+</div></code></pre>
+<h3 id="33-init-element">3.3 Init Element</h3>
+<p>In order to render everything, we need to modify the initialization of the element. Therefore, in the 'elm_table_users.js.rb' file we will modify the 'init_elm()' function and modify the variable to render the table. To make the table have some data, we will create an anonymous function that will create a nested element for the table.</p>
+<h3 id="331-template">3.3.1 Template</h3>
+<p>We'll start by preparing the temple. The template will contain a name and a table with three columns. The columns will have their own name and will not be empty.</p>
+<p><em>The modification of the 'init_elm()' function will be as follows:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/elements/elm_table_users.js.rb</span>
+
+<span class="hljs-comment">#...</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_elm</span><span class="hljs-params">()</span></span>
+  template = <span class="hljs-string">""</span><span class="hljs-string">"
+  &lt;h1&gt;Users&lt;/h1&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Company&lt;/th&gt;
+      &lt;th&gt;Contact&lt;/th&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+  "</span><span class="hljs-string">""</span>
+
+  <span class="hljs-keyword">self</span>.innerHTML = template
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment">#...</span>
+</div></code></pre>
+<h3 id="332-anonymous-function">3.3.2 Anonymous Function</h3>
+<p>To insert data from the 'users.json' file, we open its container and start exploring the users. The exploration is done via a loop, which gives us one user and we can manipulate their data. So we'll put them into a template that is designed to nest the information for that column separately. The anonymous function will return HTML content with the elements already prepared. This anonymous function, needs to be called inside the base templates and under 'tr' markup which has column names inside. All of the above is again modified in the 'init_elm()' function.</p>
+<p><em>Another modification of the 'init_elm()' function:</em></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># src/rb/elements/elm_table_users.js.rb</span>
+
+<span class="hljs-comment">#...</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_elm</span><span class="hljs-params">()</span></span>
+  l_tr_users = lambda <span class="hljs-keyword">do</span>
+    dom_elements = []
+    users_obj.users.each <span class="hljs-keyword">do</span> <span class="hljs-params">|user|</span>
+      template = <span class="hljs-string">""</span><span class="hljs-string">"
+      &lt;tr&gt;
+        &lt;td&gt;<span class="hljs-subst">#{user.company}</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-subst">#{user.contact}</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-subst">#{user.country}</span>&lt;/td&gt;
+      &lt;/tr&gt;
+      "</span><span class="hljs-string">""</span>
+      dom_elements &lt;&lt; template
+    <span class="hljs-keyword">end</span>
+    dom_elements.join(<span class="hljs-string">"\\n"</span>)
+  <span class="hljs-keyword">end</span>
+
+  template = <span class="hljs-string">""</span><span class="hljs-string">"
+  &lt;h1&gt;Users&lt;/h1&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Company&lt;/th&gt;
+      &lt;th&gt;Contact&lt;/th&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+    &lt;/tr&gt;
+    <span class="hljs-subst">#{l_tr_users()}</span>
+  &lt;/table&gt;
+  "</span><span class="hljs-string">""</span>
+
+  <span class="hljs-keyword">self</span>.innerHTML = template
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment">#...</span>
+</div></code></pre>
+<h3 id="34-stylization">3.4 Stylization</h3>
+<p>If you have the server turned on and you are viewing a web project in the browser, you can see the organized data with the users. There is no stylization that would be clearer. We can solve this problem simply by modifying the 'style.css' file and adding values for table, td, th and tr.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">/* src/css/style.css */</span>
+
+<span class="hljs-selector-tag">table</span> {
+  <span class="hljs-attribute">font-family</span>: arial, sans-serif;
+  <span class="hljs-attribute">border-collapse</span>: collapse;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+
+<span class="hljs-selector-tag">td</span>, <span class="hljs-selector-tag">th</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#bababa</span>;
+  <span class="hljs-attribute">text-align</span>: left;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">8px</span>;
+}
+
+<span class="hljs-selector-tag">tr</span><span class="hljs-selector-pseudo">:nth-child(even)</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#dddddd</span>;
+}
+</div></code></pre>
+<h2 id="4-conclusion">4 Conclusion</h2>
+<p>If we save the css file, we can see the change immediately and we can see a neater stylization of the table. If any file is changed (if it is imported), the server records the change and restarts the server immediately. This is a quick moment that we don't even notice that the server has restarted. Which is a big advantage for web project development.</p>
+<p>RubyJS-Vite is a tool that communicates well with the Vite tool and in real time. The magic is that when the server is turned on, RubyJS-Vite is turned on after the fact and recognizes all file event activity in the defined path where the RB files are stored. If there is an event then RubyJS transforms the script into a JS file and the Vite tool, recognizes any files with JS syntax and it communicates with the server.</p>
+<p>As far as the 'scaffold' plugin is concerned, it should assist in faster project development. We tried out how to create an element in that tutorial and didn't have to go round a new round by not having to write all the script that keeps repeating if we want to have multiple elements in a web project.</p>
+
+</div>`;class _ extends HTMLElement{constructor(){super(),this._hNic=e=>{let n=typeof e.detail=="object";return this.changeContent(e.detail,n)},this._html={gettingStarted:w,apiReference:b,introduction:y,plugins:j,pluginScaffold:v,tutorialTableUsers:k}}connectedCallback(){return document.addEventListener(EVENTS.navItemContent,this._hNic)}disconnectedCallback(){return document.removeEventListener(EVENTS.navItemContent,this._hNic)}initElm(e){let n=()=>{let a=[];for(let l=1;l<e.comments_with_keywords.length;l++){let r=e.comments_with_keywords[l],h=`${`
         <div class=''>
           <h4>${r.keyword} ${r.name}</h4>
           <p>${r.comment}</p>
           <br>
         <div>
-        `}`;i.push(h)}return i.join(`
-`)},a=`${e.path}/${e.file}`,t=e.comments_with_keywords[0],s=`${`
+        `}`;a.push(h)}return a.join(`
+`)},i=`${e.path}/${e.file}`,t=e.comments_with_keywords[0],s=`${`
     <div class='container'>
       <h1>${t.name}</h1>
       
@@ -344,7 +511,7 @@ import <span class="hljs-string">'./elements'</span>
           <h3 style='padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);'>${t.keyword}</h3>
         </li>
         <li class='nav-item'>
-          <a class='nav-link active' href='${GH_PROFILE_URL}/${a}' target='_blank'>${a}</a>
+          <a class='nav-link active' href='${GH_PROFILE_URL}/${i}' target='_blank'>${i}</a>
         </li>
       </ul>
       <br>
@@ -361,7 +528,7 @@ import <span class="hljs-string">'./elements'</span>
         </a>
       </div>
     </header>
-    `}`;return this.innerHTML=e}}class _ extends HTMLElement{constructor(){super(),this.initElm()}initElm(){let e=`${`
+    `}`;return this.innerHTML=e}}class T extends HTMLElement{constructor(){super(),this.initElm()}initElm(){let e=`${`
     <footer class='py-3'>
       <p class='text-center text-body-secondary mb-0'>Powered by docs plugin. Generated on: ${DOCS_API_GENERATED}</p>
     </footer>
@@ -373,4 +540,4 @@ import <span class="hljs-string">'./elements'</span>
       </main>
       <elm-footer></elm-footer>
     </div>
-    `;return this.innerHTML=e}enterHash(){return location.hash?this.endpoint(location.hash.replace("#","")):this.endpoint("0-introduction")}endpoint(e){let n=e.split("-");switch(Number(n[0])){case 0:let t=n.map((i,o)=>{if(o>1)return i.charAt(0).toUpperCase()+i.slice(1);if(o>0)return i}).join("");navItemCategoryClick(t);break;case 1:let s=n[1];navItemContentClick(s)}}}window.customElements.define("elm-content",g);window.customElements.define("elm-main-content",k);window.customElements.define("elm-header",I);window.customElements.define("elm-footer",_);window.customElements.define("elm-home",S);let R=class{static send(e,n=null){return e=new CustomEvent(e,{detail:n}),document.dispatchEvent(e)}};window.Events=R;document.querySelector("#app").innerHTML="<elm-home></elm-home>";
+    `;return this.innerHTML=e}enterHash(){return location.hash?this.endpoint(location.hash.replace("#","")):this.endpoint("0-introduction")}endpoint(e){let n=e.split("-");switch(Number(n[0])){case 0:let t=n.map((a,l)=>{if(l>1)return a.charAt(0).toUpperCase()+a.slice(1);if(l>0)return a}).join("");navItemCategoryClick(t);break;case 1:let s=n[1];navItemContentClick(s)}}}window.customElements.define("elm-content",g);window.customElements.define("elm-main-content",_);window.customElements.define("elm-header",I);window.customElements.define("elm-footer",T);window.customElements.define("elm-home",S);let R=class{static send(e,n=null){return e=new CustomEvent(e,{detail:n}),document.dispatchEvent(e)}};window.Events=R;document.querySelector("#app").innerHTML="<elm-home></elm-home>";
