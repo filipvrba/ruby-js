@@ -75,6 +75,10 @@ export default class ElmContent < HTMLElement
               </li>
               <li class='nav-item'>
                 <a class='nav-link active' href='#0-getting-started'>Getting Started</a>
+
+                <ul class='nav-item'>
+                  <a class='nav-link active' href='#0-tutorial-table-users'>Tutorial</a>
+                </ul>
               </li>
               <li class='nav-item'>
                 <a class='nav-link active' href='#0-plugins'>Plugins</a>
@@ -83,6 +87,7 @@ export default class ElmContent < HTMLElement
                   <a class='nav-link active' href='#0-plugin-scaffold'>Scaffold</a>
                 </ul>
               </li>
+
               <li class='nav-item'>
                 <a class='nav-link' href='#0-api-reference'>API Reference</a>
                 #{l_list_item()}

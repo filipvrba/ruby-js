@@ -3,6 +3,7 @@ import 'apiReference', '../../html/api_reference.html?raw'
 import 'introduction', '../../html/introduction.html?raw'
 import 'plugins', '../../html/plugins.html?raw'
 import 'pluginScaffold', '../../html/plugins/scaffold.html?raw'
+import 'tutorialTableUsers', '../../html/tutorials/table_users.html?raw'
 
 export default class ElmMainContent < HTMLElement
   def initialize
@@ -16,7 +17,8 @@ export default class ElmMainContent < HTMLElement
       api_reference: apiReference,
       introduction: introduction,
       plugins: plugins,
-      plugin_scaffold: plugin_scaffold
+      plugin_scaffold: plugin_scaffold,
+      tutorial_table_users: tutorial_table_users,
     }
   end
 

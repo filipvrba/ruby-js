@@ -3,6 +3,7 @@ import apiReference from "../../html/api_reference.html?raw";
 import introduction from "../../html/introduction.html?raw";
 import plugins from "../../html/plugins.html?raw";
 import pluginScaffold from "../../html/plugins/scaffold.html?raw";
+import tutorialTableUsers from "../../html/tutorials/table_users.html?raw";
 
 export default class ElmMainContent extends HTMLElement {
   constructor() {
@@ -18,7 +19,8 @@ export default class ElmMainContent extends HTMLElement {
       apiReference,
       introduction,
       plugins,
-      pluginScaffold
+      pluginScaffold,
+      tutorialTableUsers
     }
   };
 
