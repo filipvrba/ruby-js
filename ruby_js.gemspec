@@ -1,25 +1,27 @@
-require_relative "lib/ruby_js/version"
-require_relative "lib/ruby_js/constants"
-require_relative "lib/description"
+require_relative "lib/rjsv/version"
 
-EXECUTABLE = RubyJS::Constants::APP_NAME
-
-#TODO: change info for 2.0.0
+EXECUTABLE = 'rjsv'
 
 Gem::Specification.new do |s|
   s.name        = "rubyjs-vite"
-  s.version     = RubyJS::VERSION
+  s.version     = RJSV::VERSION
   s.licenses    = ['MIT']
-  s.summary     = "Converts the syntax of ruby into javascript."
-  s.description = "Using this translation tool, you can run Vite server and write code in Ruby syntax using JS API. " +
-                  "See GitHub for further information. " +
-                  "|> https://github.com/filipvrba/ruby-js"
+  s.summary     = "CLI application with RB file transpilation that communicates with the Vite tool."
+  s.description = "This is a tool that behaves like a CLI application. " +
+                  "The tool can track RB files in real time and transpile " +
+                  "them into JS files. RubyJS-Vite has its own ecosystem and " +
+                  "various plugins can be added. This tool can also communicate " +
+                  "with Vite tool for easier web development. " +
+                  "Read the documentation for more information."
   s.authors     = ["Filip Vrba"]
   s.email       = 'filipvrbaxi@gmail.com'
-  s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'app/**/*.rb', 'lib/**/*.rb']) +
+  s.files       = Dir.glob(["bin/#{EXECUTABLE}", 'lib/**/*.rb', 'plugins/**/*.rb']) +
                   Dir.glob('share/**/*', File::FNM_DOTMATCH).select { |f| File.file?(f) }
   s.homepage    = 'https://rubygems.org/gems/rubyjs-vite'
-  s.metadata    = { "source_code_uri" => "https://github.com/filipvrba/ruby-js" }
+  s.metadata    = {
+    "source_code_uri" => "https://github.com/filipvrba/ruby-js",
+    "documentation_uri" => "https://filipvrba.github.io/ruby-js/"
+  }
   s.bindir      = 'bin'
   s.executables << EXECUTABLE
 
