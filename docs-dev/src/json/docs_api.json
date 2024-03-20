@@ -2,7 +2,7 @@
   "docs_api": [
     {
       "file": "arguments.rb",
-      "path": "lib/rjsv/cli",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/cli",
       "comments_with_keywords": [
         {
           "comment": "Module for all arguments to the CLI application. The argument initializes the OptionParser, which defines the arguments in detail. It is also nested with a function that adds all arguments from modules.",
@@ -23,7 +23,7 @@
     },
     {
       "file": "plugins.rb",
-      "path": "lib/rjsv/cli",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/cli",
       "comments_with_keywords": [
         {
           "comment": "This is the module that handles plugins so that they are found, imported and inizialized.",
@@ -49,7 +49,7 @@
     },
     {
       "file": "signals.rb",
-      "path": "lib/rjsv/cli",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/cli",
       "comments_with_keywords": [
         {
           "comment": "Dedicated to all signals for Unix system. Here we find the signal for INT.",
@@ -60,7 +60,7 @@
     },
     {
       "file": "constants.rb",
-      "path": "lib/rjsv",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv",
       "comments_with_keywords": [
         {
           "comment": "All constant variables.",
@@ -71,7 +71,7 @@
     },
     {
       "file": "constants.rb",
-      "path": "lib/rjsv/core",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/core",
       "comments_with_keywords": [
         {
           "comment": "The module is reserved for handling classes and modules. Thus, it is a manipulation of constant keywords.",
@@ -87,7 +87,7 @@
     },
     {
       "file": "event.rb",
-      "path": "lib/rjsv/core",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/core",
       "comments_with_keywords": [
         {
           "comment": "Event module for handling fifo events. This is so far a module for just the basic event printing element.",
@@ -103,7 +103,7 @@
     },
     {
       "file": "files.rb",
-      "path": "lib/rjsv/core",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv/core",
       "comments_with_keywords": [
         {
           "comment": "The file module ensures safe handling of files. It always checks if a file really exists on the input path or if a certain folder exists on the output path. It can also change the absolute path or find all necessary files for further manipulation.",
@@ -144,7 +144,7 @@
     },
     {
       "file": "plugin.rb",
-      "path": "lib/rjsv",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv",
       "comments_with_keywords": [
         {
           "comment": "Abstract 'class' for creating initialization plagins. They are teachable for defining basic information and is the starting point for triggering functions using the init() function. If we are creating a custom plugin, we need to inherit this 'class' into its own 'class'.",
@@ -180,7 +180,7 @@
     },
     {
       "file": "translate.rb",
-      "path": "lib/rjsv",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv",
       "comments_with_keywords": [
         {
           "comment": "Here we can load everything necessary for the transpilation process of Ruby script into JavaScript. The transpilation process uses the Ruby2JS library. The transpilation is safe and catches error messages if the Ruby script has been written incorrectly.",
@@ -201,7 +201,7 @@
     },
     {
       "file": "watch.rb",
-      "path": "lib/rjsv",
+      "path": "/home/filip/.local/src/ruby-js/lib/rjsv",
       "comments_with_keywords": [
         {
           "comment": "Module for real-time monitoring of files on the local disk. It uses the 'listen' library for this function. There is only one method that can be loaded here which triggers everything.",
@@ -217,7 +217,7 @@
     },
     {
       "file": "rjsv.rb",
-      "path": "lib",
+      "path": "/home/filip/.local/src/ruby-js/lib",
       "comments_with_keywords": [
         {
           "comment": "This is the main initialization module of all modules that are needed for the functionality of this RubyJS-Vite transpiler. The methods that shape the direction of the application are also written here.",
@@ -242,6 +242,6 @@
       ]
     }
   ],
-  "generated": "19. 06. 2023 07:43:53",
+  "generated": "20. 03. 2024 14:38:41",
   "version": "2.0.0"
 }

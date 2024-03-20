@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=./",
+    "build": "rjsv docs generate ../lib && vite build --base=./",
     "preview": "vite preview"
   },
   "devDependencies": {
