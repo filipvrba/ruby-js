@@ -4,7 +4,7 @@ body {
 }
 
 blockquote {
-  margin: 0 7px 0 5px;
+  	margin: 0 7px 30px 5px;
 	padding: 0 16px 0 10px;
 	border-left-width: 5px;
 	border-left-style: solid;

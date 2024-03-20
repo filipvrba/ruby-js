@@ -18,7 +18,8 @@ module RJSV
         l_path = lambda { |p| File.join(p, 'plugins', '**', 'init.rb') }
         Dir.glob [
           l_path.call(path),
-          l_path.call(ROOT)
+          l_path.call(ROOT),
+          l_path.call(File.join(Dir.home, '.rjsv'))
         ]
       end
 

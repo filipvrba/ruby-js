@@ -28,6 +28,16 @@ B
 > ### Info
 > Plugins are relative to projects. If project A has a specific plugin, you won't see that plugin in project B.
 
+### 1.1 Home directory for easy access
+
+There is another way to extend plugins using the home directory. Just create a new hidden file called '.rjsv/plugins' in your home directory. Then our program will automatically recognize it and allow you to use plugins in all projects created with RubyJS tool.
+
+*Here is an example of the plugin's location in the home directory:*
+
+```bash
+$HOME/.rjsv/plugins
+```
+
 ## 2 Development
 
 If you are developing a project with RubyJS and you need to change the way functions work, you need to create a specific plugin. To create a plugin, we need to know a few criteria to be able to initialize it in the CLI of the application. If these criteria are met and the specific plugin can initialize, then we can write the function logic.

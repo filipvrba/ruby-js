@@ -95,7 +95,7 @@ eslevel <span class="hljs-number">2021</span>
 
 include_method <span class="hljs-symbol">:class</span>
 </div></code></pre>
-</div>`,b=`<div class='container'>
+</div>`,y=`<div class='container'>
   <h1 id="api-reference">API Reference</h1>
   <br>
   <p>This is the basic API of the modules, or classes, of the RubyJS application itself. They are written in Ruby language and can be further used to create custom plugins. In order to navigate which module belongs where. They have submodules starting with the 'lib' component tag. The basic module is 'RJSV', in which we find the main() method. This executes a particular function marked 'state'.</p>
@@ -113,7 +113,7 @@ include_method <span class="hljs-symbol">:class</span>
   </blockquote>
   <br>
   <p>API reference is automatically generated from Ruby scripts. If you want to see the source script, just click on the link below the module or class name.</p>  
-</div>`,y=`<div class='container'>
+</div>`,b=`<div class='container'>
   <h1>Introduction</h1>
   <br>
   <table frame='void' rules='none'>
@@ -148,8 +148,7 @@ include_method <span class="hljs-symbol">:class</span>
     <p>Since the Vite tool is a secondary feature of the RubyJS tool, it is appropriate to refer to the combined tool as RubyJS-Vite, which is available online. Therefore, both RubyJS and RubyJS-Vite are identical tools.</p>
   </blockquote>
 </div>`,j=`<div class='container'>
-<h1 id="plugins">Plugins</h1>
-<br>
+  <h1 id="plugins">Plugins</h1>
 <p>It is an extension element of the CLI application. If a plugin is inserted into the root project, RubyJS will recognize the existence of the plugin in the 'plugins' folder. Everything is triggered with the 'rjsv' command and the plugin name. If we are not sure what the name of the plugin is, it is recommended to use the help command. This will print out all the arguments to the application itself with and plugins.</p>
 <p><em>Here is the command to display the help:</em></p>
 <pre class="hljs"><code><div>rjsv -h
@@ -166,20 +165,21 @@ B
     ├── docs
     └── react
 </div></code></pre>
-<br>
 <blockquote>
 <h3 id="info">Info</h3>
 <p>Plugins are relative to projects. If project A has a specific plugin, you won't see that plugin in project B.</p>
 </blockquote>
-<br>
+<h3 id="11-home-directory-for-easy-access">1.1 Home directory for easy access</h3>
+<p>There is another way to extend plugins using the home directory. Just create a new hidden file called '.rjsv/plugins' in your home directory. Then our program will automatically recognize it and allow you to use plugins in all projects created with RubyJS tool.</p>
+<p><em>Here is an example of the plugin's location in the home directory:</em></p>
+<pre class="hljs"><code><div><span class="hljs-variable">$HOME</span>/.rjsv/plugins
+</div></code></pre>
 <h2 id="2-development">2 Development</h2>
 <p>If you are developing a project with RubyJS and you need to change the way functions work, you need to create a specific plugin. To create a plugin, we need to know a few criteria to be able to initialize it in the CLI of the application. If these criteria are met and the specific plugin can initialize, then we can write the function logic.</p>
-<br>
 <blockquote>
 <h3 id="info">Info</h3>
 <p>Here it should be emphasized that we can use the API Reference to manipulate an existing function. Most functions are independent and reusable.</p>
 </blockquote>
-<br>
 <h3 id="21-criteria">2.1 Criteria</h3>
 <p><em>Here is a list of criteria to be followed:</em></p>
 <ol>
@@ -236,12 +236,10 @@ B
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </div></code></pre>
-<br>
 <blockquote>
 <h3 id="info">Info</h3>
 <p>When creating plugin libraries, the structure of the modules should also be followed. If it is not followed, there is a possible conflict of functions from different plugins or separate RubyJS applications.</p>
 </blockquote>
-<br>
 <h3 id="214-representative-content-snippet">2.1.4 Representative Content Snippet</h3>
 <p>Simply put, an initialization file is like the contents of a book. If we open this file, we can see everything the plugin contains and what functions it runs when it initializes.</p>
 <p><em>Here is an example of what an initialization file should look like, for the scaffold plugin:</em></p>
@@ -495,7 +493,7 @@ export default <span class="hljs-class"><span class="hljs-keyword">class</span> 
 <p>RubyJS-Vite is a tool that communicates well with the Vite tool and in real time. The magic is that when the server is turned on, RubyJS-Vite is turned on after the fact and recognizes all file event activity in the defined path where the RB files are stored. If there is an event then RubyJS transforms the script into a JS file and the Vite tool, recognizes any files with JS syntax and it communicates with the server.</p>
 <p>As far as the 'scaffold' plugin is concerned, it should assist in faster project development. We tried out how to create an element in that tutorial and didn't have to go round a new round by not having to write all the script that keeps repeating if we want to have multiple elements in a web project.</p>
 
-</div>`;class _ extends HTMLElement{constructor(){super(),this._hNic=e=>{let n=typeof e.detail=="object";return this.changeContent(e.detail,n)},this._html={gettingStarted:w,apiReference:b,introduction:y,plugins:j,pluginScaffold:v,tutorialTableUsers:k}}connectedCallback(){return document.addEventListener(EVENTS.navItemContent,this._hNic)}disconnectedCallback(){return document.removeEventListener(EVENTS.navItemContent,this._hNic)}initElm(e){let n=()=>{let a=[];for(let l=1;l<e.comments_with_keywords.length;l++){let r=e.comments_with_keywords[l],h=`${`
+</div>`;class _ extends HTMLElement{constructor(){super(),this._hNic=e=>{let n=typeof e.detail=="object";return this.changeContent(e.detail,n)},this._html={gettingStarted:w,apiReference:y,introduction:b,plugins:j,pluginScaffold:v,tutorialTableUsers:k}}connectedCallback(){return document.addEventListener(EVENTS.navItemContent,this._hNic)}disconnectedCallback(){return document.removeEventListener(EVENTS.navItemContent,this._hNic)}initElm(e){let n=()=>{let a=[];for(let l=1;l<e.comments_with_keywords.length;l++){let r=e.comments_with_keywords[l],h=`${`
         <div class=''>
           <h4>${r.keyword} ${r.name}</h4>
           <p>${r.comment}</p>
