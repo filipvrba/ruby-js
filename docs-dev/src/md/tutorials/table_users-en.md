@@ -72,7 +72,7 @@ Another thing needed for rendering data is a json file. Therefore, this will lis
 
 ### 3.2.1 Users Content
 
-This dumped content is stored in the 'users.json' file. Therefore it is necessary to create the necessary folder or file.
+This dumped content is stored in the 'src/json/users.json' file. Therefore it is necessary to create the necessary folder or file.
 
 ```json
 {

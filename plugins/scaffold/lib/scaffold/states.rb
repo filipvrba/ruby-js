@@ -20,7 +20,7 @@ module RJSV
                    "Please rerun the Vite installation after installing NodeJS.\n" +
                    "Use these instructions:\n\n" +
                    "#{wspaces}cd #{project}\n" +
-                   "#{wspaces}npm install -D vite\n" +
+                   "#{wspaces}npm install\n" +
                    "#{wspaces}bin/server"
             end
           end

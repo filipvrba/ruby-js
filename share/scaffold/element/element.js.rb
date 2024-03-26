@@ -5,10 +5,10 @@ export default class ElmNAME_CLASS < HTMLElement
     init_elm()
   end
 
-  def connectedCallback()
+  def connected_callback()
   end
 
-  def disconnectedCallback()
+  def disconnected_callback()
   end
 
   def init_elm()
