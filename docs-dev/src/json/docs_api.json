@@ -59,6 +59,27 @@
       ]
     },
     {
+      "file": "states.rb",
+      "path": "lib/rjsv/cli",
+      "comments_with_keywords": [
+        {
+          "comment": "Here are the code blocks that are activated when the main function is triggered. Functions communicate using arguments passed via the command line, which are passed as options_cli. These functions include translate and watch, which can be reused when creating custom plugins.",
+          "keyword": "module",
+          "name": "States"
+        },
+        {
+          "comment": "Block of code that handles the transpilation of script. This is opening a Ruby script container file, which is then converted into a JavaScript file. The file is saved to the output path.",
+          "keyword": "def",
+          "name": "translate_state(path, options_cli)"
+        },
+        {
+          "comment": "Block of code that tracks files under the input path. If a file has been logged, several events are performed such as to add, modify and remove logged files. These then trigger procedural methods to process the requests.",
+          "keyword": "def",
+          "name": "watch_state(options_cli)"
+        }
+      ]
+    },
+    {
       "file": "constants.rb",
       "path": "lib/rjsv",
       "comments_with_keywords": [
@@ -225,16 +246,6 @@
           "name": "RJSV"
         },
         {
-          "comment": "Block of code that handles the transpilation of script. This is opening a Ruby script container file, which is then converted into a JavaScript file. The file is saved to the output path.",
-          "keyword": "def",
-          "name": "translate_state(path)"
-        },
-        {
-          "comment": "Block of code that tracks files under the input path. If a file has been logged, several events are performed such as to add, modify and remove logged files. These then trigger procedural methods to process the requests.",
-          "keyword": "def",
-          "name": "watch_state()"
-        },
-        {
           "comment": "This is the main function to run the desired block function scenarios. In order to arm itself regarding plugins and directly Arguments, this method checks the accessibility of the plugin by checking if it is active or attached in the argument given by the confirmed command from the terminal.",
           "keyword": "def",
           "name": "main()"
@@ -242,6 +253,6 @@
       ]
     }
   ],
-  "generated": "20. 03. 2024 14:52:12",
+  "generated": "26. 03. 2024 03:06:08",
   "version": "2.0.1"
 }

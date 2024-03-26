@@ -61,10 +61,9 @@ module RJSV
       # path for the output path.
 
       def change_path_to_output(path, options_cli)
-        path.sub(File.join(Dir.pwd, ''), '')
-            .sub(options_cli[:source], '')
+        path.sub(options_cli[:source], options_cli[:output])
             .sub(/\.#{RJSV::Constants::SUFFIX_RB}$/, '')
-            .prepend(options_cli[:output])
+            .sub(File.join(Dir.pwd(), ''), '')
       end
 
       ##
