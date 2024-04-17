@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rjsv-dev docs generate ../lib && vite build --base=./",
+    "build": "vite build --base=./",
+    "build-docs": "rjsv-dev docs generate ../lib && vite build --base=./",
     "preview": "vite preview"
   },
   "devDependencies": {

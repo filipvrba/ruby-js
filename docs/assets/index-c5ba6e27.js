@@ -200,7 +200,7 @@ B
             └── init.rb
 </div></code></pre>
 <h3 id="212-initialization-file">2.1.2 Initialization File</h3>
-<p>Initialization is done in the 'init.rb' file. In it, the class 'Init' is written, which inherits the ready abstract class <a href="#1-7-lib/rjsv/plugin">RSJV::Plugin</a>. You need to know this abstract class, mainly because of the abstract methods. The methods should be defined in the class and populated.</p>
+<p>Initialization is done in the 'init.rb' file. In it, the class 'Init' is written, which inherits the ready abstract class <a href="#1-8-lib/rjsv/plugin">RSJV::Plugin</a>. You need to know this abstract class, mainly because of the abstract methods. The methods should be defined in the class and populated.</p>
 <p><em>It is these abstract methods:</em></p>
 <ul>
 <li><strong>description</strong> - a short description of the plugin, which will be printed during help.</li>
@@ -308,7 +308,8 @@ B
 <h3 id="22-logic-of-functions">2.2 Logic of Functions</h3>
 <p>Function logic should be split into libraries and should not be in the initialization file itself. When writing functions, we can use predefined functions in the RJSV module. It's a good idea to read the API Reference, which breaks down the module or function classes. If we use a function from the RJSV module, it is recommended to write the whole path to the function.</p>
 
-</div>`,v=`<div class='container'>
+</div>
+`,v=`<div class='container'>
   <h1 id="scaffold">Scaffold</h1>
   <p>This is a plugin that extends the functionality of RubyJS-Vite. As the name implies, it is a scaffold that can create new projects and elements for an existing web project. To run this plugin, just type the name of the plugin (which is 'scaffold') after the command and use the ideal argument for the functionality. If you don't know what functionality exists, just view the help.</p>
   <p><em>The command to view the help for scaffold:</em></p>
