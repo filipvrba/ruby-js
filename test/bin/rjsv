@@ -1,3 +1,3 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-/home/filip/Desktop/rubyjs-rb/bin/rjsv $@
+rjsv-dev -t -w -s 'src/rb api/rb' -o 'src/js api' $@

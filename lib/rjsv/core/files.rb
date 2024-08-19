@@ -61,18 +61,36 @@ module RJSV
       # path for the output path.
 
       def change_path_to_output(path, options_cli)
-        path.sub(options_cli[:source], options_cli[:output])
-            .sub(/\.#{RJSV::Constants::SUFFIX_RB}$/, '')
-            .sub(File.join(Dir.pwd(), ''), '')
+        find_output_path = lambda do
+          index_s_path = options_cli[:source].split(RJSV::Constants::PATH_SPLIT)
+                        .index {|e| path.index(e) != nil }
+          s_path  = options_cli[:source].split(RJSV::Constants::PATH_SPLIT)[index_s_path]
+          mo_path = options_cli[:output].split(RJSV::Constants::PATH_SPLIT)[index_s_path]
+
+          unless mo_path
+            mo_path = options_cli[:output].split(RJSV::Constants::PATH_SPLIT)[0]
+            Core::Event.print('warning', "Output path not found for '#{s_path}'.")
+          end
+
+          return path.sub(s_path, mo_path)
+        end
+
+        find_output_path.call()
+          .sub(/\.#{RJSV::Constants::SUFFIX_RB}$/, '')
+          .sub(File.join(Dir.pwd(), ''), '')
       end
 
       ##
       # Finds all files with the extension '.*.rb'
       # from the defined path.
 
-      def find_all(path)
-        path_all = File.join(path, '**', '*')
-        Dir.glob("#{path_all}.*.#{RJSV::Constants::SUFFIX_RB}")
+      def find_all(paths)
+        path_all = []
+        paths.split(RJSV::Constants::PATH_SPLIT).each do |path|
+          path_all << File.join(path, '**', '*') + ".*.#{RJSV::Constants::SUFFIX_RB}"
+        end
+
+        Dir.glob(path_all)
       end
 
       ##

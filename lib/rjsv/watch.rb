@@ -21,8 +21,8 @@ module RJSV
     # extension '.*.rb', which asterisk means
     # any sub extension such as '.js'.
 
-    def modified_files(path, &block)
-      listener = Listen.to(path,
+    def modified_files(*paths, &block)
+      listener = Listen.to(*paths,
         only: /\..*\.#{Constants::SUFFIX_RB}$/
       ) do |m, a, r|
         

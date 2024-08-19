@@ -40,7 +40,8 @@ module RJSV
       def watch_state(options_cli)
         if options_cli[:watch]
           Core::Event.print('message', 'There is now a watch for edited files.')
-          RJSV::Watch.modified_files(options_cli[:source]) do |modified, added, removed|
+          paths = options_cli[:source].split(RJSV::Constants::PATH_SPLIT)
+          RJSV::Watch.modified_files(*paths) do |modified, added, removed|
             unless added.empty?
               added.each do |path|
                 translate_state(path, options_cli)
