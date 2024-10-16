@@ -32,10 +32,10 @@ module RJSV
       end
 
       ##
-      # Block of code that tracks files under the input path.
-      # If a file has been logged, several events are performed
-      # such as to add, modify and remove logged files.
-      # These then trigger procedural methods to process the requests.
+      # Block of code that tracks files under the input paths.
+      # If a file has been logged, several events are performed,
+      # such as adding, modifying, and removing logged files.
+      # These events then trigger procedural methods to process the requests.
 
       def watch_state(options_cli)
         if options_cli[:watch]

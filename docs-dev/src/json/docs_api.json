@@ -73,7 +73,7 @@
           "name": "translate_state(path, options_cli)"
         },
         {
-          "comment": "Block of code that tracks files under the input path. If a file has been logged, several events are performed such as to add, modify and remove logged files. These then trigger procedural methods to process the requests.",
+          "comment": "Block of code that tracks files under the input paths. If a file has been logged, several events are performed, such as adding, modifying, and removing logged files. These events then trigger procedural methods to process the requests.",
           "keyword": "def",
           "name": "watch_state(options_cli)"
         }
@@ -152,9 +152,9 @@
           "name": "change_path_to_output(path, options_cli)"
         },
         {
-          "comment": "Finds all files with the extension '.*.rb' from the defined path.",
+          "comment": "Finds all files with the extension '.*.rb' from the defined paths.",
           "keyword": "def",
-          "name": "find_all(path)"
+          "name": "find_all(paths)"
         },
         {
           "comment": "Copies all files from the input path to the output path. This is a method that copies all files even those that are invisible to the UNIX system (dot file).",
@@ -230,9 +230,9 @@
           "name": "Watch"
         },
         {
-          "comment": "Tracks modified files in the path that is defined as the source directory. When this function is called, the event listener is triggered for events such as modified, added, and deleted file events. Therefore, the method can put the application to sleep and silently monitor the event process. It watches all files with extension '.*.rb', which asterisk means any sub extension such as '.js'.",
+          "comment": "Tracks modified files in the paths that are defined as the source directories. When this function is called, the event listener is triggered for events such as modified, added, and deleted file events. Therefore, the method can put the application to sleep and silently monitor the event process. It watches all files with the extension '.*.rb', where the asterisk means any sub-extension such as '.js'.",
           "keyword": "def",
-          "name": "modified_files(path, &block)"
+          "name": "modified_files(*paths, &block)"
         }
       ]
     },
@@ -253,6 +253,6 @@
       ]
     }
   ],
-  "generated": "26. 03. 2024 12:52:42",
-  "version": "2.0.1"
+  "generated": "16. 10. 2024 18:36:11",
+  "version": "2.0.2"
 }

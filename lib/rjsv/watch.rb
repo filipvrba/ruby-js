@@ -11,15 +11,15 @@ module RJSV
     module_function
 
     ##
-    # Tracks modified files in the path that is
-    # defined as the source directory. When this
-    # function is called, the event listener is triggered
-    # for events such as modified, added, and deleted
-    # file events. Therefore, the method can put
-    # the application to sleep and silently monitor
-    # the event process. It watches all files with
-    # extension '.*.rb', which asterisk means
-    # any sub extension such as '.js'.
+    # Tracks modified files in the paths that are
+    # defined as the source directories. When this
+    # function is called, the event listener is
+    # triggered for events such as modified, added,
+    # and deleted file events. Therefore, the method
+    # can put the application to sleep and silently
+    # monitor the event process. It watches all
+    # files with the extension '.*.rb', where
+    # the asterisk means any sub-extension such as '.js'.
 
     def modified_files(*paths, &block)
       listener = Listen.to(*paths,

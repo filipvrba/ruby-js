@@ -22,8 +22,8 @@
 <p>The way it works is that if we create, edit or remove a file, the tracker will capture the event that the transpilation is working with next (that's why it's important that the transpilation is always active). Once the files are transpiled into the native JavaScript syntax, the Vite tool catches the changes and it automatically restarts the server and refreshes the web page if necessary.</p>
 <p><em>Here are the 4 basic functions that are broken down into points and are applicable as the 'rjsv' cli application argument:</em></p>
 <ol>
-<li><strong>-s DIR, --source DIR</strong> (The path of the source folder where all RB files are found. Example of ending file type *.js.rb.)</li>
-<li><strong>-o DIR, --output DIR</strong> (The path of the output folder where all Ruby codes will be translated into JavaScript with the prepared file type.)</li>
+<li><strong>-s DIR, --source DIR</strong> (The path or paths of the source folder(s) where all RB files are found e.g., files ending in *.js.rb.)</li>
+<li><strong>-o DIR, --output DIR</strong> (The path or paths of the output folder(s) where all Ruby code will be translated into JavaScript with the prepared file type.)</li>
 <li><strong>-t, --translate</strong> (It translates all loaded RB files into JavaScript code and stores them in certain type files.)</li>
 <li><strong>-w, --watch</strong> (Monitors all RB files in real time to see if they have been modified.)</li>
 </ol>

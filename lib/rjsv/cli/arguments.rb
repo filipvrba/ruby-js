@@ -32,17 +32,19 @@ module RJSV
         end
         parser.on( "-t", "--translate", "It translates all loaded RB files\n" +
                                         "into JavaScript code and stores them\n" +
-                                        "in certain type files." ) do
+                                        "in certain type files.\n" ) do
           @options[:translate] = true
         end
-        parser.on("-s DIR", "--source DIR", "The path of the source folder where\n" +
-                                            "all RB files are found (example of\n" +
-                                            "ending file type *.js.#{RJSV::Constants::SUFFIX_RB}).\n") do |dir|
+        parser.on("-s DIR", "--source DIR", "The path or paths of the source folder(s)\n" +
+                                            "where all RB files are found\n" +
+                                            "(e.g., files ending in *.js.#{RJSV::Constants::SUFFIX_RB}).") do |dir|
+                                            
           @options[:source] = dir
         end
-        parser.on("-o DIR", "--output DIR", "The path of the output folder where\n" +
-                                            "all Ruby codes will be translated into\n" +
-                                            "JavaScript with the prepared file type." ) do |dir|
+        parser.on("-o DIR", "--output DIR", "The path or paths of the output folder(s)\n" +
+                                            "where all Ruby code will be translated into\n" +
+                                            "JavaScript with the prepared file type.\n" ) do |dir|
+                                            
           @options[:output] = dir
         end
 

@@ -82,7 +82,7 @@ module RJSV
 
       ##
       # Finds all files with the extension '.*.rb'
-      # from the defined path.
+      # from the defined paths.
 
       def find_all(paths)
         path_all = []
