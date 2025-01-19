@@ -4,11 +4,6 @@
     <img src="docs/rjsv.svg" width="128px"/>
   </a>
   <p>RubyJS Vite</p>
-  <p align="center">
-    <a href="https://github.com/filipvrba/ruby-js/blob/main/LICENSE">
-      <img alt="License" src="https://img.shields.io/github/license/filipvrba/ruby-js?style=for-the-badge"/>
-    </a>
-  </p>
 </h1>
 
 This tool is written in Ruby which uses a library to transpile Ruby script into JavaScript. To give you a better idea of what this CLI application does, it can track files with the extension '.*.rb' in real time and transpile them to another file with native JS script (note that the extension has a star and this indicates the type of file we want to save the transpiled script to).
