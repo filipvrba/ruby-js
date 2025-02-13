@@ -8,6 +8,7 @@ require 'rjsv/plugin'
 require 'rjsv/core/event'
 require 'rjsv/core/files'
 require 'rjsv/core/constants'
+require 'rjsv/core/string'
 
 require 'rjsv/translate'
 require 'rjsv/watch'

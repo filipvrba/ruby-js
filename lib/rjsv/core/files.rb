@@ -23,6 +23,12 @@ module RJSV
           File.open path do |f|
             return f.read
           end
+        else
+          files      = Dir.glob(path)
+          have_files = files.length > 0
+          if have_files
+            return open(files.first)
+          end
         end
 
         return nil

@@ -6,6 +6,7 @@ module RJSV
           @options = {
             create_web: nil,
             element: nil,
+            inputs: nil,
           }
 
           module_function
@@ -22,8 +23,12 @@ module RJSV
                                                           "a basic code architecture." ) do |name|
                 @options[:create_web] = name
               end
-              parser.on( "element NAME", "", "Creates scaffolding for the new element.\n" ) do |name|
+              parser.on( "element NAME", "", "Creates scaffolding for the new element." ) do |name|
                 @options[:element] = name
+              end
+              parser.on( "inputs ELEMENT", "", "It creates a CInputs component for \n" +
+                                               "the specified named element.\n" ) do |name|
+                @options[:inputs] = name
               end
 
               parser.on( "-h", "--help", "Show help" ) do

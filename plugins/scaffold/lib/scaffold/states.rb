@@ -34,6 +34,25 @@ module RJSV
             end
           end
         end
+
+        def create_inputs_state(options)
+          name = options[:inputs]
+          if name
+            file_path = Analyze.element_path(name)
+            if file_path
+              html_strings       = Analyze.html_strings(file_path)
+              element_attributes = Analyze.element_attributes(html_strings)
+
+              Create.component_inputs(element_attributes)
+            else
+              RJSV::Core::Event.print('scaffold', "This '#{name}' element does not exist.")
+            end
+          else
+            RJSV::Core::Event.print('scaffold', "Cannot find the 'elements' file.")
+          end
+        end
+
+        
       end#States
     end
   end

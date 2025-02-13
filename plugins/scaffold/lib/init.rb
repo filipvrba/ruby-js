@@ -6,6 +6,7 @@ module RJSV
       require_relative './scaffold/vite'
       require_relative './scaffold/states'
       require_relative './scaffold/create'
+      require_relative './scaffold/analyze'
 
       class Init < RJSV::Plugin
         def initialize
@@ -24,6 +25,7 @@ module RJSV
         def init()
           Scaffold::States.create_web_state(@arguments_cli.options)
           Scaffold::States.create_element_state(@arguments_cli.options)
+          Scaffold::States.create_inputs_state(@arguments_cli.options)
         end
       end
     end
