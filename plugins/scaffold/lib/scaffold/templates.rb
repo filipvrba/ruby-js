@@ -68,7 +68,7 @@ module RJSV
       return
     end
 
-    Events.emit('#app', ENVS.#{win_func[:name]}, {
+    @parent.#{win_func[:name]}({
       #{variable_values}
     })
   end
@@ -84,7 +84,7 @@ module RJSV
           keypress_handlers = input_variables.map do |h|
             input = h[:name]
             keypress_fn = "#{input}_keypress"
-            { template: "@h_#{input}_keypress = lambda { #{keypress_fn} }", keypress_fn: keypress_fn }
+            { template: "@h_#{input}_keypress = lambda { #{keypress_fn}() }", keypress_fn: keypress_fn }
           end
         
           generate_keypress_functions = ->(keypress_handlers) do
@@ -101,21 +101,8 @@ module RJSV
   end"
           end
 
-          generate_envs = lambda do
-            btn_functions = window_functions.map do |h|
-              "#{h[:name]}: '#{SecureRandom.uuid}',"
-            end
-
-            """
-  ENVS = {
-    #{btn_functions.join("\n" + ' ' * 4)}
-  }"""
-          end
-
           template = <<~RUBY
             export default class CInputs
-              #{generate_envs.call()}
-
               def initialize(parent)
                 @parent = parent
         
