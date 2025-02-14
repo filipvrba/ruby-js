@@ -7,6 +7,8 @@ module RJSV
       require_relative './scaffold/states'
       require_relative './scaffold/create'
       require_relative './scaffold/analyze'
+      require_relative './scaffold/templates'
+      require_relative './scaffold/files'
 
       class Init < RJSV::Plugin
         def initialize

@@ -40,10 +40,17 @@ module RJSV
           if name
             file_path = Analyze.element_path(name)
             if file_path
-              html_strings       = Analyze.html_strings(file_path)
-              element_attributes = Analyze.element_attributes(html_strings)
+              print("Do you really want to create CInputs for the '#{name}' element?\n" +
+                "This confirmation will create, or overwrite, the entire CInputs! (y/N)\n")
+              input = STDIN.gets.chomp
+              unless input.index('y')
+                RJSV::Core::Event.print('scaffold', "Creation of CInputs has been denied.")
+                return
+              end
 
-              Create.component_inputs(element_attributes)
+              Create.inputs(file_path) do |message|
+                RJSV::Core::Event.print('scaffold', message)
+              end
             else
               RJSV::Core::Event.print('scaffold', "This '#{name}' element does not exist.")
             end
