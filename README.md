@@ -10,6 +10,8 @@ This tool is written in Ruby which uses a library to transpile Ruby script into 
 
 This is a newer version that has changed the architecture of the code and it is possible to implement custom plugins to extend the functionality of RubyJS-Vite. Therefore, you need to take care that since version 2.0.0 everything is different and if you are using an older version. So I recommend to look at another [branch marked with version 1.1](https://github.com/filipvrba/ruby-js/tree/1.1), or upgrade to a newer version.
 
+**Please note that this repository is now archived and no longer actively maintained.**
+
 ## Document
 
 For more information for the newer version of RubyJS-Vite, see the online document.
